@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 50px;
+  background-color: #1f1f1f;
+  height: 70px;
+  .logo {
+    font-size: 25px;
+    color: white;
+    text-transform: uppercase;
+  }
+}
