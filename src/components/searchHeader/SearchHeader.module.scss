@@ -1,0 +1,24 @@
+@import '../../app/styles/vars.scss';
+.container {
+  display: flex;
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 160px;
+  .icons {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    .icons__icon {
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--color-icon-header);
+      &.focus {
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import "../../app/styles/vars.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-width: 125px;
+  position: relative;
+  padding: 0 5px;
+  &.mobile {
+    background-color: #333;
+  }
+  .menu__top {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    .menu__icon {
+      width: 25px;
+      height: 25px;
+      color: var(--color-icon-header);
+    }
+    .menu__siteName {
+      font-size: 25px;
+      color: white;
+      text-transform: uppercase;
+      @media (max-width: $portrait-phones-max) {
+        font-size: 16px;
+      }
+    }
+  }
+  .menu__bottom {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 70px;
+  }
+}

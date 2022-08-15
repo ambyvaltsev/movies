@@ -1,13 +1,30 @@
+@import "../../app/styles/vars.scss";
 .container {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 0 50px;
   background-color: #1f1f1f;
   height: 70px;
-  .logo {
-    font-size: 25px;
-    color: white;
-    text-transform: uppercase;
+  @media (max-width: $portrait-phones-max) {
+    padding-left: 5px;
+    gap: 5px;
+  }
+  
+  
+  .account {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
+    width: 25px;
+    height: 25px;
+    background-image: url("../../assets/img/account.svg");
+    background-size: cover;
+    border-radius: 50%;
+    @media (max-width: $portrait-phones-max) {
+      right: 5px;
+    }
   }
 }

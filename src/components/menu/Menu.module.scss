@@ -1,0 +1,31 @@
+@import "../../app/styles/vars.scss";
+.container {
+  &.mobile {
+    background-color: #333;
+    width: 100%;
+    padding: 15px 5px;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    & > .active {
+      color: red;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .item__icon {
+        &.mobile {
+          color: var(--color-icon-header);
+        }
+      }
+      .item__text {
+        &.mobile {
+          color: var(--color-icon-header);
+        }
+      }
+    }
+  }
+}

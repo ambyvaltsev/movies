@@ -5,7 +5,7 @@ import { Header } from "../layout";
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <Header />
       <AppRoutes />
     </div>

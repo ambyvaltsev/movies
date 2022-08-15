@@ -1,7 +1,5 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import s from "./Input.module.scss";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsSliders } from "react-icons/bs";
 
 interface IStyle {
   [index: string]: string;
@@ -9,15 +7,18 @@ interface IStyle {
 
 interface IInputProps {
   style?: IStyle;
-  main?: boolean;
+  header?: boolean;
   placeholder?: string;
   autocomplete?: string;
+  onFocus?: () => void;
+  onBlur?: () => void;
 }
 
-export const Input: FC<IInputProps> = ({ style, main, placeholder, autocomplete }) => {
-  const styles = main ? `${s.input} ${s.main}` : `${s.input}`;
+export const Input: FC<IInputProps> = ({ style, header, placeholder, autocomplete, onFocus, onBlur }) => {
+  const styles = header ? `${s.input} ${s.header}` : `${s.input}`;
+
   return (
-    <label htmlFor="input" className={s.container}>
+    <label htmlFor="input" className={s.label}>
       <input
         type="text"
         id="input"
@@ -25,9 +26,9 @@ export const Input: FC<IInputProps> = ({ style, main, placeholder, autocomplete 
         style={style}
         placeholder={placeholder}
         autoComplete={autocomplete}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
-      {main && <BsSliders className={s.settingsIcon} />}
-      {main && <AiOutlineSearch className={s.searchIcon} />}
     </label>
   );
 };

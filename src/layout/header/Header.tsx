@@ -1,15 +1,13 @@
 import { FC } from "react";
 import s from "./Header.module.scss";
-import { Link } from "react-router-dom";
-import { Input } from "../../components/UI";
+import { SearchHeader, MenuHeader } from "../../components";
 
 export const Header: FC = () => {
   return (
     <div className={s.container}>
-      <Link to="/">
-        <span className={s.logo}>Movies</span>
-      </Link>
-      <Input main placeholder='Movies, TV series' autocomplete="off"/>
+      <MenuHeader />
+      <SearchHeader />
+      <span className={s.account}></span>
     </div>
   );
 };
