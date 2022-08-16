@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  .index {
+    font-size: 16px;
+    color: #797979;
+  }
+  .poster {
+    height: 60px;
+    width: 40px;
+    min-height: 60px;
+    min-width: 40px;
+    & > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .names {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .names__ru {
+      color: #060077;
+    }
+    .names__en {
+      color: #797979;
+    }
+  }
+  .date {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    .day {
+      color: #797979;
+    }
+    .month {
+      color: #797979;
+    }
+  }
+}

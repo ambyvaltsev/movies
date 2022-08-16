@@ -24,7 +24,7 @@ export const MenuHeader: FC = () => {
       </div>
       {isOpen && (
         <div className={s.menu__bottom}>
-          <Menu mobile={isOpen} />
+          <Menu mobile='mobile' />
         </div>
       )}
     </div>

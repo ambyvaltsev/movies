@@ -5,30 +5,38 @@ import { AiFillHome } from "react-icons/ai";
 import { MdMovie } from "react-icons/md";
 
 interface IMenuProps {
-  mobile?: boolean;
+  mobile?: string;
 }
-export const Menu: FC<IMenuProps> = ({ mobile }) => {
+export const Menu: FC<IMenuProps> = ({ mobile = "" }) => {
+  const styleActive = `${s.item__content} ${s[mobile]} ${s.active}`;
+  const styleInactive = `${s.item__content} ${s[mobile]}`;
 
   return (
-    <div className={mobile ? `${s.container} ${s.mobile}` : `${s.container}`}>
+    <div className={`${s.container} ${s[mobile]}`}>
       <ul className={s.list}>
-        <NavLink to="/" style={({isActive}) => ({borderBottom: isActive ? '1px solid red' : ''})}>
-          <li className={s.item}>
-            <AiFillHome className={mobile ? `${s.item__icon} ${s.mobile}` : s.item__icon} />
-            <span className={mobile ? `${s.item__text} ${s.mobile}` : s.item__text}>Home</span>
-          </li>
+        <NavLink to="/">
+          {({ isActive }) => (
+            <li className={s.item}>
+              <AiFillHome className={isActive ? styleActive : styleInactive} />
+              <span className={isActive ? styleActive : styleInactive}>Home</span>
+            </li>
+          )}
         </NavLink>
         <NavLink to="movies">
-          <li className={s.item}>
-            <MdMovie className={mobile ? `${s.item__icon} ${s.mobile}` : s.item__icon} />
-            <span className={mobile ? `${s.item__text} ${s.mobile}` : s.item__text}>Movies</span>
-          </li>
+          {({ isActive }) => (
+            <li className={s.item}>
+              <MdMovie className={isActive ? styleActive : styleInactive} />
+              <span className={isActive ? styleActive : styleInactive}>Movies</span>
+            </li>
+          )}
         </NavLink>
         <NavLink to="tvseries">
-          <li className={s.item}>
-            <MdMovie className={mobile ? `${s.item__icon} ${s.mobile}` : s.item__icon} />
-            <span className={mobile ? `${s.item__text} ${s.mobile}` : s.item__text}>TV series</span>
-          </li>
+          {({ isActive }) => (
+            <li className={s.item}>
+              <MdMovie className={isActive ? styleActive : styleInactive} />
+              <span className={isActive ? styleActive : styleInactive}>TV series</span>
+            </li>
+          )}
         </NavLink>
       </ul>
     </div>
