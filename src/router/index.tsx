@@ -1,5 +1,5 @@
-import { Main } from "../layout"
-import { HomePage, Movies } from "../pages";
+import { Main } from "../layout";
+import { HomePage, Movies, Premiere } from "../pages";
 
 export const routes = [
   {
@@ -8,6 +8,7 @@ export const routes = [
     child: [
       { path: "/", element: <HomePage /> },
       { path: "movies", element: <Movies /> },
+      { path: "premiere", element: <Premiere /> },
     ],
   },
 ];

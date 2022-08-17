@@ -49,7 +49,13 @@ export interface IDigitalReleasesResponse {
   total: number;
   releases: IDigitalRelease[];
 }
-
+export interface IReleaseData {
+  id: string;
+  nameRu: string;
+  nameEn: string;
+  date: string;
+  poster: string;
+}
 export interface IMovie {
   description: string;
   countries: { country: string }[];

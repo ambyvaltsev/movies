@@ -1,0 +1,33 @@
+@import "../../../../app/styles/vars.scss";
+.container {
+  width: 100%;
+  .title {
+    font-size: 20px;
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+  }
+  .releases {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    @media (max-width: $portrait-phones-max) {
+      display: flex;
+      flex-direction: column;
+    }
+    .releases__release {
+      padding-top: 20px;
+      .release__link {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        .release__icon {
+          font-size: 16px;
+          color: var(--grey-color-list);
+        }
+        .release__title {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

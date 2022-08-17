@@ -1,8 +1,7 @@
 import { FC } from "react";
 import s from "./Menu.module.scss";
 import { NavLink } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
-import { MdMovie } from "react-icons/md";
+import { AiFillHome, MdMovie } from "../../assets";
 
 interface IMenuProps {
   mobile?: string;

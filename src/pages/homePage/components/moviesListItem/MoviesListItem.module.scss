@@ -1,11 +1,15 @@
+@import '../../../../app/styles/vars.scss';
+
 .container {
   position: relative;
   display: flex;
   align-items: center;
   gap: 5px;
   .index {
+    text-align: right;
+    width: 40px;
     font-size: 16px;
-    color: #797979;
+    color: var(--grey-color-list);
   }
   .poster {
     height: 60px;
@@ -26,7 +30,7 @@
       color: #060077;
     }
     .names__en {
-      color: #797979;
+      color: var(--grey-color-list);
     }
   }
   .date {
@@ -36,10 +40,10 @@
     align-items: center;
     gap: 5px;
     .day {
-      color: #797979;
+      color: var(--grey-color-list);
     }
     .month {
-      color: #797979;
+      color: var(--grey-color-list);
     }
   }
 }

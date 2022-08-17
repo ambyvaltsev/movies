@@ -1,12 +1,11 @@
-import { MOVIE_API_KEY } from "../helpers";
+import { MOVIE_API_KEY } from "../../helpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
-  IRelease,
   IReleasesResponse,
   IReleasesQuery,
   IDigitalReleasesResponse,
-  IDigitalRelease,
-} from "../models";
+  IReleaseData,
+} from "../../models";
 
 export const moviesAPI = createApi({
   reducerPath: "moviesAPI",
@@ -21,7 +20,7 @@ export const moviesAPI = createApi({
         },
       }),
     }),
-    getReleases: build.query<IRelease[], IReleasesQuery>({
+    getReleases: build.query<IReleaseData[], IReleasesQuery>({
       query: ({ year, month }) => ({
         url: "/v2.2/films/premieres",
         params: {
@@ -34,9 +33,22 @@ export const moviesAPI = createApi({
         },
       }),
       transformResponse: (response: IReleasesResponse) =>
-        response.items.filter((movie) => new Date(movie.premiereRu) > new Date()),
+        response.items
+          .filter((movie) => new Date(movie.premiereRu) > new Date())
+          .reduce((acc: any, cur) => {
+            return [
+              ...acc,
+              {
+                id: cur.kinopoiskId,
+                nameRu: cur.nameRu,
+                nameEn: cur.nameEn,
+                date: cur.premiereRu,
+                poster: cur.posterUrlPreview,
+              },
+            ];
+          }, []) ,
     }),
-    getDigitalReleases: build.query<IDigitalRelease[], IReleasesQuery>({
+    getDigitalReleases: build.query<IReleaseData[], IReleasesQuery>({
       query: ({ year, month, page }) => ({
         url: "/v2.1/films/releases",
         params: {
@@ -49,7 +61,19 @@ export const moviesAPI = createApi({
           "Content-Type": "application/json",
         },
       }),
-      transformResponse: (response: IDigitalReleasesResponse) => response.releases,
+      transformResponse: (response: IDigitalReleasesResponse) =>
+        response.releases.reduce((acc: any, cur) => {
+          return [
+            ...acc,
+            {
+              id: cur.filmId,
+              nameRu: cur.nameRu,
+              nameEn: cur.nameEn,
+              date: cur.releaseDate,
+              poster: cur.posterUrlPreview,
+            },
+          ];
+        }, []),
     }),
   }),
 });

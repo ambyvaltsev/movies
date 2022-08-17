@@ -1,7 +1,7 @@
 import { Menu } from "../../components";
 import { useMatchMedia } from "../../hooks";
 import s from "./HomePage.module.scss";
-import { Releases } from "./components";
+import { ReleasesBlock } from "./components";
 
 export const HomePage = () => {
   const { isMobile } = useMatchMedia();
@@ -14,7 +14,7 @@ export const HomePage = () => {
         </nav>
       )}
       <main className={s.main}>
-        <Releases />
+        <ReleasesBlock />
       </main>
     </div>
   );

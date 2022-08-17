@@ -1,29 +1,22 @@
 import { FC } from "react";
-import { ReleaseItem } from "..";
-import s from "./ReleaseList.module.scss";
+import { IReleaseData } from "../../models";
+import { MoviesListItem } from "../../pages/homePage/components";
+import s from "./MoviesList.module.scss";
 
-interface IListData {
-  id: string;
-  nameRu: string;
-  nameEn: string;
-  date: string;
-  poster: string;
-}
+
 interface IReleaseListProps {
-  title: string;
-  listData: IListData[];
+  listData: IReleaseData[];
+  limit?: number
 }
 
-export const ReleaseList: FC<IReleaseListProps> = ({ title, listData }) => {
-
+export const MoviesList: FC<IReleaseListProps> = ({ listData, limit = 5 }) => {
   return (
     <div className={s.container}>
-      <h4 className={s.title}>{title}</h4>
       <ul className={s.list}>
         {listData?.map((item, index) => {
-          if (index < 5) {
+          if (index < limit) {
             return (
-              <ReleaseItem
+              <MoviesListItem
                 key={item.id}
                 index={index}
                 poster={item.poster}

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import s from "./ReleaseItem.module.scss";
+import s from "./MoviesListItem.module.scss";
 
-interface IReleaseItemProps {
+interface IMoviesListItemProps {
   poster: string;
   nameRu: string;
   nameEn: string;
@@ -9,7 +9,7 @@ interface IReleaseItemProps {
   index: number
 }
 
-export const ReleaseItem: FC<IReleaseItemProps> = ({ poster, nameRu, nameEn, date, index }) => {
+export const MoviesListItem: FC<IMoviesListItemProps> = ({ poster, nameRu, nameEn, date, index }) => {
   return (
     <li className={s.container}>
       <span className={s.index}>{index + 1}.</span>
