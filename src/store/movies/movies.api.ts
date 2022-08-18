@@ -5,15 +5,16 @@ import {
   IReleasesQuery,
   IDigitalReleasesResponse,
   IReleaseData,
+  IMovie,
 } from "../../models";
 
 export const moviesAPI = createApi({
   reducerPath: "moviesAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "https://kinopoiskapiunofficial.tech/api" }),
   endpoints: (build) => ({
-    getMovie: build.query<any, number>({
-      query: (number) => ({
-        url: `/v2.2/films/${number}`,
+    getMovie: build.query<IMovie, string>({
+      query: (id) => ({
+        url: `/v2.2/films/${id}`,
         headers: {
           "X-API-KEY": `${MOVIE_API_KEY}`,
           "Content-Type": "application/json",
@@ -33,20 +34,18 @@ export const moviesAPI = createApi({
         },
       }),
       transformResponse: (response: IReleasesResponse) =>
-        response.items
-          .filter((movie) => new Date(movie.premiereRu) > new Date())
-          .reduce((acc: any, cur) => {
-            return [
-              ...acc,
-              {
-                id: cur.kinopoiskId,
-                nameRu: cur.nameRu,
-                nameEn: cur.nameEn,
-                date: cur.premiereRu,
-                poster: cur.posterUrlPreview,
-              },
-            ];
-          }, []) ,
+        response.items.reduce((acc: any, cur) => {
+          return [
+            ...acc,
+            {
+              id: cur.kinopoiskId,
+              nameRu: cur.nameRu,
+              nameEn: cur.nameEn,
+              date: cur.premiereRu,
+              poster: cur.posterUrlPreview,
+            },
+          ];
+        }, []),
     }),
     getDigitalReleases: build.query<IReleaseData[], IReleasesQuery>({
       query: ({ year, month, page }) => ({
@@ -78,4 +77,5 @@ export const moviesAPI = createApi({
   }),
 });
 
-export const { useGetMovieQuery, useGetReleasesQuery, useGetDigitalReleasesQuery } = moviesAPI;
+export const { useGetMovieQuery, useGetReleasesQuery, useLazyGetReleasesQuery, useGetDigitalReleasesQuery } =
+  moviesAPI;

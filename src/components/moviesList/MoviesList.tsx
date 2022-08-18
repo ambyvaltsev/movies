@@ -3,10 +3,9 @@ import { IReleaseData } from "../../models";
 import { MoviesListItem } from "../../pages/homePage/components";
 import s from "./MoviesList.module.scss";
 
-
 interface IReleaseListProps {
   listData: IReleaseData[];
-  limit?: number
+  limit?: number;
 }
 
 export const MoviesList: FC<IReleaseListProps> = ({ listData, limit = 5 }) => {
@@ -15,16 +14,7 @@ export const MoviesList: FC<IReleaseListProps> = ({ listData, limit = 5 }) => {
       <ul className={s.list}>
         {listData?.map((item, index) => {
           if (index < limit) {
-            return (
-              <MoviesListItem
-                key={item.id}
-                index={index}
-                poster={item.poster}
-                nameRu={item.nameRu}
-                nameEn={item.nameEn}
-                date={item.date}
-              />
-            );
+            return <MoviesListItem key={item.id} index={index} {...item} />;
           }
         })}
       </ul>

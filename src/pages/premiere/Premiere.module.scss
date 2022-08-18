@@ -1,6 +1,9 @@
-@import '../../app/styles/vars.scss';
+@import "../../app/styles/vars.scss";
 .container {
   padding: 10px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   @media (max-width: $landscape-phones-max) {
     padding: 10px 10px;
   }
@@ -12,11 +15,24 @@
       text-decoration: underline;
     }
   }
-  .title {
-    margin-top: 20px;
-    font-size: 20px;
-  }
-  .observableBlock {
-    height: 50px;
+  .content {    
+    display: grid;
+    grid-template-columns: minmax(275px, 576px);
+    margin: 0 auto;
+    padding: 10px 10px 10px 0;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    box-shadow: 3px 3px 15px 10px rgba(0, 0, 0, 0.3);
+    .title {
+      margin: 20px 0 20px 15px;
+      font-size: 20px;
+    }
+    .selectors {
+      display: flex;
+      gap: 10px;
+      margin-left: 15px;
+    }
+    .observableBlock {
+      height: 10px;
+    }
   }
 }

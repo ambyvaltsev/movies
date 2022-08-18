@@ -1,2 +1,2 @@
 export { ReleasesBlock } from './releasesBlock/ReleasesBlock';
-export { MoviesListItem } from './moviesListItem/MoviesListItem';
+export { MoviesListItem } from '../../../components/moviesListItem/MoviesListItem';

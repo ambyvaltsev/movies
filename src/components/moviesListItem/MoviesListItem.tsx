@@ -4,9 +4,9 @@ import s from "./MoviesListItem.module.scss";
 interface IMoviesListItemProps {
   poster: string;
   nameRu: string;
-  nameEn: string;
   date: string;
-  index: number
+  index: number;
+  nameEn: string;
 }
 
 export const MoviesListItem: FC<IMoviesListItemProps> = ({ poster, nameRu, nameEn, date, index }) => {
@@ -20,6 +20,7 @@ export const MoviesListItem: FC<IMoviesListItemProps> = ({ poster, nameRu, nameE
         <span className={s.names__ru}>{nameRu}</span>
         <span className={s.names__en}>{nameEn}</span>
       </div>
+
       <div className={s.date}>
         <span className={s.day}>{+date.split("-")[2]}</span>
         <span className={s.day}>{new Date(date).toLocaleString("en-US", { month: "long" })}</span>
