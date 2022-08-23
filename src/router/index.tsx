@@ -1,5 +1,5 @@
 import { Main } from "../layout";
-import { HomePage, Movies, Premiere } from "../pages";
+import { HomePage, Movies, Premiere, DigitalReleases, Movie } from "../pages";
 
 export const routes = [
   {
@@ -9,6 +9,8 @@ export const routes = [
       { path: "/", element: <HomePage /> },
       { path: "movies", element: <Movies /> },
       { path: "premiere", element: <Premiere /> },
+      { path: "digital", element: <DigitalReleases /> },
+      { path: ":id", element: <Movie />},
     ],
   },
 ];

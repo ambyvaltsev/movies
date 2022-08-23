@@ -1,14 +1,14 @@
 import { FC, useState, useRef, useEffect } from "react";
-import s from "./PremiereDateSelector.module.scss";
-import { IoIosArrowUp, IoIosArrowDown } from "../../../../assets";
+import s from "./ReleasesDateSelector.module.scss";
+import { IoIosArrowUp, IoIosArrowDown } from "../../assets";
 
-interface IPremiereDateSelectorProps {
+interface IReleasesDateSelectorProps {
   data: string[] | number[];
   setSelectedDate: (e: any) => void;
   selectedDate: string | number;
 }
 
-export const PremiereDateSelector: FC<IPremiereDateSelectorProps> = ({
+export const ReleasesDateSelector: FC<IReleasesDateSelectorProps> = ({
   data,
   selectedDate,
   setSelectedDate,

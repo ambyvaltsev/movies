@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import s from "./MoviesListItem.module.scss";
 
 interface IMoviesListItemProps {
@@ -7,9 +8,10 @@ interface IMoviesListItemProps {
   date: string;
   index: number;
   nameEn: string;
+  id: string
 }
 
-export const MoviesListItem: FC<IMoviesListItemProps> = ({ poster, nameRu, nameEn, date, index }) => {
+export const MoviesListItem: FC<IMoviesListItemProps> = ({ poster, nameRu, nameEn, date, index, id }) => {
   return (
     <li className={s.container}>
       <span className={s.index}>{index + 1}.</span>
@@ -17,7 +19,7 @@ export const MoviesListItem: FC<IMoviesListItemProps> = ({ poster, nameRu, nameE
         <img src={poster} alt={nameRu} />
       </div>
       <div className={s.names}>
-        <span className={s.names__ru}>{nameRu}</span>
+        <Link to={`${id}`}><span className={s.names__ru}>{nameRu}</span></Link>
         <span className={s.names__en}>{nameEn}</span>
       </div>
 

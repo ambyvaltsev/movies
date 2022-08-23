@@ -1,23 +1,17 @@
-export interface IReleasesResponse {
-  items: IRelease[];
+export interface IPremiereResponse {
+  items: IPremiere[];
   total: number;
 }
-export interface Country {
-  country: string;
-}
 
-export interface Genre {
-  genre: string;
-}
-export interface IRelease {
+export interface IPremiere {
   kinopoiskId: number;
   nameRu: string;
   nameEn: string;
   year: number;
   posterUrl: string;
   posterUrlPreview: string;
-  countries: Country[];
-  genres: Genre[];
+  countries: string[];
+  genres: string[];
   duration: number;
   premiereRu: string;
 }
@@ -34,8 +28,8 @@ export interface IDigitalRelease {
   year: number;
   posterUrl: string;
   posterUrlPreview: string;
-  countries: Country[];
-  genres: Genre[];
+  countries: string[];
+  genres: string[];
   rating: number;
   ratingVoteCount: number;
   expectationsRating: number;
@@ -45,11 +39,15 @@ export interface IDigitalRelease {
 }
 
 export interface IDigitalReleasesResponse {
-  page: number;
   total: number;
   releases: IDigitalRelease[];
 }
-export interface IReleaseData {
+export interface IReleases {
+  total: number;
+  pages: number;
+  releases: IRelease[];
+}
+export interface IRelease {
   id: string;
   nameRu: string;
   nameEn: string;
@@ -91,8 +89,8 @@ export interface IMovie {
   type: string;
   ratingMpaa: string;
   ratingAgeLimits: string;
-  countries: Country[];
-  genres: Genre[];
+  countries: string[];
+  genres: string[];
   startYear?: any;
   endYear?: any;
   serial: boolean;
@@ -101,4 +99,37 @@ export interface IMovie {
   hasImax: boolean;
   has3D: boolean;
   lastSync: Date;
+}
+
+export interface IStaffResponse {
+  staffId: number;
+  nameRu: string;
+  nameEn: string;
+  description: string;
+  posterUrl: string;
+  professionText: string;
+  professionKey: string;
+}
+export interface IStaffUnit {
+  id: number;
+  nameRu: string;
+  nameEn: string
+}
+export interface IStaff {
+  director: IStaffUnit[];
+  writer: IStaffUnit[];
+  producer: IStaffUnit[];
+  composer: IStaffUnit[];
+  editor: IStaffUnit[];
+  design: IStaffUnit[];
+  actors: IStaffUnit[];
+}
+export interface IVideo {
+  url: string;
+  name: string;
+  site: string
+}
+export interface IVideResponse {
+  total: number;
+  items: IVideo[]
 }

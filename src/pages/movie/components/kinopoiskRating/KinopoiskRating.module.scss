@@ -1,0 +1,44 @@
+.container {
+  width: 100%;
+  height: 50px;
+  .form__rating {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    gap: 20px;
+    .rating__badges {
+      display: flex;
+      .label {
+        cursor: pointer;
+        position: relative;
+        .radio {
+          position: absolute;
+          z-index: -1;
+          opacity: 0;
+        }
+        .icon {
+          display: block;
+          top: 0;
+          left: 0;
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+    .rating__values {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      .values__rating {
+        font-size: 25px;
+        font-weight: 900;
+        color: #3bb33b;
+      }
+      .values__totalVotes {
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+}

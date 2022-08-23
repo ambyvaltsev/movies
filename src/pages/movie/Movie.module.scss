@@ -1,0 +1,76 @@
+@import "../../app/styles/vars.scss";
+.container {
+  padding: 10px 50px;
+  @media (max-width: $landscape-phones-max) {
+    padding: 10px 10px;
+  }
+  .description__main {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 10px;
+    .main__poster {
+      width: 100%;
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-position: center;
+        object-fit: fill;
+      }
+    }
+    .main__content {
+      z-index: 10;
+      .main__header {
+        margin-bottom: 20px;
+        .header__title {
+          font-size: 25px;
+          font-weight: 700;
+        }
+      }
+      .main__body {
+        .body__title {
+          font-weight: 700;
+          font-size: 20px;
+          margin-bottom: 15px;
+        }
+        .body__about {
+          display: grid;
+          grid-template-columns: 70% 30%;
+          gap: 15px;
+          .about__info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+          }
+          .about__starring {
+            .starring__header {
+              display: flex;
+              align-items: center;
+              margin-bottom: 15px;
+              .starring__title {
+                cursor: pointer;
+                font-size: 18px;
+                font-weight: 700;
+              }
+              .starring__icon {
+                display: flex;
+                align-items: center;
+                font-size: 17px;
+              }
+            }
+            .starring__body {
+              display: flex;
+              flex-direction: column;
+              gap: 5px;
+              .starring__all {
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 600;
+                color: var(--red-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

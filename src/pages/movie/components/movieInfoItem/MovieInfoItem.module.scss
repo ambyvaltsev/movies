@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-columns: 35% 65%;
+  gap: 10px;
+  .title {
+    color: var(--grey-color-list);
+  }
+  .text {
+    cursor: pointer;
+    &:hover {
+      color: var(--red-color);
+    }
+  }
+}
