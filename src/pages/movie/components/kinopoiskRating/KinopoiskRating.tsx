@@ -1,6 +1,6 @@
 import s from "./KinopoiskRating.module.scss";
 import { StarBadge } from "./StarBadge";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useGetMovieQuery } from "../../../../store/movies/movies.api";
 import { useParams } from "react-router-dom";
 
@@ -47,7 +47,14 @@ export const KinopoiskRating = () => {
           </div>
         </div>
       </form>
-      <div></div>
+      <div className={s.myRating}>
+        <div className={s.myRating__rating}>
+          <h4 className={s.myRating__text}>My rating</h4>
+          <span className={s.myRating__value}></span>
+          <button className={s.myRating__remove}></button>
+        </div>
+        <div className={s.myRating__date}></div>
+      </div>
     </div>
   );
 };

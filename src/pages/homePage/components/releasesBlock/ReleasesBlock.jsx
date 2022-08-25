@@ -1,6 +1,6 @@
 import s from "./ReleasesBlock.module.scss";
 import { useGetPremiereQuery, useGetDigitalReleasesQuery } from "../../../../store/movies/movies.api";
-import { MoviesList } from "../../../../components/moviesList/MoviesList";
+import { ReleasesList } from "../../../../components";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../../../assets";
 
@@ -45,14 +45,14 @@ export const ReleasesBlock = () => {
             <h6 className={s.release__title}>Coming soon to cinema</h6>
             <IoIosArrowForward className={s.release__icon} />
           </Link>
-          <MoviesList data={premiere} />
+          <ReleasesList data={premiere} />
         </div>
         <div className={s.releases__release}>
           <Link to="digital" className={s.release__link}>
             <h6 className={s.release__title}>Digital releases</h6>
             <IoIosArrowForward className={s.release__icon} />
           </Link>
-          <MoviesList data={digitalData.releases} />
+          <ReleasesList data={digitalData.releases} />
         </div>
       </div>
     </div>

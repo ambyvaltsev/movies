@@ -1,17 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useGetMovieQuery, useGetStaffQuery } from "../../store/movies/movies.api";
-import { MovieDescriptionSub, MovieInfoItem } from "./components";
+import { MovieDescriptionSub, MovieInfoItem, StaffCard } from "./components";
 import { IoIosArrowForward } from "../../assets";
 import s from "./Movie.module.scss";
-import { IStaffUnit } from "../../models";
-
-const flatDataStaff = (arr: IStaffUnit[]) => {
-  return arr.reduce((acc: string[], cur) => {
-    return [...acc, cur.nameEn || cur.nameRu];
-  }, []);
-};
+import { useEffect, useRef, useState } from "react";
 
 export const Movie = () => {
+  const [staffInfo, setStaffInfo] = useState<{ id: string; x: number; y: number }>({ id: "", x: 0, y: 0 });
+  const bodyRef = useRef<HTMLDivElement>(null);
   const { id } = useParams();
   const { isError: isErrorMovie, isLoading: isloadingMovie, data: movie } = useGetMovieQuery(id!);
   const { isError: isErrorStaff, isLoading: isLoadingStaff, data: staff } = useGetStaffQuery(id!);
@@ -19,8 +15,34 @@ export const Movie = () => {
   const filmLength = `${movie?.filmLength} min / ${movie && Math.trunc(movie?.filmLength / 60)}:${
     movie && movie?.filmLength % 60
   }`;
+
+  const openCard = (e: any) => {
+    if (e.target.dataset.card) {
+      const left =
+        e.pageX + 260 > document.documentElement.clientWidth
+          ? document.documentElement.clientWidth - 260
+          : e.pageX;
+
+      setStaffInfo({ id: e.target.dataset.card, x: left, y: e.pageY - 70 });
+    }
+  };
+  const closeCard = () => {
+    setStaffInfo({ ...staffInfo, id: "" });
+  };
+  useEffect(() => {
+    const instance = bodyRef.current;
+    if (instance) {
+      instance.addEventListener("mouseover", openCard);
+      instance.addEventListener("mouseout", closeCard);
+      return () => {
+        instance.removeEventListener("mouseover", openCard);
+        instance.removeEventListener("mouseover", closeCard);
+      };
+    }
+  }, []);
+
   if (isErrorMovie || isErrorStaff) {
-    return <div>Error</div>
+    return <div>Error</div>;
   }
   return (
     <div className={s.container}>
@@ -33,21 +55,21 @@ export const Movie = () => {
             <h1 className={s.header__title}>{movie?.nameOriginal}</h1>
           </header>
           <div className={s.main__body}>
-            <h3 className={s.body__title}>About the series</h3>
-            <div className={s.body__about}>
+            <h3 className={s.body__title}>{`About the ${movie?.type.toLowerCase()}`}</h3>
+            <div className={s.body__about} ref={bodyRef}>
               <div className={s.about__info}>
                 {movie && staff && (
                   <>
                     <MovieInfoItem title="Production year" info={movie?.year} />
-                    <MovieInfoItem title="Country" info={movie?.countries} />
-                    <MovieInfoItem title="Genre" info={movie?.genres} />
+                    <MovieInfoItem title="Country" info={movie?.countries} isClickable />
+                    <MovieInfoItem title="Genre" info={movie?.genres} isClickable />
                     <MovieInfoItem title="Slogan" info={movie.slogan} />
-                    <MovieInfoItem title="Director" info={flatDataStaff(staff.director)} />
-                    <MovieInfoItem title="Writer" info={flatDataStaff(staff.writer)} />
-                    <MovieInfoItem title="Producer" info={flatDataStaff(staff.producer)} />
-                    <MovieInfoItem title="Composer" info={flatDataStaff(staff.composer)} />
-                    <MovieInfoItem title="Designer" info={flatDataStaff(staff.design)} />
-                    <MovieInfoItem title="Editor" info={flatDataStaff(staff.editor)} />
+                    <MovieInfoItem title="Director" staff={staff.director} isClickable />
+                    <MovieInfoItem title="Writer" staff={staff.writer} isClickable />
+                    <MovieInfoItem title="Producer" staff={staff.producer} isClickable />
+                    <MovieInfoItem title="Composer" staff={staff.composer} isClickable />
+                    <MovieInfoItem title="Designer" staff={staff.design} isClickable />
+                    <MovieInfoItem title="Editor" staff={staff.editor} isClickable />
                     <MovieInfoItem title="Movie length" info={filmLength} />
                   </>
                 )}
@@ -60,7 +82,13 @@ export const Movie = () => {
                   </span>
                 </div>
                 <div className={s.starring__body}>
-                  {staff?.actors.map((a, i) => (i < 10 ? <span key={i}>{a.nameEn || a.nameRu}</span> : null))}
+                  {staff?.actors.map((a, i) =>
+                    i < 10 ? (
+                      <span key={i} className={s.starring__name}>
+                        {a.nameEn || a.nameRu}
+                      </span>
+                    ) : null
+                  )}
                   <div className={s.starring__all}>{`${staff?.actors?.length} actors`}</div>
                 </div>
               </div>
@@ -69,6 +97,7 @@ export const Movie = () => {
         </div>
       </div>
       {movie && <MovieDescriptionSub description={movie?.description} id={movie?.kinopoiskId} />}
+      {staffInfo.id && <StaffCard staffInfo={staffInfo} />}
     </div>
   );
 };

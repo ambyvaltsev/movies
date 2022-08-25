@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import s from "./Premiere.module.scss";
 import { IoIosArrowForward } from "../../assets";
-import { MoviesList } from "../../components";
+import { ReleasesList } from "../../components";
 import { useGetPremiereQuery } from "../../store/movies/movies.api";
 import { FC, useState, useEffect } from "react";
 import { ReleasesDateSelector } from "../../components";
@@ -53,7 +53,7 @@ export const Premiere: FC = () => {
             selectedDate={selectedDate.month}
           />
         </div>
-        {data && <MoviesList data={data.releases} limit={limit} />}
+        {data && <ReleasesList data={data.releases} limit={limit} />}
         <div className={s.observableBlock} ref={ref}></div>
       </div>
     </div>

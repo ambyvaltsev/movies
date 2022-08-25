@@ -1,7 +1,7 @@
 import s from "./DigitalReleases.module.scss";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../assets";
-import { MoviesList } from "../../components";
+import { ReleasesList } from "../../components";
 import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
 import { FC, useEffect, useState, useRef } from "react";
 import { ReleasesDateSelector } from "../../components";
@@ -66,7 +66,7 @@ export const DigitalReleases: FC = () => {
             selectedDate={queryArg.month}
           />
         </div>
-        {data?.releases && <MoviesList data={digitalReleases} limit={data.total} />}
+        {data?.releases && <ReleasesList data={digitalReleases} limit={data.total} />}
         <div className={s.observableBlock} ref={ref}></div>
       </div>
     </div>

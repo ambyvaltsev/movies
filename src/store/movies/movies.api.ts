@@ -12,7 +12,7 @@ import {
   IStaff,
   IStaffUnit,
   IVideResponse,
-  IVideo,
+  ISpecificStuff,
 } from "../../models";
 
 export const moviesAPI = createApi({
@@ -89,6 +89,15 @@ export const moviesAPI = createApi({
           }, []);
         return staffObj;
       },
+    }),
+    getSpecificStaff: build.query<ISpecificStuff, string>({
+      query: (id) => ({
+        url: `/v1/staff/${id}`,
+        headers: {
+          "X-API-KEY": `${MOVIE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      })
     }),
     getVideo: build.query<IVideResponse, number>({
       query: (id) => ({
@@ -169,4 +178,5 @@ export const {
   useGetDigitalReleasesQuery,
   useGetStaffQuery,
   useGetVideoQuery,
+  useGetSpecificStaffQuery
 } = moviesAPI;

@@ -46,7 +46,7 @@ export const StarBadge: FC<IStarBadgeProps> = ({
             onChange={selectValue}
             checked={value === radioNum}
           />
-          <span className={s.icon}>
+          <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"

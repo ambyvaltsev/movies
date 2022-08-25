@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useGetVideoQuery } from "../../../../store/movies/movies.api";
-import { KinopoiskRating } from "../kinopoiskRating/KinopoiskRating";
+import { KinopoiskRating, CriticsRating } from "../../components";
 import s from "./MuvieDescriptionSub.module.scss";
 
 interface IMovieDescriptionSubProps {
@@ -39,16 +39,17 @@ export const MovieDescriptionSub: FC<IMovieDescriptionSubProps> = ({ description
             <div className={s.review__ratings}>
               <h6 className={s.ratings__title}>Movie Rating</h6>
               <div className={s.ratings__versions}>
-                <KinopoiskRating/>
+                <KinopoiskRating />
+                <CriticsRating/>
               </div>
             </div>
           </div>
         )}
         {active === "Trailer" && urlVideo && (
-          <div>
+          <div className={s.trailer}>
             <iframe
-              width="560"
-              height="315"
+              width="100%"
+              height="100%"
               src={`https://www.youtube.com/embed/${urlVideo}?modestbranding=1`}
               title="YouTube video player"
               frameBorder="0"

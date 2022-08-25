@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import s from "./MoviesListItem.module.scss";
+import s from "./ReleaseItem.module.scss";
 
-interface IMoviesListItemProps {
+interface IReleaseItemProps {
   poster: string;
   nameRu: string;
   date: string;
@@ -11,7 +11,7 @@ interface IMoviesListItemProps {
   id: string
 }
 
-export const MoviesListItem: FC<IMoviesListItemProps> = ({ poster, nameRu, nameEn, date, index, id }) => {
+export const ReleaseItem: FC<IReleaseItemProps> = ({ poster, nameRu, nameEn, date, index, id }) => {
   return (
     <li className={s.container}>
       <span className={s.index}>{index + 1}.</span>

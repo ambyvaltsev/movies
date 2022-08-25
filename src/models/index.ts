@@ -2,6 +2,10 @@ export interface IPremiereResponse {
   items: IPremiere[];
   total: number;
 }
+export interface IDigitalReleasesResponse {
+  total: number;
+  releases: IDigitalRelease[];
+}
 
 export interface IPremiere {
   kinopoiskId: number;
@@ -38,10 +42,6 @@ export interface IDigitalRelease {
   releaseDate: string;
 }
 
-export interface IDigitalReleasesResponse {
-  total: number;
-  releases: IDigitalRelease[];
-}
 export interface IReleases {
   total: number;
   pages: number;
@@ -113,7 +113,7 @@ export interface IStaffResponse {
 export interface IStaffUnit {
   id: number;
   nameRu: string;
-  nameEn: string
+  nameEn: string;
 }
 export interface IStaff {
   director: IStaffUnit[];
@@ -127,9 +127,38 @@ export interface IStaff {
 export interface IVideo {
   url: string;
   name: string;
-  site: string
+  site: string;
 }
 export interface IVideResponse {
   total: number;
-  items: IVideo[]
+  items: IVideo[];
+}
+
+export interface ISpecificStuff {
+  personId: number;
+  webUrl: string;
+  nameRu: string;
+  nameEn: string;
+  sex: string;
+  posterUrl: string;
+  growth: string;
+  birthday: string;
+  death: string;
+  age: number;
+  birthplace: string;
+  deathplace: string;
+  hasAwards: number;
+  profession: string;
+  facts: string[];
+  spouses: any[];
+  films: IStaffFilm[];
+}
+interface IStaffFilm {
+  description: string;
+  filmId: number;
+  general: boolean;
+  nameEn: string;
+  nameRu: string;
+  professionKey: string;
+  rating: string;
 }
