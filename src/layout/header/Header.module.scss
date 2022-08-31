@@ -8,23 +8,15 @@
   background-color: #1f1f1f;
   height: 70px;
   @media (max-width: $landscape-phones-max) {
-    padding-left: 5px;
+    padding-left: 0px;
     gap: 5px;
   }
-  
-  
-  .account {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 50px;
-    width: 25px;
-    height: 25px;
-    background-image: url("../../assets/img/account.svg");
-    background-size: cover;
-    border-radius: 50%;
-    @media (max-width: $landscape-phones-max) {
-      right: 10px;
+  .siteName {
+      font-size: 25px;
+      color: white;
+      text-transform: uppercase;
+      @media (max-width: $landscape-phones-max) {
+        display: none;
+      }
     }
-  }
 }

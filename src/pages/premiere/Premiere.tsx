@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import s from "./Premiere.module.scss";
 import { IoIosArrowForward } from "../../assets";
-import { ReleasesList } from "../../components";
+import { Preloader, ReleasesList } from "../../components";
 import { useGetPremiereQuery } from "../../store/movies/movies.api";
 import { FC, useState, useEffect } from "react";
 import { ReleasesDateSelector } from "../../components";
@@ -17,9 +17,9 @@ export const Premiere: FC = () => {
 
   const { isError, isLoading, data } = useGetPremiereQuery(selectedDate);
   const { ref, inView, entry } = useInView();
-  
+
   useEffect(() => {
-    if (data && !isLoading && limit < data?.total) {
+    if (data && limit < data?.total) {
       setLimit(limit + 5);
     }
   }, [inView]);
@@ -28,7 +28,7 @@ export const Premiere: FC = () => {
     return <div>Error</div>;
   }
   if (isLoading) {
-    return <div>Loading</div>;
+    return <Preloader />;
   }
   return (
     <div className={s.container}>

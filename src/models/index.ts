@@ -14,8 +14,8 @@ export interface IPremiere {
   year: number;
   posterUrl: string;
   posterUrlPreview: string;
-  countries: string[];
-  genres: string[];
+  countries: { country: string }[];
+  genres: { genre: string }[];
   duration: number;
   premiereRu: string;
 }
@@ -32,8 +32,8 @@ export interface IDigitalRelease {
   year: number;
   posterUrl: string;
   posterUrlPreview: string;
-  countries: string[];
-  genres: string[];
+  countries: { country: string }[];
+  genres: { genre: string }[];
   rating: number;
   ratingVoteCount: number;
   expectationsRating: number;
@@ -110,19 +110,19 @@ export interface IStaffResponse {
   professionText: string;
   professionKey: string;
 }
-export interface IStaffUnit {
+export interface ISingleUnit {
   id: number;
   nameRu: string;
   nameEn: string;
 }
 export interface IStaff {
-  director: IStaffUnit[];
-  writer: IStaffUnit[];
-  producer: IStaffUnit[];
-  composer: IStaffUnit[];
-  editor: IStaffUnit[];
-  design: IStaffUnit[];
-  actors: IStaffUnit[];
+  director: ISingleUnit[];
+  writer: ISingleUnit[];
+  producer: ISingleUnit[];
+  composer: ISingleUnit[];
+  editor: ISingleUnit[];
+  design: ISingleUnit[];
+  actors: ISingleUnit[];
 }
 export interface IVideo {
   url: string;
@@ -161,4 +161,44 @@ interface IStaffFilm {
   nameRu: string;
   professionKey: string;
   rating: string;
+}
+
+export interface ITopAwaitResponse {
+  pagesCount: number;
+  films: IMovieShortInfo[];
+}
+
+export interface IMoviesByKeyResponse {
+  films: IMovieShortInfo[];
+  keyword: string;
+  pagesCount: number;
+  searchFilmsCountResult: number;
+}
+export interface IMovieShortInfo {
+  countries: { country: string }[];
+  description?: string;
+  filmId: number;
+  filmLength: string;
+  genres: { genre: string }[];
+  nameEn: string;
+  nameRu: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  rating: string;
+  ratingVoteCount: number;
+  type?: string;
+  year: string;
+}
+export interface IPersonceByKeyResponse {
+  total: number;
+  items: IPersonsShortInfo[];
+}
+
+export interface IPersonsShortInfo {
+  kinopoiskId: number;
+  nameEn: string;
+  nameRu: string;
+  posterUrl: string;
+  sex: string;
+  webUrl: string;
 }

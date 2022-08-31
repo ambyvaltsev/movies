@@ -1,0 +1,63 @@
+@import "../../app/styles/vars.scss";
+.container {
+  position: relative;
+  padding: 10px 50px;
+  @media (max-width: $landscape-phones-max) {
+    padding: 10px 10px;
+  }
+  .description__main {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 10px;
+    @media (max-width: $landscape-phones-max) {
+      display: flex;
+      flex-direction: column;
+    }
+    .main__poster {
+      width: 100%;
+      & > img {
+        width: 100%;
+        height: 100%;
+        object-position: center;
+        object-fit: cover;
+      }
+    }
+    .main__content {
+      z-index: 10;
+      .main__title {
+        margin-bottom: 20px;
+        font-size: 40px;
+        font-weight: 700;
+      }
+      .main__body {
+        .body__title {
+          font-weight: 700;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+        .body__about {
+          display: grid;
+          grid-template-columns: 65% 35%;
+          gap: 10px;
+          .about__info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+          }
+          .about__starring {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            .starring__all {
+              cursor: pointer;
+              margin-top: 10px;
+              font-size: 16px;
+              font-weight: 600;
+              color: var(--red-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}

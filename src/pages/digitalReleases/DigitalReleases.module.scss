@@ -1,9 +1,11 @@
 @import "../../app/styles/vars.scss";
 .container {
+  position: relative;
   padding: 10px 50px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+min-height: 100%;
   @media (max-width: $landscape-phones-max) {
     padding: 10px 10px;
   }
@@ -15,13 +17,13 @@
       text-decoration: underline;
     }
   }
-  .content {    
+  .content {   
     display: grid;
     grid-template-columns: minmax(275px, 576px);
     margin: 0 auto;
     padding: 10px 10px 10px 0;
     border: 1px solid rgba(0, 0, 0, 0.6);
-    box-shadow: 3px 3px 15px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-box);
     .title {
       margin: 20px 0 20px 15px;
       font-size: 20px;

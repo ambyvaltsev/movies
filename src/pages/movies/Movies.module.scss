@@ -1,0 +1,42 @@
+@import "../../app/styles/vars.scss";
+.container {
+  padding: 10px 50px;
+  @media (max-width: $landscape-phones-max) {
+    padding: 10px 10px;
+  }
+  .title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+  }
+  .navigation {
+    .navigation__list {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .navigation__item {
+        cursor: pointer;
+        color: #777;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 9px 16px;
+        @media (max-width: $portrait-phones-max) {
+          padding: 5px 9px;
+          font-size: 14px;
+        }
+        &.active {
+          background-color: #f2f2f2;
+          color: #333;
+          border-radius: 18px;
+        }
+      }
+    }
+  }
+  .categories {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

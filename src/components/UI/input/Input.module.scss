@@ -2,9 +2,10 @@
 
 .label {
   width: 100%;
+
   .input {
     width: 100%;
-    padding: 0 50px 0 5px ;
+    padding: 0 50px 0 5px;
     font-size: 18px;
     @media (max-width: $portrait-phones-max) {
       font-size: 14px;
@@ -16,6 +17,11 @@
       &:focus {
         background-color: white;
       }
+    }
+    &.headerMobile {
+      font-size: 22px;
+      padding: 20px 10px 20px 30px;
+      background-color: #1f1f1f;;
     }
   }
 }

@@ -1,16 +1,15 @@
 import s from "./DigitalReleases.module.scss";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../assets";
-import { ReleasesList } from "../../components";
+import { Preloader, ReleasesList } from "../../components";
 import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
-import { FC, useEffect, useState, useRef } from "react";
+import { FC, useEffect, useState } from "react";
 import { ReleasesDateSelector } from "../../components";
 import { years, months } from "../../helpers/vars";
 import { IRelease } from "../../models";
 import { useInView } from "react-intersection-observer";
 
 export const DigitalReleases: FC = () => {
-  const prevQueryArg = useRef({ year: 0, month: "" });
   const { ref, inView, entry } = useInView();
   const [digitalReleases, setDigitalReleases] = useState<IRelease[]>([]);
 
@@ -22,25 +21,21 @@ export const DigitalReleases: FC = () => {
   const { isError, isLoading, data } = useGetDigitalReleasesQuery(queryArg);
 
   useEffect(() => {
-    if (data && entry?.isIntersecting && !isLoading && queryArg.page < data?.pages) {
+    if (data && entry?.isIntersecting && queryArg.page < data?.pages) {
       setQueryArg((queryArg) => ({ ...queryArg, page: queryArg.page + 1 }));
     }
   }, [inView]);
 
   useEffect(() => {
-    if (queryArg.year === prevQueryArg.current.year && queryArg.month === prevQueryArg.current.month) {
-      data && setDigitalReleases([...digitalReleases, ...data?.releases]);
+    if (data && queryArg.page !== 1 && queryArg.page < data?.total) {
+      data && setDigitalReleases((prev) => [...prev, ...data?.releases]);
     } else {
       data && setDigitalReleases([...data?.releases]);
-      prevQueryArg.current = { year: queryArg.year, month: queryArg.month };
     }
   }, [data]);
 
   if (isError) {
     return <div>Error</div>;
-  }
-  if (isLoading) {
-    return <div>Loading</div>;
   }
 
   return (
@@ -66,6 +61,7 @@ export const DigitalReleases: FC = () => {
             selectedDate={queryArg.month}
           />
         </div>
+        {isLoading && <Preloader />}
         {data?.releases && <ReleasesList data={digitalReleases} limit={data.total} />}
         <div className={s.observableBlock} ref={ref}></div>
       </div>

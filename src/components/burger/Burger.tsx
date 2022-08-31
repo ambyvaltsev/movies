@@ -1,14 +1,11 @@
 import { FC, useState } from "react";
-import s from "./MenuHeader.module.scss";
-import { Link, useLocation } from "react-router-dom";
-import { useMatchMedia } from "../../hooks";
+import s from "./Burger.module.scss";
+import { Link } from "react-router-dom";
 import { RiMenuLine } from "react-icons/ri";
-import { Menu } from "../menu/Menu";
+import { Menu } from "../../components";
 
-export const MenuHeader: FC = () => {
+export const Burger: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { pathname } = useLocation();
-  const { isMobile } = useMatchMedia();
 
   return (
     <div
@@ -17,14 +14,14 @@ export const MenuHeader: FC = () => {
       onMouseLeave={() => setIsOpen(false)}
     >
       <div className={s.menu__top}>
-        {(isMobile || pathname !== "/") && <RiMenuLine className={s.menu__icon} />}
+        <RiMenuLine className={s.menu__icon} />
         <Link to="/">
           <span className={s.menu__siteName}>Movies</span>
         </Link>
       </div>
       {isOpen && (
         <div className={s.menu__bottom}>
-          <Menu mobile='mobile' />
+          <Menu mobile="mobile" />
         </div>
       )}
     </div>

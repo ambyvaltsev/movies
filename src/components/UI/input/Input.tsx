@@ -7,27 +7,34 @@ interface IStyle {
 
 interface IInputProps {
   style?: IStyle;
-  header?: boolean;
+  isHeader?: boolean;
+  isHeaderMobile?: boolean;
   placeholder?: string;
-  autocomplete?: string;
+  autoComplete?: string;
   onFocus?: () => void;
   onBlur?: () => void;
+  input: string;
+  setInput: (e: any) => void;
 }
 
-export const Input: FC<IInputProps> = ({ style, header, placeholder, autocomplete, onFocus, onBlur }) => {
-  const styles = header ? `${s.input} ${s.header}` : `${s.input}`;
-
+export const Input: FC<IInputProps> = ({
+  isHeader,
+  isHeaderMobile,
+  input,
+  setInput,
+  ...props
+}) => {
+  const header = isHeader && `${s.header}`;
+  const headerMobile = isHeaderMobile && `${s.headerMobile}`
   return (
-    <label htmlFor="input" className={s.label}>
+    <label htmlFor="input" className={`${s.label} ${s.headerMobile}`}>
       <input
+        onChange={setInput}
+        value={input}
         type="text"
         id="input"
-        className={styles}
-        style={style}
-        placeholder={placeholder}
-        autoComplete={autocomplete}
-        onFocus={onFocus}
-        onBlur={onBlur}
+        className={`${s.input} ${header} ${headerMobile}`}
+        {...props}
       />
     </label>
   );

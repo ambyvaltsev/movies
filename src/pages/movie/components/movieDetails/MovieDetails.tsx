@@ -1,14 +1,14 @@
 import { FC, useState } from "react";
 import { useGetVideoQuery } from "../../../../store/movies/movies.api";
-import { KinopoiskRating, CriticsRating } from "../../components";
-import s from "./MuvieDescriptionSub.module.scss";
+import { KinopoiskRating, CriticsRating } from "..";
+import s from "./MuvieDetails.module.scss";
 
 interface IMovieDescriptionSubProps {
   description: string;
   id: number;
 }
 
-export const MovieDescriptionSub: FC<IMovieDescriptionSubProps> = ({ description, id }) => {
+export const MovieDetails: FC<IMovieDescriptionSubProps> = ({ description, id }) => {
   const [active, setActive] = useState<string>("Review");
   const { isError, isLoading, data: videos } = useGetVideoQuery(id);
 

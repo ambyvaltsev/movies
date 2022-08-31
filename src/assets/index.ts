@@ -1,3 +1,4 @@
-export { IoIosArrowForward, IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-export { AiFillHome } from "react-icons/ai";
+export { IoIosArrowForward, IoIosArrowDown, IoIosArrowUp, IoMdClose } from "react-icons/io";
+export { AiFillHome, AiOutlineSearch } from "react-icons/ai";
 export { MdMovie } from "react-icons/md";
+export { BsSliders } from "react-icons/bs";

@@ -19,7 +19,7 @@ export const ReleaseItem: FC<IReleaseItemProps> = ({ poster, nameRu, nameEn, dat
         <img src={poster} alt={nameRu} />
       </div>
       <div className={s.names}>
-        <Link to={`${id}`}><span className={s.names__ru}>{nameRu}</span></Link>
+        <Link to={`/movie/${id}`}><span className={s.names__ru}>{nameRu}</span></Link>
         <span className={s.names__en}>{nameEn}</span>
       </div>
 

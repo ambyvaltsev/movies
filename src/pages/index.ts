@@ -3,3 +3,5 @@ export { HomePage } from "./homePage/HomePage";
 export { Premiere } from "./premiere/Premiere";
 export { DigitalReleases } from "./digitalReleases/DigitalReleases";
 export { Movie } from './movie/Movie';
+export { Staff } from './staff/Staff';
+

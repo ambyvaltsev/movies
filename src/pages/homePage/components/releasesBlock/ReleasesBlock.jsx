@@ -1,24 +1,25 @@
 import s from "./ReleasesBlock.module.scss";
 import { useGetPremiereQuery, useGetDigitalReleasesQuery } from "../../../../store/movies/movies.api";
-import { ReleasesList } from "../../../../components";
+import { Preloader, ReleasesList } from "../../../../components";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../../../assets";
 
-
 export const ReleasesBlock = () => {
-
   const {
     isError: isPremiereError,
     isLoading: isPremiereLoading,
     premiere,
-  } = useGetPremiereQuery({
-    year: +new Date().toLocaleString("en-US", { year: "numeric" }),
-    month: new Date().toLocaleString("en-US", { month: "long" }),
-  }, {
-    selectFromResult: ({ data }) => ({
-      premiere: data?.releases.filter((release) => new Date(release.date) > new Date())
-    })
-  });
+  } = useGetPremiereQuery(
+    {
+      year: +new Date().toLocaleString("en-US", { year: "numeric" }),
+      month: new Date().toLocaleString("en-US", { month: "long" }),
+    },
+    {
+      selectFromResult: ({ data }) => ({
+        premiere: data?.releases.filter((release) => new Date(release.date) > new Date()),
+      }),
+    }
+  );
   const {
     isError: isDigitalError,
     isLoading: isDigitalLoading,
@@ -27,10 +28,9 @@ export const ReleasesBlock = () => {
     year: +new Date().toLocaleString("en-US", { year: "numeric" }),
     month: new Date().toLocaleString("en-US", { month: "long" }),
   });
-  
 
   if (isPremiereLoading || isDigitalLoading) {
-    return <div>Loading</div>;
+    return <Preloader />;
   }
   if (isPremiereError || isDigitalError) {
     return <div>Error</div>;

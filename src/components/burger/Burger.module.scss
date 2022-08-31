@@ -2,14 +2,16 @@
 
 .container {
   z-index: 5;
-  display: flex;
+  display: none;
   align-items: center;
   height: 100%;
-  min-width: 90px;
   position: relative;
   padding: 0 5px;
   &.mobile {
     background-color: #333;
+  }
+  @media (max-width: $landscape-phones-max) {
+    display: flex;
   }
   .menu__top {
     display: flex;
@@ -24,9 +26,6 @@
       font-size: 25px;
       color: white;
       text-transform: uppercase;
-      @media (max-width: $portrait-phones-max) {
-        font-size: 14px;
-      }
     }
   }
   .menu__bottom {

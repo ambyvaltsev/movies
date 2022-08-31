@@ -1,9 +1,20 @@
-@import '../../app/styles/vars.scss';
+@import "../../app/styles/vars.scss";
 .container {
   display: flex;
   position: relative;
   flex: 0 1 auto;
   min-width: 160px;
+  @media (max-width: $portrait-phones-max) {
+    min-width: calc(100% - 150px);
+  }
+  &.mobile {
+    z-index: 10000;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
   .icons {
     position: absolute;
     right: 5px;
@@ -12,13 +23,55 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    .icons__icon {
-      cursor: pointer;
-      font-size: 18px;
-      color: var(--color-icon-header);
-      &.focus {
-        color: rgba(0, 0, 0, 0.6);
-      }
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--color-icon-header);
+    &.focus {
+      color: rgba(0, 0, 0, 0.6);
+    }
+    @media (max-width: $portrait-phones-max) {
+      font-size: 22px;
+    }
+  }
+  .icon__searchMobile {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--color-icon-header);
+    &.mobile {
+      left: 5px;
+    }
+    &.focus {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  .icon__cancelSearch {
+    color: var(--color-icon-header);
+    font-size: 24px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    &.focus {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  .tooltip {
+    position: absolute;
+    top: 26px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    box-shadow: var(--shadow-box);
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    &.mobile {
+      top: 45px;
+      max-height: calc(100vh - 65px);
     }
   }
 }

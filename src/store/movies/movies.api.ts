@@ -10,10 +10,21 @@ import {
   IDigitalRelease,
   IStaffResponse,
   IStaff,
-  IStaffUnit,
+  ISingleUnit,
   IVideResponse,
   ISpecificStuff,
+  ITopAwaitResponse,
+  IMoviesByKeyResponse,
+  IPersonceByKeyResponse,
 } from "../../models";
+
+function formatStaff(staff: IStaffResponse[], key: string): ISingleUnit[] {
+  return staff
+    .filter((p) => p.professionKey === key)
+    .reduce((acc: ISingleUnit[], cur) => {
+      return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
+    }, []);
+}
 
 export const moviesAPI = createApi({
   reducerPath: "moviesAPI",
@@ -45,49 +56,15 @@ export const moviesAPI = createApi({
         },
       }),
       transformResponse: (response: IStaffResponse[]) => {
-        const staffObj = {} as IStaff;
-        staffObj.director = response
-          ?.filter((p) => p.professionKey === "DIRECTOR")
-          .reduce((acc: IStaffUnit[], cur) => {
-            return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-          }, []);
-
-        staffObj.writer = response
-          .filter((p) => p.professionKey === "WRITER")
-          .reduce((acc: IStaffUnit[], cur) => {
-            return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-          }, []);
-
-        staffObj.producer = response
-          .filter((p) => p.professionKey === "PRODUCER")
-          .reduce((acc: IStaffUnit[], cur) => {
-            return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-          }, []);
-
-        staffObj.composer = response
-          .filter((p) => p.professionKey === "COMPOSER")
-          .reduce((acc: IStaffUnit[], cur) => {
-            return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-          }, []);
-
-        staffObj.design = response
-          .filter((p) => p.professionKey === "DESIGN")
-          .reduce((acc: IStaffUnit[], cur) => {
-            return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-          }, []);
-
-        staffObj.editor = response
-          .filter((p) => p.professionKey === "EDITOR")
-          .reduce((acc: IStaffUnit[], cur) => {
-            return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-          }, []);
-
-        staffObj.actors = response
-          .filter((p) => p.professionKey === "ACTOR")
-          .reduce((acc: IStaffUnit[], cur) => {
-            return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-          }, []);
-        return staffObj;
+        return {
+          director: formatStaff(response, "DIRECTOR"),
+          writer: formatStaff(response, "WRITER"),
+          producer: formatStaff(response, "PRODUCER"),
+          composer: formatStaff(response, "COMPOSER"),
+          design: formatStaff(response, "DESIGN"),
+          editor: formatStaff(response, "EDITOR"),
+          actors: formatStaff(response, "ACTOR"),
+        };
       },
     }),
     getSpecificStaff: build.query<ISpecificStuff, string>({
@@ -97,7 +74,7 @@ export const moviesAPI = createApi({
           "X-API-KEY": `${MOVIE_API_KEY}`,
           "Content-Type": "application/json",
         },
-      })
+      }),
     }),
     getVideo: build.query<IVideResponse, number>({
       query: (id) => ({
@@ -169,14 +146,46 @@ export const moviesAPI = createApi({
         };
       },
     }),
+    getTopMovies: build.query<ITopAwaitResponse, { type: string; page: number }>({
+      query: ({ type, page }) => ({
+        url: `/v2.2/films/top?type=${type}&page=${page}`,
+        headers: {
+          "X-API-KEY": `${MOVIE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
+    getMovieByKey: build.query<IMoviesByKeyResponse, { key: string; page: number }>({
+      query: ({ key, page }) => ({
+        url: `/v2.1/films/search-by-keyword?keyword=${key}&page=${page}`,
+        headers: {
+          "X-API-KEY": `${MOVIE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
+    getPersonByKey: build.query<IPersonceByKeyResponse, { key: string; page: number }>({
+      query: ({ key, page }) => ({
+        url: `/v1/persons?name=${key}&page=${page}`,
+        headers: {
+          "X-API-KEY": `${MOVIE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }),
+    }),
   }),
 });
 
 export const {
+  useGetPersonByKeyQuery,
+  useGetMovieByKeyQuery,
+  useGetTopMoviesQuery,
   useGetMovieQuery,
   useGetPremiereQuery,
+  useLazyGetPremiereQuery,
   useGetDigitalReleasesQuery,
+  useLazyGetDigitalReleasesQuery,
   useGetStaffQuery,
   useGetVideoQuery,
-  useGetSpecificStaffQuery
+  useGetSpecificStaffQuery,
 } = moviesAPI;

@@ -7,8 +7,9 @@
   background-color: white;
   z-index: 1000;
   width: 260px;
-  min-height: 50px;
+  max-height: 150px;
   padding: 5px;
+  box-shadow: var(--shadow-box);
   .poster {
     min-width: 80px;
     min-height: 120px;

@@ -1,0 +1,25 @@
+@import "../../app/styles/vars.scss";
+.container {
+  background-color: unset;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 50px;
+  height: 25px;
+  @media (max-width: $landscape-phones-max) {
+    right: 10px;
+  }
+  .account {
+    width: 25px;
+    height: 25px;
+    background-image: url("../../assets/img/account.svg");
+    background-size: cover;
+    border-radius: 50%;
+  }
+  .signin {
+    background-color: unset;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    text-transform: capitalize;
+  }
+}
