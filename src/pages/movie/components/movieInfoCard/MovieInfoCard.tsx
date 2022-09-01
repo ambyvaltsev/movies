@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useGetSpecificStaffQuery } from "../../../../store/movies/movies.api";
+import { useGetSpecificStaffQuery } from "../../../../store/movies/staff.api";
 import s from "./MovieInfoCard.module.scss";
 interface IInfo {
   id: string;

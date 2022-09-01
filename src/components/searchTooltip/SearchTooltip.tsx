@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from "react";
-import { RiCoinsLine } from "react-icons/ri";
-import { useGetMovieByKeyQuery, useGetPersonByKeyQuery } from "../../store/movies/movies.api";
+import { useGetMovieByKeyQuery } from "../../store/movies/movies.api";
+import { useGetPersonByKeyQuery } from "../../store/movies/staff.api";
 import { TooltipItem } from "../tooltipItem/TooltipItem";
 import s from "./SearchTooltip.module.scss";
 

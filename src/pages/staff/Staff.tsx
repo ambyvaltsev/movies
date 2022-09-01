@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetSpecificStaffQuery } from "../../store/movies/movies.api";
+import { useGetSpecificStaffQuery } from "../../store/movies/staff.api";
 import s from "./Staff.module.scss";
 import { InfoItem, Preloader, RelatedInfoList } from "../../components";
 import { ISingleUnit } from "../../models";

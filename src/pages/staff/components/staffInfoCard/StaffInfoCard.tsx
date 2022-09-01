@@ -1,4 +1,4 @@
-import { useGetMovieQuery, useGetSpecificStaffQuery } from "../../../../store/movies/movies.api";
+import { useGetMovieQuery} from "../../../../store/movies/movies.api";
 import s from "./StaffInfoCard.module.scss";
 import { FC } from "react";
 

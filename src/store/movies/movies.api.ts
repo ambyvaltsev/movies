@@ -8,23 +8,10 @@ import {
   IPremiere,
   IPremiereResponse,
   IDigitalRelease,
-  IStaffResponse,
-  IStaff,
-  ISingleUnit,
   IVideResponse,
-  ISpecificStuff,
   ITopAwaitResponse,
   IMoviesByKeyResponse,
-  IPersonceByKeyResponse,
 } from "../../models";
-
-function formatStaff(staff: IStaffResponse[], key: string): ISingleUnit[] {
-  return staff
-    .filter((p) => p.professionKey === key)
-    .reduce((acc: ISingleUnit[], cur) => {
-      return [...acc, { id: cur.staffId, nameEn: cur.nameEn, nameRu: cur.nameRu }];
-    }, []);
-}
 
 export const moviesAPI = createApi({
   reducerPath: "moviesAPI",
@@ -43,38 +30,6 @@ export const moviesAPI = createApi({
         response.countries = response.countries.map((c) => Object.values(c).join(""));
         return response;
       },
-    }),
-    getStaff: build.query<IStaff, string>({
-      query: (id) => ({
-        url: "/v1/staff",
-        headers: {
-          "X-API-KEY": `${MOVIE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        params: {
-          filmId: id,
-        },
-      }),
-      transformResponse: (response: IStaffResponse[]) => {
-        return {
-          director: formatStaff(response, "DIRECTOR"),
-          writer: formatStaff(response, "WRITER"),
-          producer: formatStaff(response, "PRODUCER"),
-          composer: formatStaff(response, "COMPOSER"),
-          design: formatStaff(response, "DESIGN"),
-          editor: formatStaff(response, "EDITOR"),
-          actors: formatStaff(response, "ACTOR"),
-        };
-      },
-    }),
-    getSpecificStaff: build.query<ISpecificStuff, string>({
-      query: (id) => ({
-        url: `/v1/staff/${id}`,
-        headers: {
-          "X-API-KEY": `${MOVIE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }),
     }),
     getVideo: build.query<IVideResponse, number>({
       query: (id) => ({
@@ -164,9 +119,9 @@ export const moviesAPI = createApi({
         },
       }),
     }),
-    getPersonByKey: build.query<IPersonceByKeyResponse, { key: string; page: number }>({
-      query: ({ key, page }) => ({
-        url: `/v1/persons?name=${key}&page=${page}`,
+    getAllMovies: build.query<any, void>({
+      query: () => ({
+        url: "/v2.2/films",
         headers: {
           "X-API-KEY": `${MOVIE_API_KEY}`,
           "Content-Type": "application/json",
@@ -177,7 +132,7 @@ export const moviesAPI = createApi({
 });
 
 export const {
-  useGetPersonByKeyQuery,
+  useGetAllMoviesQuery,
   useGetMovieByKeyQuery,
   useGetTopMoviesQuery,
   useGetMovieQuery,
@@ -185,7 +140,5 @@ export const {
   useLazyGetPremiereQuery,
   useGetDigitalReleasesQuery,
   useLazyGetDigitalReleasesQuery,
-  useGetStaffQuery,
   useGetVideoQuery,
-  useGetSpecificStaffQuery,
 } = moviesAPI;

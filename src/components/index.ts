@@ -12,4 +12,5 @@ export { Preloader } from "./preloader/Preloader";
 export { AccountHeader } from "./accountHeader/AccountHeader";
 export { TooltipItem } from "./tooltipItem/TooltipItem";
 export { SearchTooltipDefault } from "./searchTooltipDefault/SearchTooltipDefault";
-export { Category } from './category/Category';
+export { CategoryItem } from "./categoryItem/CategoryItem";
+export { Categories } from "./categories/Categories";

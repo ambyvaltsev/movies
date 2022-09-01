@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useGetMovieQuery, useGetStaffQuery } from "../../store/movies/movies.api";
+import { useGetMovieQuery } from "../../store/movies/movies.api";
+import { useGetStaffQuery } from "../../store/movies/staff.api";
 import { MovieDetails } from "./components";
 import s from "./Movie.module.scss";
 import { useShowInfoCard } from "../../hooks";
