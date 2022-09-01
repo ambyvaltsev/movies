@@ -1,16 +1,22 @@
 {
   "files": {
-    "main.css": "/movies/static/css/main.66e0e973.css",
-    "main.js": "/movies/static/js/main.9698a369.js",
+    "main.css": "/movies/static/css/main.a05446bb.css",
+    "main.js": "/movies/static/js/main.0cab9a5b.js",
+    "static/media/comedy.png": "/movies/static/media/comedy.bbb8a8bd69fa7bed6213.png",
+    "static/media/action.png": "/movies/static/media/action.7d8c1595dd48b83550ed.png",
+    "static/media/fantasy.png": "/movies/static/media/fantasy.5bbc60cd37d5c7d1d746.png",
     "static/media/best250.png": "/movies/static/media/best250.a4d636d41f47979a7a2e.png",
+    "static/media/usa.png": "/movies/static/media/usa.2d607c1609ae4b0de4ec.png",
+    "static/media/russia.png": "/movies/static/media/russia.c5aebccfca3b52732f9b.png",
+    "static/media/france.png": "/movies/static/media/france.f30d0e693a7e439f107d.png",
     "static/media/popular100.png": "/movies/static/media/popular100.b1ef38d97e09f85e65c1.png",
     "static/media/account.svg": "/movies/static/media/account.c60a684882f8e5757512.svg",
     "index.html": "/movies/index.html",
-    "main.66e0e973.css.map": "/movies/static/css/main.66e0e973.css.map",
-    "main.9698a369.js.map": "/movies/static/js/main.9698a369.js.map"
+    "main.a05446bb.css.map": "/movies/static/css/main.a05446bb.css.map",
+    "main.0cab9a5b.js.map": "/movies/static/js/main.0cab9a5b.js.map"
   },
   "entrypoints": [
-    "static/css/main.66e0e973.css",
-    "static/js/main.9698a369.js"
+    "static/css/main.a05446bb.css",
+    "static/js/main.0cab9a5b.js"
   ]
 }
