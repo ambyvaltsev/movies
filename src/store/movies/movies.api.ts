@@ -53,6 +53,7 @@ export const moviesAPI = createApi({
         },
       }),
       transformResponse: (response: IPremiereResponse) => {
+        
         const premiere = response.items.reduce((acc: any, cur: IPremiere) => {
           return [
             ...acc,
@@ -91,6 +92,8 @@ export const moviesAPI = createApi({
               nameEn: cur.nameEn,
               date: cur.releaseDate,
               poster: cur.posterUrlPreview,
+              rating: cur.rating,
+              ratingVoteCount: cur.ratingVoteCount,
             },
           ];
         }, []);

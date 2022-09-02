@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  .rating {
+    width: 10%;
+    color: #3bb33b;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .genres {
+    width: 70%;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 13px;
+  }
+  .year {
+    width: 20%;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 13px;
+  }
+}

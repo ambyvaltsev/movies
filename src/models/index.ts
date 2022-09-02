@@ -53,6 +53,8 @@ export interface IRelease {
   nameEn: string;
   date: string;
   poster: string;
+  rating?: number;
+  ratingVoteCount?: number
 }
 export interface IMovie {
   kinopoiskId: number;

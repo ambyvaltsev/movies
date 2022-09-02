@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  .title {
+    color: #060077;
+  }
+  .subtitle {
+    color: var(--grey-color-list);
+  }
+}

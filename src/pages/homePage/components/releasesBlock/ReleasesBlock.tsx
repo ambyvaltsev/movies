@@ -1,15 +1,11 @@
 import s from "./ReleasesBlock.module.scss";
 import { useGetPremiereQuery, useGetDigitalReleasesQuery } from "../../../../store/movies/movies.api";
-import { Preloader, ReleasesList } from "../../../../components";
+import { Preloader, MovieCard } from "../../../../components";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../../../assets";
 
 export const ReleasesBlock = () => {
-  const {
-    isError: isPremiereError,
-    isLoading: isPremiereLoading,
-    premiere,
-  } = useGetPremiereQuery(
+  const { premiere } = useGetPremiereQuery(
     {
       year: +new Date().toLocaleString("en-US", { year: "numeric" }),
       month: new Date().toLocaleString("en-US", { month: "long" }),
@@ -29,10 +25,10 @@ export const ReleasesBlock = () => {
     month: new Date().toLocaleString("en-US", { month: "long" }),
   });
 
-  if (isPremiereLoading || isDigitalLoading) {
+  if (isDigitalLoading) {
     return <Preloader />;
   }
-  if (isPremiereError || isDigitalError) {
+  if (isDigitalError) {
     return <div>Error</div>;
   }
 
@@ -45,14 +41,43 @@ export const ReleasesBlock = () => {
             <h6 className={s.release__title}>Coming soon to cinema</h6>
             <IoIosArrowForward className={s.release__icon} />
           </Link>
-          <ReleasesList data={premiere} />
+          <div className={s.release__list}>
+            {premiere && premiere.map((release, index) => {
+              if (index < 5) {
+                return (
+                  <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
+                    <MovieCard.Description
+                      title={release.nameEn || release.nameRu}
+                      subtitle={release.nameEn && release.nameRu}
+                    />
+                    <MovieCard.ReleaseDate date={release.date} />
+                  </MovieCard>
+                );
+              }
+            })}
+          </div>
         </div>
         <div className={s.releases__release}>
           <Link to="digital" className={s.release__link}>
             <h6 className={s.release__title}>Digital releases</h6>
             <IoIosArrowForward className={s.release__icon} />
           </Link>
-          <ReleasesList data={digitalData.releases} />
+          <div className={s.release__list}>
+            {digitalData && digitalData.releases.map((release, index) => {
+              if (index < 5) {
+                return (
+                  <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
+                    <MovieCard.Description
+                      title={release.nameEn || release.nameRu}
+                      subtitle={release.nameEn && release.nameRu}
+                    />
+                    <MovieCard.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
+                    <MovieCard.ReleaseDate date={release.date} />
+                  </MovieCard>
+                );
+              }
+            })}
+          </div>
         </div>
       </div>
     </div>

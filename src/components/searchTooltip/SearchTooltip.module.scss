@@ -1,6 +1,5 @@
 .container {
   background-color: white;
-  position: relative;
   .title {
     color: rgba(0, 0, 0, 0.6);
     padding: 10px 0;
@@ -10,7 +9,4 @@
     flex-direction: column;
     gap: 10px;
   }
-  .observableBlock {
-      height: 20px;
-    }
 }

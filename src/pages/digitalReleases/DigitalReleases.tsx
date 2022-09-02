@@ -1,7 +1,7 @@
 import s from "./DigitalReleases.module.scss";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../assets";
-import { Preloader, ReleasesList } from "../../components";
+import { MovieCard, Preloader } from "../../components";
 import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
 import { FC, useEffect, useState } from "react";
 import { ReleasesDateSelector } from "../../components";
@@ -62,7 +62,28 @@ export const DigitalReleases: FC = () => {
           />
         </div>
         {isLoading && <Preloader />}
-        {data?.releases && <ReleasesList data={digitalReleases} limit={data.total} />}
+        {data?.releases && (
+          <div className={s.list}>
+            {digitalReleases.map((release, index) => {
+              if (index < data.total) {
+                return (
+                  <Link to={`/movie/${release.id}`} key={release.id}>
+                    <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu}>
+                      <MovieCard.Description
+                        title={release.nameEn || release.nameRu}
+                        subtitle={release.nameEn && release.nameRu}
+                      />
+
+                      <MovieCard.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
+
+                      <MovieCard.ReleaseDate date={release.date} />
+                    </MovieCard>
+                  </Link>
+                );
+              }
+            })}
+          </div>
+        )}
         <div className={s.observableBlock} ref={ref}></div>
       </div>
     </div>

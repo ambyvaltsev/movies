@@ -15,11 +15,11 @@
       text-decoration: underline;
     }
   }
-  .content {    
+  .content {
     display: grid;
     grid-template-columns: minmax(275px, 576px);
     margin: 0 auto;
-    padding: 10px 10px 10px 0;
+    padding: 10px 10px 10px 10px;
     border: 1px solid rgba(0, 0, 0, 0.6);
     box-shadow: var(--shadow-box);
     .title {
@@ -30,6 +30,12 @@
       display: flex;
       gap: 10px;
       margin-left: 15px;
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 15px;
     }
     .observableBlock {
       height: 20px;

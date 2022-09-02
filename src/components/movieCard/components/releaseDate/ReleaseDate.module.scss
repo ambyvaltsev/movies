@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  .date__day {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--grey-color-list);
+  }
+  .date__month {
+    color: var(--grey-color-list);
+  }
+}

@@ -1,0 +1,17 @@
+.container {
+  .rating {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    .rating__number {
+      font-size: 18px;
+      font-weight: 600;
+      color: #3bb33b;
+    }
+    .rating__votesCount {
+      font-size: 13px;
+    }
+  }
+}

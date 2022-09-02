@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import s from "./Premiere.module.scss";
 import { IoIosArrowForward } from "../../assets";
-import { Preloader, ReleasesList } from "../../components";
+import { Preloader } from "../../components";
 import { useGetPremiereQuery } from "../../store/movies/movies.api";
 import { FC, useState, useEffect } from "react";
-import { ReleasesDateSelector } from "../../components";
+import { ReleasesDateSelector, MovieCard } from "../../components";
 import { years, months } from "../../helpers/vars";
 import { useInView } from "react-intersection-observer";
 
@@ -53,7 +53,25 @@ export const Premiere: FC = () => {
             selectedDate={selectedDate.month}
           />
         </div>
-        {data && <ReleasesList data={data.releases} limit={limit} />}
+        {data?.releases && (
+          <div className={s.list}>
+            {data.releases.map((release, index) => {
+              if (index < limit) {
+                return (
+                  <Link to={`/movie/${release.id}`} key={release.id}>
+                    <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu}>
+                      <MovieCard.Description
+                        title={release.nameEn || release.nameRu}
+                        subtitle={release.nameEn && release.nameRu}
+                      />
+                      <MovieCard.ReleaseDate date={release.date} />
+                    </MovieCard>
+                  </Link>
+                );
+              }
+            })}
+          </div>
+        )}
         <div className={s.observableBlock} ref={ref}></div>
       </div>
     </div>
