@@ -1,0 +1,15 @@
+.container {
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .form {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    .badges {
+      display: flex;
+    }
+  }
+}

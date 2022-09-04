@@ -1,10 +1,10 @@
 import s from "./DigitalReleases.module.scss";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../assets";
-import { MovieCard, Preloader } from "../../components";
+import { Card, Preloader } from "../../components";
 import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
 import { FC, useEffect, useState } from "react";
-import { ReleasesDateSelector } from "../../components";
+import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
 import { IRelease } from "../../models";
 import { useInView } from "react-intersection-observer";
@@ -37,7 +37,9 @@ export const DigitalReleases: FC = () => {
   if (isError) {
     return <div>Error</div>;
   }
-
+  if (isLoading) {
+    return <Preloader />;
+  }
   return (
     <div className={s.container}>
       <div className={s.navigation}>
@@ -50,15 +52,15 @@ export const DigitalReleases: FC = () => {
       <div className={s.content}>
         <h1 className={s.title}>Digital releases</h1>
         <div className={s.selectors}>
-          <ReleasesDateSelector
+          <Selector
             data={years}
-            setSelectedDate={(e) => setQueryArg({ ...queryArg, year: e.target.textContent, page: 1 })}
-            selectedDate={queryArg.year}
+            setSelectedData={(e) => setQueryArg({ ...queryArg, year: e.target.textContent, page: 1 })}
+            selectedData={queryArg.year}
           />
-          <ReleasesDateSelector
+          <Selector
             data={months}
-            setSelectedDate={(e) => setQueryArg({ ...queryArg, month: e.target.textContent, page: 1 })}
-            selectedDate={queryArg.month}
+            setSelectedData={(e) => setQueryArg({ ...queryArg, month: e.target.textContent, page: 1 })}
+            selectedData={queryArg.month}
           />
         </div>
         {isLoading && <Preloader />}
@@ -68,16 +70,14 @@ export const DigitalReleases: FC = () => {
               if (index < data.total) {
                 return (
                   <Link to={`/movie/${release.id}`} key={release.id}>
-                    <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu}>
-                      <MovieCard.Description
+                    <Card poster={release.poster} alt={release.nameEn || release.nameRu}>
+                      <Card.Description
                         title={release.nameEn || release.nameRu}
                         subtitle={release.nameEn && release.nameRu}
                       />
-
-                      <MovieCard.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
-
-                      <MovieCard.ReleaseDate date={release.date} />
-                    </MovieCard>
+                      <Card.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
+                      <Card.ReleaseDate date={release.date} />
+                    </Card>
                   </Link>
                 );
               }

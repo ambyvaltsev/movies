@@ -4,9 +4,11 @@ import { IoIosArrowForward } from "../../assets";
 import { Preloader } from "../../components";
 import { useGetPremiereQuery } from "../../store/movies/movies.api";
 import { FC, useState, useEffect } from "react";
-import { ReleasesDateSelector, MovieCard } from "../../components";
+import { Card } from "../../components";
+import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
 import { useInView } from "react-intersection-observer";
+import { IRelease } from "../../models";
 
 export const Premiere: FC = () => {
   const [limit, setLimit] = useState(10);
@@ -42,30 +44,30 @@ export const Premiere: FC = () => {
       <div className={s.content}>
         <h1 className={s.title}>Movie premiere schedule</h1>
         <div className={s.selectors}>
-          <ReleasesDateSelector
+          <Selector
             data={years}
-            setSelectedDate={(e) => setSelectedDate({ ...selectedDate, year: e.target.textContent })}
-            selectedDate={selectedDate.year}
+            setSelectedData={(e) => setSelectedDate({ ...selectedDate, year: e.target.textContent })}
+            selectedData={selectedDate.year}
           />
-          <ReleasesDateSelector
+          <Selector
             data={months}
-            setSelectedDate={(e) => setSelectedDate({ ...selectedDate, month: e.target.textContent })}
-            selectedDate={selectedDate.month}
+            setSelectedData={(e) => setSelectedDate({ ...selectedDate, month: e.target.textContent })}
+            selectedData={selectedDate.month}
           />
         </div>
         {data?.releases && (
           <div className={s.list}>
-            {data.releases.map((release, index) => {
+            {data.releases.map((release: IRelease, index) => {
               if (index < limit) {
                 return (
                   <Link to={`/movie/${release.id}`} key={release.id}>
-                    <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu}>
-                      <MovieCard.Description
+                    <Card poster={release.poster} alt={release.nameEn || release.nameRu}>
+                      <Card.Description
                         title={release.nameEn || release.nameRu}
                         subtitle={release.nameEn && release.nameRu}
                       />
-                      <MovieCard.ReleaseDate date={release.date} />
-                    </MovieCard>
+                      <Card.ReleaseDate date={release.date} />
+                    </Card>
                   </Link>
                 );
               }

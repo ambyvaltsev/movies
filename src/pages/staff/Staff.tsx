@@ -1,53 +1,61 @@
 import { useParams } from "react-router-dom";
 import { useGetSpecificStaffQuery } from "../../store/movies/staff.api";
 import s from "./Staff.module.scss";
-import { InfoItem, Preloader, RelatedInfoList } from "../../components";
+import { Preloader, Info, Poster } from "../../components";
 import { ISingleUnit } from "../../models";
 import { StaffInfoCard } from "./components";
-import { useShowInfoCard } from "../../hooks";
+
+import { useState } from "react";
 
 export const Staff = () => {
+  const [info, setInfo] = useState<{ id: string; x: number; y: number }>({ id: "", x: 0, y: 0 });
   const { id } = useParams();
   const { isError, isLoading, data } = useGetSpecificStaffQuery(id!);
-  const { info, ref } = useShowInfoCard(isLoading);
+
   const movies =
     data &&
     data?.films.reduce((acc: ISingleUnit[], cur) => {
       return [...acc, { id: cur.filmId, nameRu: cur.nameRu, nameEn: cur.nameEn }];
     }, []);
+  const openCard = (e: any) => {
+    if (e.target.dataset.card) {
+      const left =
+        e.clientX + 280 > document.documentElement.clientWidth
+          ? document.documentElement.clientWidth - 280
+          : e.pageX;
+      const top = e.clientY + 150 > document.documentElement.clientHeight ? e.pageY - 150 : e.pageY;
+      setInfo({ id: e.target.dataset.card, x: left, y: top - 70 });
+    }
+  };
+  const items = [
+    { title: "Career", person: data?.profession, type: "movie", isClickable: false },
+    { title: "Growth", person: data?.growth || "", type: "movie", isClickable: true },
+    { title: "Date of birth", person: data?.birthday || "", type: "movie", isClickable: true },
+    { title: "Place of Birth", person: data?.birthplace || "", type: "movie", isClickable: false },
+    { title: "Total films", person: data?.films.length, type: "movie", isClickable: true },
+  ];
+
+  const closeCard = () => {
+    setInfo({ ...info, id: "" });
+  };
   if (isLoading) {
-    return <Preloader/>
+    return <Preloader />;
   }
   return (
-    <div className={s.container}>
-      <div className={s.description__main}>
-        <div className={s.main__poster}>
-          <img src={data?.posterUrl} alt={data?.nameEn || data?.nameRu} />
+    <Info>
+      {data && (
+        <div className={s.content}>
+          <Poster url={data?.posterUrl} alt={data?.nameEn || data?.nameRu} />
+          <Info.Description title={data?.nameEn || data.nameRu} subtitle={data?.nameEn && data.nameRu}>
+            <Info.About title={`About person`} items={items} openCard={openCard} closeCard={closeCard}>
+              <Info.RelatedContent title="Movies">
+                {movies && <Info.RelatedList items={movies} link="movie" />}
+              </Info.RelatedContent>
+            </Info.About>
+          </Info.Description>
         </div>
-        <div className={s.main__content}>
-          <h1 className={s.main__title}>{data?.nameEn || data?.nameRu}</h1>
-          <div className={s.main__body}>
-            <h2 className={s.body__title}>About person</h2>
-            <section className={s.body__about} ref={ref}>
-              <div className={s.about__info}>
-                {data && (
-                  <>
-                    <InfoItem title="Career" info={data?.profession} />
-                    <InfoItem title="Growth" info={data?.growth || ""} isClickable />
-                    <InfoItem title="Date of birth" info={data?.birthday || ""} isClickable />
-                    <InfoItem title="Place of Birth" info={data.birthplace || ""} />
-                    <InfoItem title="Total films" info={data.films.length} isClickable />
-                  </>
-                )}
-              </div>
-              <div className={s.about__starring}>
-                {movies && <RelatedInfoList movies={movies} title="Starring" />}
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
+      )}
       {info.id && <StaffInfoCard info={info} />}
-    </div>
+    </Info>
   );
 };

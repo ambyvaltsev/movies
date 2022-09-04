@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  .item {
+    display: inline-block;
+    font-size: 12px;
+    &[data-clickable="true"]:hover {
+      cursor: pointer;
+      color: var(--red-color);
+    }
+  }
+}

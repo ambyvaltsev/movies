@@ -1,0 +1,13 @@
+.container {
+  padding: 5px;
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .ratings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

@@ -3,18 +3,53 @@ import { useGetMovieQuery } from "../../store/movies/movies.api";
 import { useGetStaffQuery } from "../../store/movies/staff.api";
 import { MovieDetails } from "./components";
 import s from "./Movie.module.scss";
-import { useShowInfoCard } from "../../hooks";
-import { RelatedInfoList, MovieInfoCard, InfoItem, Preloader } from "../../components";
+import { MovieInfoCard, Preloader, Info, Poster } from "../../components";
+import { useState } from "react";
 
 export const Movie = () => {
+  const [info, setInfo] = useState<{ id: string; x: number; y: number }>({ id: "", x: 0, y: 0 });
   const { id } = useParams();
   const { isError: isErrorMovie, isLoading: isLoadingMovie, data: movie } = useGetMovieQuery(id!);
   const { isError: isErrorStaff, isLoading: isLoadingStaff, data: staff } = useGetStaffQuery(id!);
-  const { info, ref } = useShowInfoCard(isLoadingMovie || isLoadingStaff);
 
-  const filmLength = `${movie?.filmLength} min / ${movie && Math.trunc(movie?.filmLength / 60)}:${
-    movie && movie?.filmLength % 60
-  }`;
+  const items = [
+    { title: "Production year", movie: movie?.year, type: "movie", isClickable: false },
+    { title: "Country", movie: movie?.countries, type: "movie", isClickable: true },
+    { title: "Genre", movie: movie?.genres, type: "movie", isClickable: true },
+    { title: "Slogan", movie: movie?.slogan, type: "movie", isClickable: false },
+    { title: "Director", staff: staff?.director, type: "staff", isClickable: true },
+    { title: "Writer", staff: staff?.writer, type: "staff", isClickable: true },
+    { title: "Producer", staff: staff?.producer, type: "staff", isClickable: true },
+    { title: "Composer", staff: staff?.composer, type: "staff", isClickable: true },
+    { title: "Designer", staff: staff?.design, type: "staff", isClickable: true },
+    { title: "Editor", staff: staff?.editor, type: "staff", isClickable: true },
+    {
+      title: "Movie length",
+      movie: `${movie?.filmLength} min / ${movie && Math.trunc(movie?.filmLength / 60)}:${
+        movie && movie?.filmLength % 60
+      }`,
+      type: "movie",
+      isClickable: false,
+    },
+  ];
+  const openCard = (e: any) => {
+    if (e.target.dataset.card) {
+      const left =
+        e.clientX + 280 > document.documentElement.clientWidth
+          ? document.documentElement.clientWidth - 280
+          : e.pageX;
+      const top = e.clientY + 150 > document.documentElement.clientHeight ? e.pageY - 150 : e.pageY;
+      setInfo({ id: e.target.dataset.card, x: left, y: top - 70 });
+    }
+  };
+
+  const closeCard = (e: any) => {
+    if (e.target.dataset.card) {
+      setInfo({ ...info, id: "" });
+    }
+  };
+  console.log("svec");
+  const aboutTitle = movie?.type.split("_")[1]?.toLowerCase() || movie?.type.toLowerCase();
 
   if (isErrorMovie || isErrorStaff) {
     return <div>Error</div>;
@@ -23,45 +58,32 @@ export const Movie = () => {
     return <Preloader />;
   }
   return (
-    <div className={s.container}>
-      <div className={s.description__main}>
-        <div className={s.main__poster}>
-          <img src={movie?.posterUrl} alt={movie?.nameOriginal || movie?.nameRu} />
-        </div>
-        <div className={s.main__content}>
-          <h1 className={s.main__title}>{movie?.nameOriginal}</h1>
-          <div className={s.main__body}>
-            <h2 className={s.body__title}>{`About the ${
-              movie?.type.split("_")[1]?.toLowerCase() || movie?.type.toLowerCase()
-            }`}</h2>
-            <section className={s.body__about} ref={ref}>
-              <div className={s.about__info}>
-                {movie && staff && (
-                  <>
-                    <InfoItem title="Production year" info={movie?.year} />
-                    <InfoItem title="Country" info={movie?.countries} isClickable />
-                    <InfoItem title="Genre" info={movie?.genres} isClickable />
-                    <InfoItem title="Slogan" info={movie.slogan} />
-                    <InfoItem title="Director" staff={staff.director} isClickable />
-                    <InfoItem title="Writer" staff={staff.writer} isClickable />
-                    <InfoItem title="Producer" staff={staff.producer} isClickable />
-                    <InfoItem title="Composer" staff={staff.composer} isClickable />
-                    <InfoItem title="Designer" staff={staff.design} isClickable />
-                    <InfoItem title="Editor" staff={staff.editor} isClickable />
-                    <InfoItem title="Movie length" info={filmLength} />
-                  </>
-                )}
-              </div>
-              <div className={s.about__starring}>
-                {staff && <RelatedInfoList actors={staff?.actors} title="Starring" />}
-                <div className={s.starring__all}>{`${staff?.actors?.length} actors`}</div>
-              </div>
-            </section>
+    <Info>
+      {movie && staff && (
+        <>
+          <div className={s.content}>
+            <Poster url={movie?.posterUrl} alt={movie?.nameOriginal || movie?.nameRu} />
+            <Info.Description
+              title={movie?.nameEn || movie?.nameOriginal || movie.nameRu}
+              subtitle={(movie?.nameEn || movie?.nameOriginal) && movie.nameRu}
+            >
+              <Info.About
+                title={`About the ${aboutTitle}`}
+                items={items}
+                openCard={openCard}
+                closeCard={closeCard}
+              >
+                <Info.RelatedContent title="Starring">
+                  <Info.RelatedList items={staff?.actors} link="staff" />
+                  <div className={s.all}>{`${staff?.actors?.length} actors`}</div>
+                </Info.RelatedContent>
+              </Info.About>
+            </Info.Description>
           </div>
-        </div>
-      </div>
-      {movie && <MovieDetails description={movie?.description} id={movie?.kinopoiskId} />}
-      {info.id && <MovieInfoCard info={info} />}
-    </div>
+          <MovieDetails description={movie?.description} id={movie?.kinopoiskId} />
+          {info.id && <MovieInfoCard info={info} />}
+        </>
+      )}
+    </Info>
   );
 };

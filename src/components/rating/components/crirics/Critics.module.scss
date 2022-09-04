@@ -1,0 +1,44 @@
+.container {
+
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  .scale {
+    display: flex;
+    width: 320px;
+    height: 16px;
+    .scale__positive {
+      position: relative;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 16px;
+      background-color: rgba(0, 153, 51, 0.4);
+      &::after {
+        position: absolute;
+        right: 0;
+        top: -3px;
+        content: '';
+        width: 1px;
+        height: 22px;
+        background-color: black;
+      }
+    }
+    .scale__negative {
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 16px;
+      background-color: rgba(255, 102, 0, 0.3);
+    }
+  }
+}
+}

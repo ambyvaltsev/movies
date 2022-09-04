@@ -2,40 +2,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  gap: 10px;
   background-color: white;
   z-index: 1000;
   width: 260px;
-  max-height: 150px;
   padding: 5px;
   box-shadow: var(--shadow-box);
-  .poster {
-    min-width: 80px;
-    min-height: 120px;
-    max-width: 80px;
-    max-height: 120px;
-    & > img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .details {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    .details__name {
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .details__profession {
-      font-size: 13px;
-    }
-    .details__bestMovies {
-      font-size: 13px;
-      .bestMovies__title {
-        font-style: italic;
-      }
-    }
-  }
 }

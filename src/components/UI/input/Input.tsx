@@ -1,8 +1,8 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import s from "./Input.module.scss";
 
 interface IStyle {
-  [index: string]: string;
+  [k: string]: string;
 }
 
 interface IInputProps {

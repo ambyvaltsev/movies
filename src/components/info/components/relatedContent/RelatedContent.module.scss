@@ -1,0 +1,18 @@
+.container {
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    .title {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .icon {
+      display: flex;
+      align-items: center;
+      font-size: 17px;
+    }
+  }
+}

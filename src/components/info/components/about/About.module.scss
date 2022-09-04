@@ -1,0 +1,21 @@
+@import '../../../../app/styles/vars';
+.container {
+  @media (max-width: $landscape-phones-max) {
+    padding-right: 10px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+}

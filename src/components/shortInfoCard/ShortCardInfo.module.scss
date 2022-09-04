@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-columns: 35% 60%;
+  gap: 10px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    .name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .info {
+      font-size: 13px;
+      .info__title {
+        font-style: italic;
+      }
+    }
+  }
+}

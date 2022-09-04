@@ -1,0 +1,8 @@
+@import "../../app/styles/vars.scss";
+.container {
+  position: relative;
+  padding: 10px 50px;
+  @media (max-width: $landscape-phones-max) {
+    padding: 10px 10px;
+  }
+}

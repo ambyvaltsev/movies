@@ -1,6 +1,6 @@
 import s from "./ReleasesBlock.module.scss";
 import { useGetPremiereQuery, useGetDigitalReleasesQuery } from "../../../../store/movies/movies.api";
-import { Preloader, MovieCard } from "../../../../components";
+import { Preloader, Card } from "../../../../components";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../../../assets";
 
@@ -45,13 +45,13 @@ export const ReleasesBlock = () => {
             {premiere && premiere.map((release, index) => {
               if (index < 5) {
                 return (
-                  <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
-                    <MovieCard.Description
+                  <Card poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
+                    <Card.Description
                       title={release.nameEn || release.nameRu}
                       subtitle={release.nameEn && release.nameRu}
                     />
-                    <MovieCard.ReleaseDate date={release.date} />
-                  </MovieCard>
+                    <Card.ReleaseDate date={release.date} />
+                  </Card>
                 );
               }
             })}
@@ -66,14 +66,14 @@ export const ReleasesBlock = () => {
             {digitalData && digitalData.releases.map((release, index) => {
               if (index < 5) {
                 return (
-                  <MovieCard poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
-                    <MovieCard.Description
+                  <Card poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
+                    <Card.Description
                       title={release.nameEn || release.nameRu}
                       subtitle={release.nameEn && release.nameRu}
                     />
-                    <MovieCard.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
-                    <MovieCard.ReleaseDate date={release.date} />
-                  </MovieCard>
+                    <Card.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
+                    <Card.ReleaseDate date={release.date} />
+                  </Card>
                 );
               }
             })}

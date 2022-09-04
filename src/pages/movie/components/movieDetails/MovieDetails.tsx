@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { useGetVideoQuery } from "../../../../store/movies/movies.api";
-import { KinopoiskRating, CriticsRating } from "..";
 import s from "./MuvieDetails.module.scss";
+import { Rating } from "../../../../components";
 
 interface IMovieDescriptionSubProps {
   description: string;
@@ -20,7 +20,7 @@ export const MovieDetails: FC<IMovieDescriptionSubProps> = ({ description, id })
     setActive(e.target.textContent);
   };
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       <nav className={s.nav}>
         <span className={`${s.nav__item} ${active === "Review" && s._active}`} onClick={setActiveItem}>
           Review
@@ -37,11 +37,10 @@ export const MovieDetails: FC<IMovieDescriptionSubProps> = ({ description, id })
           <div className={s.review}>
             <p className={s.review__description}>{description}</p>
             <div className={s.review__ratings}>
-              <h6 className={s.ratings__title}>Movie Rating</h6>
-              <div className={s.ratings__versions}>
-                <KinopoiskRating />
-                <CriticsRating/>
-              </div>
+              <Rating>
+                <Rating.Kinopoisk />
+                <Rating.Critics/>
+              </Rating>
             </div>
           </div>
         )}
@@ -59,6 +58,6 @@ export const MovieDetails: FC<IMovieDescriptionSubProps> = ({ description, id })
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
