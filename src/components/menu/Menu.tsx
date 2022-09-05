@@ -21,7 +21,7 @@ export const Menu: FC<IMenuProps> = ({ mobile = "" }) => {
             </li>
           )}
         </NavLink>
-        <NavLink to="movies">
+        <NavLink to="lists">
           {({ isActive }) => (
             <li className={s.item}>
               <MdMovie className={isActive ? styleActive : styleInactive} />

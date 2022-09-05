@@ -1,37 +1,27 @@
-@import "../../app/styles/vars.scss";
+@import "../../app/styles/vars";
 .container {
-  padding: 10px 50px;
-  @media (max-width: $landscape-phones-max) {
-    padding: 10px 10px;
+  display: flex;
+
+  .filter {
+    min-width: 100px;
   }
-  .title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 20px;
-  }
-  .navigation {
-    .navigation__list {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      .navigation__item {
-        cursor: pointer;
-        color: #777;
-        font-size: 15px;
-        font-weight: 600;
-        padding: 9px 16px;
-        @media (max-width: $portrait-phones-max) {
-          padding: 5px 9px;
-          font-size: 14px;
-        }
-        &.active {
-          background-color: #f2f2f2;
-          color: #333;
-          border-radius: 18px;
+  .content {
+    width: 100%;
+    .navigation {
+      padding: 10px 0;
+      .navigation__list {
+        display: flex;
+        justify-content: end;
+        gap: 15px;
+        .navigation__item {
+          font-size: 20px;
+          font-weight: 500;
+          color: #777;
+          @media (max-width: $portrait-phones-max) {
+            font-size: 14px;
+          }
         }
       }
     }
   }
-  
 }

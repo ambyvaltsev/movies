@@ -1,3 +1,4 @@
+@import '../../../../app/styles/vars';
 .container {
   display: flex;
   flex-direction: column;
@@ -7,8 +8,17 @@
     font-size: 24px;
     font-weight: 600;
     color: var(--grey-color-list);
+    @media(max-width: $tablets-max) {
+      font-size: 18px;
+    }
+    @media (max-width: $portrait-phones-max) {
+      font-size: 14px;
+    }
   }
   .date__month {
     color: var(--grey-color-list);
+    @media(max-width: $tablets-max) {
+      font-size: 13px;
+    }
   }
 }

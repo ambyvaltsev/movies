@@ -1,8 +1,13 @@
+@import '../../app/styles/vars';
 .container {
   display: grid;
-  grid-template-columns: minmax(0, 60px) 1fr auto auto;
+  grid-template-columns: minmax(0, 70px) 1fr auto auto;
   align-items: center;
-  gap: 13px;
+  gap: 10px;
+  @media (max-width: $tablets-max) {
+    grid-template-columns: minmax(0, 50px) 1fr auto auto;
+  }
+
   .poster {
     &> img {
       width: 100%;

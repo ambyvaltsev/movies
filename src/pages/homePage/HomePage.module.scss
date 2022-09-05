@@ -1,19 +1,19 @@
-@import '../../app/styles/vars.scss';
+@import "../../app/styles/vars.scss";
 
 .container {
   display: flex;
   min-height: calc(100vh - 70px);
 
   .nav {
-    width: 190px;
-    padding: 20px 20px 0 50px;
+    width: 150px;
+    padding: 20px 0px 0 0px;
     border-right: 1px solid rgba(0, 0, 0, 0.3);
   }
   .main {
     width: 100%;
-    padding: 20px 50px 20px 30px;
+    padding: 20px 0px 20px 10px;
     @media (max-width: $landscape-phones-max) {
-      padding: 20px 10px;
+      padding: 20px 0px;
     }
   }
 }

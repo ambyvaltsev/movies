@@ -9,8 +9,10 @@ import {
   IPremiereResponse,
   IDigitalRelease,
   IVideResponse,
-  ITopAwaitResponse,
+  ITopMoviesResponse,
   IMoviesByKeyResponse,
+  IAllMoviesQuery,
+  IAllMoviesResponse,
 } from "../../models";
 
 export const moviesAPI = createApi({
@@ -53,7 +55,6 @@ export const moviesAPI = createApi({
         },
       }),
       transformResponse: (response: IPremiereResponse) => {
-        
         const premiere = response.items.reduce((acc: any, cur: IPremiere) => {
           return [
             ...acc,
@@ -104,7 +105,7 @@ export const moviesAPI = createApi({
         };
       },
     }),
-    getTopMovies: build.query<ITopAwaitResponse, { type: string; page: number }>({
+    getTopMovies: build.query<ITopMoviesResponse, { type: string; page: number }>({
       query: ({ type, page }) => ({
         url: `/v2.2/films/top?type=${type}&page=${page}`,
         headers: {
@@ -122,9 +123,27 @@ export const moviesAPI = createApi({
         },
       }),
     }),
-    getAllMovies: build.query<any, void>({
-      query: () => ({
+    getAllMovies: build.query<IAllMoviesResponse, IAllMoviesQuery>({
+      query: ({ countries, genres, order, type, yearFrom, yearTo, page }) => ({
         url: "/v2.2/films",
+        headers: {
+          "X-API-KEY": `${MOVIE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        params: {
+          countries,
+          genres,
+          order,
+          type,
+          yearFrom,
+          yearTo,
+          page,
+        },
+      }),
+    }),
+    getMoviesFilters: build.query<any, void>({
+      query: () => ({
+        url: "/v2.2/films/filters",
         headers: {
           "X-API-KEY": `${MOVIE_API_KEY}`,
           "Content-Type": "application/json",
@@ -140,8 +159,7 @@ export const {
   useGetTopMoviesQuery,
   useGetMovieQuery,
   useGetPremiereQuery,
-  useLazyGetPremiereQuery,
   useGetDigitalReleasesQuery,
-  useLazyGetDigitalReleasesQuery,
+  useGetMoviesFiltersQuery,
   useGetVideoQuery,
 } = moviesAPI;

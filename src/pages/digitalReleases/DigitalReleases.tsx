@@ -28,9 +28,9 @@ export const DigitalReleases: FC = () => {
 
   useEffect(() => {
     if (data && queryArg.page !== 1 && queryArg.page < data?.total) {
-      data && setDigitalReleases((prev) => [...prev, ...data?.releases]);
+      data?.releases && setDigitalReleases((prev) => [...prev, ...data?.releases!]);
     } else {
-      data && setDigitalReleases([...data?.releases]);
+      data?.releases && setDigitalReleases([...data?.releases]);
     }
   }, [data]);
 

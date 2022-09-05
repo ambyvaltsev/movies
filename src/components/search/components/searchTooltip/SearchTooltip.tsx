@@ -31,7 +31,7 @@ export const SearchTooltip: FC<ISearchTooltipProps> = ({ keyword }) => {
               <Link to={`/movie/${movie?.filmId}`} key={index}>
                 <Card poster={movie.posterUrl} alt={movie.nameEn || movie.nameRu}>
                   <Card.Description title={movie.nameEn || movie.nameRu}>
-                    <Card.Details rating={movie.rating} genres={movie.genres} year={movie.year} />
+                    <Card.ShortMovieInfo rating={movie.rating} genres={movie.genres} year={movie.year} />
                   </Card.Description>
                 </Card>
               </Link>

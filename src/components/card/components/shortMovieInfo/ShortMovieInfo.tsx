@@ -1,13 +1,13 @@
-import s from "./Details.module.scss";
+import s from "./ShortMovieInfo.module.scss";
 import { FC } from "react";
 
-interface IDetailsProps {
+interface IShortMovieInfoProps {
   rating: string;
   year: string;
   genres: { genre: string }[];
 }
 
-export const Details: FC<IDetailsProps> = ({ genres, rating, year }) => {
+export const ShortMovieInfo: FC<IShortMovieInfoProps> = ({ genres, rating, year }) => {
   const genre = genres
     .map((m) => Object.values(m).map((m) => m))
     .splice(0, 2)
@@ -15,8 +15,7 @@ export const Details: FC<IDetailsProps> = ({ genres, rating, year }) => {
   return (
     <div className={s.container}>
       <span className={s.rating}>{rating === "null" ? "" : rating}</span>
-      <span className={s.genres}>{genre}</span>
-      <span className={s.year}>{year}</span>
+      <span className={s.other}>{genre}, {year}</span>
     </div>
   );
 };

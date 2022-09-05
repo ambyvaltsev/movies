@@ -1,7 +1,7 @@
 import { useGetMovieQuery } from "../../../../store/movies/movies.api";
 import s from "./StaffInfoCard.module.scss";
 import { FC } from "react";
-import { ShortInfoCard } from "../../../../components";
+import {  Card } from "../../../../components";
 
 interface IInfo {
   id: string;
@@ -25,12 +25,11 @@ export const StaffInfoCard: FC<IStaffInfoCardProps> = ({ info }) => {
     <>
       {data && (
         <div className={s.container} style={{ top: `${info.y + 10}px`, left: `${info.x + 10}px` }}>
-          <ShortInfoCard
-            url={data.posterUrl}
-            alt={data?.nameEn || data?.nameRu}
-            title={data?.nameEn || data?.nameRu}
-            data={staffData}
-          />
+          <Card alt={data?.nameEn || data?.nameRu} poster={data.posterUrl}>
+            <Card.Description title={data?.nameEn || data?.nameRu}>
+              <Card.ShortInfo data={staffData} />
+            </Card.Description>
+          </Card>
         </div>
       )}
     </>

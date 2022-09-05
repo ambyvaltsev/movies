@@ -48,7 +48,7 @@ export const Movie = () => {
       setInfo({ ...info, id: "" });
     }
   };
-  console.log("svec");
+
   const aboutTitle = movie?.type.split("_")[1]?.toLowerCase() || movie?.type.toLowerCase();
 
   if (isErrorMovie || isErrorStaff) {

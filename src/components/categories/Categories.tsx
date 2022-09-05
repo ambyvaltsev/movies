@@ -12,8 +12,8 @@ export const Categories = () => {
     <section className={s.container}>
       {allCategories[category].map((item: ICategoryItem, index) => {
         return (
-          <Link to={`/${item.id}`} key={index}>
-            <Card poster={item.posterUrl} alt={item.title}>
+          <Link to={`/movies/${item.id}`} key={index} >
+            <Card poster={item.posterUrl} alt={item.title} >
               <Card.Description title={item.title} subtitle={`${item.total ? item.total : ""}`} />
             </Card>
           </Link>

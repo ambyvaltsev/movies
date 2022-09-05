@@ -6,7 +6,6 @@ export interface IDigitalReleasesResponse {
   total: number;
   releases: IDigitalRelease[];
 }
-
 export interface IPremiere {
   kinopoiskId: number;
   nameRu: string;
@@ -24,7 +23,6 @@ export interface IReleasesQuery {
   month: string;
   page?: number;
 }
-
 export interface IDigitalRelease {
   filmId: number;
   nameRu: string;
@@ -41,7 +39,6 @@ export interface IDigitalRelease {
   duration: number;
   releaseDate: string;
 }
-
 export interface IReleases {
   total: number;
   pages: number;
@@ -54,7 +51,7 @@ export interface IRelease {
   date: string;
   poster: string;
   rating?: number;
-  ratingVoteCount?: number
+  ratingVoteCount?: number;
 }
 export interface IMovie {
   kinopoiskId: number;
@@ -102,7 +99,6 @@ export interface IMovie {
   has3D: boolean;
   lastSync: Date;
 }
-
 export interface IStaffResponse {
   staffId: number;
   nameRu: string;
@@ -135,7 +131,6 @@ export interface IVideResponse {
   total: number;
   items: IVideo[];
 }
-
 export interface ISpecificStuff {
   personId: number;
   webUrl: string;
@@ -164,12 +159,10 @@ interface IStaffFilm {
   professionKey: string;
   rating: string;
 }
-
-export interface ITopAwaitResponse {
+export interface ITopMoviesResponse {
   pagesCount: number;
   films: IMovieShortInfo[];
 }
-
 export interface IMoviesByKeyResponse {
   films: IMovieShortInfo[];
   keyword: string;
@@ -195,7 +188,6 @@ export interface IPersonceByKeyResponse {
   total: number;
   items: IPersonsShortInfo[];
 }
-
 export interface IPersonsShortInfo {
   kinopoiskId: number;
   nameEn: string;
@@ -203,4 +195,33 @@ export interface IPersonsShortInfo {
   posterUrl: string;
   sex: string;
   webUrl: string;
+}
+export interface IAllMoviesQuery {
+  countries?: string;
+  genres?: string;
+  order?: string;
+  type?: string;
+  yearFrom?: number;
+  yearTo?: number;
+  page: number;
+}
+export interface IAllMoviesResponse {
+  total: number;
+  totalPages: number;
+  items: IAllMovies[];
+}
+export interface IAllMovies {
+  countries: { country: string }[];
+  genres: { genre: string }[];
+  imdbId: string;
+  kinopoiskId: number;
+  nameEn: string;
+  nameOriginal: string;
+  nameRu: string;
+  posterUrl: string;
+  posterUrlPreview: string;
+  ratingImdb: number;
+  ratingKinopoisk: number;
+  type: string;
+  year: number;
 }

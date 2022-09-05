@@ -1,11 +1,24 @@
+@import "../../../../app/styles/vars.scss";
+
 .container {
   display: flex;
   flex-direction: column;
   gap: 5px;
   .title {
+    font-size: 16px;
+    font-weight: 600;
     color: #060077;
+    @media (max-width: $tablets-max) {
+      font-size: 15px;
+    }
+    @media (max-width: $portrait-phones-max) {
+      font-size: 14px;
+    }
   }
   .subtitle {
     color: var(--grey-color-list);
+    @media (max-width: $tablets-max) {
+      font-size: 12px;
+    }
   }
 }

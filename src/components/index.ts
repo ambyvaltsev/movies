@@ -9,6 +9,6 @@ export { AccountHeader } from "./accountHeader/AccountHeader";
 export { SearchTooltipDefault } from "./search/components/searchTooltipDefault/SearchTooltipDefault";
 export { Categories } from "./categories/Categories";
 export { Card } from './card/Card';
-export { ShortInfoCard } from './shortInfoCard/ShortInfoCard';
+
 export { Info } from './info/Info';
 export { Poster } from './poster/Poster';

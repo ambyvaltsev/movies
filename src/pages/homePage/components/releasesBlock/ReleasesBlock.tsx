@@ -12,7 +12,7 @@ export const ReleasesBlock = () => {
     },
     {
       selectFromResult: ({ data }) => ({
-        premiere: data?.releases.filter((release) => new Date(release.date) > new Date()),
+        premiere: data?.releases?.filter((release) => new Date(release.date) > new Date()),
       }),
     }
   );
@@ -42,19 +42,22 @@ export const ReleasesBlock = () => {
             <IoIosArrowForward className={s.release__icon} />
           </Link>
           <div className={s.release__list}>
-            {premiere && premiere.map((release, index) => {
-              if (index < 5) {
-                return (
-                  <Card poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
-                    <Card.Description
-                      title={release.nameEn || release.nameRu}
-                      subtitle={release.nameEn && release.nameRu}
-                    />
-                    <Card.ReleaseDate date={release.date} />
-                  </Card>
-                );
-              }
-            })}
+            {premiere &&
+              premiere.map((release, index) => {
+                if (index < 5) {
+                  return (
+                    <Link to={`/movie/${release.id}`} key={release.id}>
+                      <Card poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
+                        <Card.Description
+                          title={release.nameEn || release.nameRu}
+                          subtitle={release.nameEn && release.nameRu}
+                        />
+                        <Card.ReleaseDate date={release.date} />
+                      </Card>
+                    </Link>
+                  );
+                }
+              })}
           </div>
         </div>
         <div className={s.releases__release}>
@@ -63,20 +66,23 @@ export const ReleasesBlock = () => {
             <IoIosArrowForward className={s.release__icon} />
           </Link>
           <div className={s.release__list}>
-            {digitalData && digitalData.releases.map((release, index) => {
-              if (index < 5) {
-                return (
-                  <Card poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
-                    <Card.Description
-                      title={release.nameEn || release.nameRu}
-                      subtitle={release.nameEn && release.nameRu}
-                    />
-                    <Card.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
-                    <Card.ReleaseDate date={release.date} />
-                  </Card>
-                );
-              }
-            })}
+            {digitalData &&
+              digitalData.releases.map((release, index) => {
+                if (index < 5) {
+                  return (
+                    <Link to={`/movie/${release.id}`} key={release.id}>
+                      <Card poster={release.poster} alt={release.nameEn || release.nameRu}>
+                        <Card.Description
+                          title={release.nameEn || release.nameRu}
+                          subtitle={release.nameEn && release.nameRu}
+                        />
+                        <Card.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
+                        <Card.ReleaseDate date={release.date} />
+                      </Card>
+                    </Link>
+                  );
+                }
+              })}
           </div>
         </div>
       </div>

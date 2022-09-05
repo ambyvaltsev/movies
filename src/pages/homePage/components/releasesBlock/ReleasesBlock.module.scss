@@ -2,7 +2,7 @@
 .container {
   width: 100%;
   .title {
-    font-size: 20px;
+    font-size: 24px;
     border-bottom: 1px solid black;
     padding-bottom: 15px;
   }
@@ -15,17 +15,19 @@
       flex-direction: column;
     }
     .releases__release {
-      padding-top: 20px;
+      margin-top: 30px;
       .release__link {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
+        margin-bottom: 15px;
         .release__icon {
           font-size: 16px;
           color: var(--grey-color-list);
         }
         .release__title {
-          font-size: 16px;
+          font-weight: 600;
+          font-size: 20px;
         }
       }
       .release__list {

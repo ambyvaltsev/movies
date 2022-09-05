@@ -12,7 +12,7 @@ export const MovieDetails: FC<IMovieDescriptionSubProps> = ({ description, id })
   const [active, setActive] = useState<string>("Review");
   const { isError, isLoading, data: videos } = useGetVideoQuery(id);
 
-  const video = videos?.items.find((i) => i.site === "YOUTUBE");
+  const video = videos?.items?.find((i) => i.site === "YOUTUBE");
 
   const urlVideo = video?.url.split("=")[1];
 

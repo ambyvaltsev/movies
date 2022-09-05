@@ -1,3 +1,4 @@
+@import "../../../../app/styles/vars";
 .container {
   .rating {
     display: flex;
@@ -9,9 +10,18 @@
       font-size: 18px;
       font-weight: 600;
       color: #3bb33b;
+      @media (max-width: $tablets-max) {
+        font-size: 15px;
+      }
+      @media (max-width: $portrait-phones-max) {
+        font-size: 14px;
+      }
     }
     .rating__votesCount {
       font-size: 13px;
+      @media (max-width: $portrait-phones-max) {
+        font-size: 12px;
+      }
     }
   }
 }

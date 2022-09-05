@@ -2,13 +2,14 @@ import { Categories } from "../components/categories/Categories";
 import { Main } from "../layout";
 import {
   HomePage,
-  Movies,
+  MovieLists,
   Premiere,
   DigitalReleases,
   Movie,
   Staff,
-  FilterMovies,
-  MoviesList,
+  Movies,
+  MoviesAll,
+  MoviesTop,
 } from "../pages";
 
 export const routes = [
@@ -18,8 +19,8 @@ export const routes = [
     child: [
       { path: "/", element: <HomePage />, index: true },
       {
-        path: "movies",
-        element: <Movies />,
+        path: "lists",
+        element: <MovieLists />,
         index: false,
         child: [
           { element: <Categories />, index: true },
@@ -31,11 +32,14 @@ export const routes = [
       { path: "movie/:id", element: <Movie />, index: false },
       { path: "staff/:id", element: <Staff />, index: false },
       {
-        path: ":id", element: <FilterMovies />, index: false, child: [
-          {  element: <MoviesList />, index: true },
-          { path: ":id", element: <MoviesList />, index: false },
-      ] },
-      
+        path: "movies",
+        element: <Movies />,
+        index: false,
+        child: [
+          { element: <MoviesAll />, index: true },
+          { path: ":id", element: <MoviesTop />, index: false },
+        ],
+      },
     ],
   },
 ];

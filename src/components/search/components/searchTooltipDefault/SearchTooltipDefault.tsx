@@ -15,9 +15,9 @@ export const SearchTooltipDefault = () => {
           data.films?.map((movie: IMovieShortInfo, index) => {
             return (
               <Link to={`/movie/${movie?.filmId}`} key={index}>
-                <Card poster={movie.posterUrl} alt={movie.nameEn || movie.nameRu}>
-                  <Card.Description title={movie.nameEn || movie.nameRu}>
-                    <Card.Details rating={movie.rating} genres={movie.genres} year={movie.year} />
+                <Card poster={movie.posterUrl} alt={movie.nameEn || movie.nameRu} >
+                  <Card.Description title={movie.nameEn || movie.nameRu}>  
+                    <Card.ShortMovieInfo rating={movie.rating} genres={movie.genres} year={movie.year} />
                   </Card.Description>
                 </Card>
               </Link>
