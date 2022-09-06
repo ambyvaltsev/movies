@@ -9,10 +9,10 @@ interface IDescriptionProps {
 
 export const Description: FC<IDescriptionProps> = ({ children, title, subtitle }) => {
   return (
-    <article className={s.container}>
+    <div className={s.container}>
       <h6 className={s.title}>{title}</h6>
       <span className={s.subtitle}>{subtitle}</span>
       {children}
-    </article>
+    </div>
   );
 };

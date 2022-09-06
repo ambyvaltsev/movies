@@ -2,7 +2,7 @@ import s from "./SearchTooltipDefault.module.scss";
 import { useGetTopMoviesQuery } from "../../../../store/movies/movies.api";
 import { IMovieShortInfo } from "../../../../models";
 import { Link } from "react-router-dom";
-import { Card } from "../../../../components";
+import { Card, Poster } from "../../../../components";
 
 export const SearchTooltipDefault = () => {
   const { isError, isLoading, data } = useGetTopMoviesQuery({ type: "TOP_100_POPULAR_FILMS", page: 1 });
@@ -15,8 +15,9 @@ export const SearchTooltipDefault = () => {
           data.films?.map((movie: IMovieShortInfo, index) => {
             return (
               <Link to={`/movie/${movie?.filmId}`} key={index}>
-                <Card poster={movie.posterUrl} alt={movie.nameEn || movie.nameRu} >
-                  <Card.Description title={movie.nameEn || movie.nameRu}>  
+                <Card>
+                  <Poster url={movie.posterUrl} alt={movie.nameEn || movie.nameRu} />
+                  <Card.Description title={movie.nameEn || movie.nameRu}>
                     <Card.ShortMovieInfo rating={movie.rating} genres={movie.genres} year={movie.year} />
                   </Card.Description>
                 </Card>

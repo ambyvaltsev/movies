@@ -1,7 +1,7 @@
 import s from "./DigitalReleases.module.scss";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../assets";
-import { Card, Preloader } from "../../components";
+import { Card, Preloader, Poster } from "../../components";
 import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
 import { FC, useEffect, useState } from "react";
 import { Selector } from "../../components/UI";
@@ -9,28 +9,31 @@ import { years, months } from "../../helpers/vars";
 import { IRelease } from "../../models";
 import { useInView } from "react-intersection-observer";
 
+
+
 export const DigitalReleases: FC = () => {
   const { ref, inView, entry } = useInView();
-  const [digitalReleases, setDigitalReleases] = useState<IRelease[]>([]);
+  const [movies, setMovies] = useState<IRelease[]>([]);
 
-  const [queryArg, setQueryArg] = useState({
+  const [params, setParams] = useState({
     year: +new Date().toLocaleString("en-US", { year: "numeric" }),
     month: new Date().toLocaleString("en-US", { month: "long" }),
     page: 1,
   });
-  const { isError, isLoading, data } = useGetDigitalReleasesQuery(queryArg);
+  
+  const { isError, isLoading, data } = useGetDigitalReleasesQuery(params);
 
   useEffect(() => {
-    if (data && entry?.isIntersecting && queryArg.page < data?.pages) {
-      setQueryArg((queryArg) => ({ ...queryArg, page: queryArg.page + 1 }));
+    if (data && entry?.isIntersecting && params.page < data?.pages!) {
+      setParams((params) => ({ ...params, page: params.page + 1 }));
     }
   }, [inView]);
 
   useEffect(() => {
-    if (data && queryArg.page !== 1 && queryArg.page < data?.total) {
-      data?.releases && setDigitalReleases((prev) => [...prev, ...data?.releases!]);
+    if (data && params.page !== 1 && params.page < data?.total) {
+      data?.items && setMovies((prev) => [...prev, ...data?.items!]);
     } else {
-      data?.releases && setDigitalReleases([...data?.releases]);
+      data?.items && setMovies([...data?.items]);
     }
   }, [data]);
 
@@ -54,23 +57,23 @@ export const DigitalReleases: FC = () => {
         <div className={s.selectors}>
           <Selector
             data={years}
-            setSelectedData={(e) => setQueryArg({ ...queryArg, year: e.target.textContent, page: 1 })}
-            selectedData={queryArg.year}
+            setSelectedData={(e) => setParams({ ...params, year: e.target.textContent, page: 1 })}
+            selectedData={params.year}
           />
           <Selector
             data={months}
-            setSelectedData={(e) => setQueryArg({ ...queryArg, month: e.target.textContent, page: 1 })}
-            selectedData={queryArg.month}
+            setSelectedData={(e) => setParams({ ...params, month: e.target.textContent, page: 1 })}
+            selectedData={params.month}
           />
         </div>
-        {isLoading && <Preloader />}
-        {data?.releases && (
+        {data?.items && (
           <div className={s.list}>
-            {digitalReleases.map((release, index) => {
+            {movies.map((release, index) => {
               if (index < data.total) {
                 return (
                   <Link to={`/movie/${release.id}`} key={release.id}>
-                    <Card poster={release.poster} alt={release.nameEn || release.nameRu}>
+                    <Card>
+                      <Poster url={release.poster} alt={release.nameEn || release.nameRu} />
                       <Card.Description
                         title={release.nameEn || release.nameRu}
                         subtitle={release.nameEn && release.nameRu}

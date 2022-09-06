@@ -1,27 +1,24 @@
-import s from './MoviesTop.module.scss';
-import { Card } from '../../../../components';
-import { useGetTopMoviesQuery } from '../../../../store/movies/movies.api';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-
-
-
+import s from "./MoviesTop.module.scss";
+import { Card, Poster } from "../../../../components";
+import { useGetTopMoviesQuery } from "../../../../store/movies/movies.api";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export const MoviesTop = () => {
-  const { id } = useParams()
+  const { id } = useParams();
   const [params, setParams] = useState({
-    type: '',
+    type: "",
     page: 1,
   });
-  const {isError, isLoading, data: top } = useGetTopMoviesQuery(params)
-  console.log(id)
+  const { isError, isLoading, data: top } = useGetTopMoviesQuery(params);
+
   useEffect(() => {
-    if (id === 'best250') {
-      setParams({type: 'TOP_250_BEST_FILMS', page: 1})
-    } else if (id === 'popular100') {
-      setParams({type: 'TOP_100_POPULAR_FILMS', page: 1})
+    if (id === "best250") {
+      setParams({ type: "TOP_250_BEST_FILMS", page: 1 });
+    } else if (id === "popular100") {
+      setParams({ type: "TOP_100_POPULAR_FILMS", page: 1 });
     }
-  }, [id])
+  }, [id]);
 
   return (
     <div className={s.container}>
@@ -31,7 +28,8 @@ export const MoviesTop = () => {
           {top &&
             top.films.map((film, index) => {
               return (
-                <Card poster={film.posterUrl} alt={film.nameEn || film.nameRu} key={index}>
+                <Card key={index}>
+                  <Poster url={film.posterUrl} alt={film.nameEn || film.nameRu} />
                   <Card.Description
                     title={film.nameEn || film.nameRu}
                     subtitle={film.nameEn && film.nameRu}
@@ -42,5 +40,5 @@ export const MoviesTop = () => {
         </ul>
       </section>
     </div>
-  )
-}
+  );
+};

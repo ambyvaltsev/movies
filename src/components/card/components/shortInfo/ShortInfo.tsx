@@ -2,21 +2,15 @@ import s from "./ShortInfo.module.scss";
 import { FC } from "react";
 
 interface IShortInfoProps {
-  data: { title: string; text: string }[];
+  title: string;
+  text: string | number;
 }
 
-export const ShortInfo: FC<IShortInfoProps> = ({ data }) => {
+export const ShortInfo: FC<IShortInfoProps> = ({ title, text }) => {
   return (
-    <>
-      {data &&
-        data.map((item, index) => {
-          return (
-            <p className={s.info} key={index}>
-              <span className={s.info__title}>{item.title}</span>
-              {item.text}
-            </p>
-          );
-        })}
-    </>
+    <p className={s.info}>
+      <span className={s.info__title}>{title}</span>
+      {text}
+    </p>
   );
 };

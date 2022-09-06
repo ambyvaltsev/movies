@@ -4,15 +4,15 @@ import {
   IReleasesQuery,
   IDigitalReleasesResponse,
   IMovie,
-  IReleases,
   IPremiere,
-  IPremiereResponse,
   IDigitalRelease,
-  IVideResponse,
   ITopMoviesResponse,
   IMoviesByKeyResponse,
   IAllMoviesQuery,
-  IAllMoviesResponse,
+  IMoviesResponse,
+  IVideo,
+  IRelease,
+  IAllMovies,
 } from "../../models";
 
 export const moviesAPI = createApi({
@@ -33,7 +33,7 @@ export const moviesAPI = createApi({
         return response;
       },
     }),
-    getVideo: build.query<IVideResponse, number>({
+    getVideo: build.query<IMoviesResponse<IVideo>, number>({
       query: (id) => ({
         url: `/v2.2/films/${id}/videos`,
         headers: {
@@ -42,7 +42,7 @@ export const moviesAPI = createApi({
         },
       }),
     }),
-    getPremiere: build.query<IReleases, IReleasesQuery>({
+    getPremiere: build.query<IMoviesResponse<IRelease>, IReleasesQuery>({
       query: ({ year, month }) => ({
         url: "/v2.2/films/premieres",
         params: {
@@ -54,7 +54,7 @@ export const moviesAPI = createApi({
           "Content-Type": "application/json",
         },
       }),
-      transformResponse: (response: IPremiereResponse) => {
+      transformResponse: (response: IMoviesResponse<IPremiere>) => {
         const premiere = response.items.reduce((acc: any, cur: IPremiere) => {
           return [
             ...acc,
@@ -67,10 +67,10 @@ export const moviesAPI = createApi({
             },
           ];
         }, []);
-        return { total: response.total, releases: premiere, pages: 1 };
+        return { total: response.total, items: premiere, pages: 1 };
       },
     }),
-    getDigitalReleases: build.query<IReleases, IReleasesQuery>({
+    getDigitalReleases: build.query<IMoviesResponse<IRelease>, IReleasesQuery>({
       query: ({ year, month, page }) => ({
         url: "/v2.1/films/releases",
         params: {
@@ -100,7 +100,7 @@ export const moviesAPI = createApi({
         }, []);
         return {
           total: response.total,
-          releases: digital,
+          items: digital,
           pages: Math.ceil(response.total / 10),
         };
       },
@@ -123,7 +123,7 @@ export const moviesAPI = createApi({
         },
       }),
     }),
-    getAllMovies: build.query<IAllMoviesResponse, IAllMoviesQuery>({
+    getAllMovies: build.query<IMoviesResponse<IAllMovies>, IAllMoviesQuery>({
       query: ({ countries, genres, order, type, yearFrom, yearTo, page }) => ({
         url: "/v2.2/films",
         headers: {

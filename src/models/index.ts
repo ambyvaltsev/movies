@@ -1,10 +1,13 @@
-export interface IPremiereResponse {
-  items: IPremiere[];
-  total: number;
-}
+
 export interface IDigitalReleasesResponse {
   total: number;
   releases: IDigitalRelease[];
+}
+export interface IMoviesResponse<T> {
+  totalPages?: number;
+  pages?: number
+  total: number
+  items: T[]
 }
 export interface IPremiere {
   kinopoiskId: number;
@@ -38,11 +41,6 @@ export interface IDigitalRelease {
   expectationsRatingVoteCount: number;
   duration: number;
   releaseDate: string;
-}
-export interface IReleases {
-  total: number;
-  pages: number;
-  releases: IRelease[];
 }
 export interface IRelease {
   id: string;
@@ -127,10 +125,6 @@ export interface IVideo {
   name: string;
   site: string;
 }
-export interface IVideResponse {
-  total: number;
-  items: IVideo[];
-}
 export interface ISpecificStuff {
   personId: number;
   webUrl: string;
@@ -184,10 +178,6 @@ export interface IMovieShortInfo {
   type?: string;
   year: string;
 }
-export interface IPersonceByKeyResponse {
-  total: number;
-  items: IPersonsShortInfo[];
-}
 export interface IPersonsShortInfo {
   kinopoiskId: number;
   nameEn: string;
@@ -204,11 +194,6 @@ export interface IAllMoviesQuery {
   yearFrom?: number;
   yearTo?: number;
   page: number;
-}
-export interface IAllMoviesResponse {
-  total: number;
-  totalPages: number;
-  items: IAllMovies[];
 }
 export interface IAllMovies {
   countries: { country: string }[];

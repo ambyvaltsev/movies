@@ -1,6 +1,6 @@
 import s from "./Kinopoisk.module.scss";
-import { Star, Total } from "../../components";
-
+import { Total } from "../../components";
+import { Star } from "../../../../components";
 import { useState } from "react";
 import { useGetMovieQuery } from "../../../../store/movies/movies.api";
 import { useParams } from "react-router-dom";
@@ -36,6 +36,7 @@ export const Kinopoisk = () => {
                 active={active}
                 setActiveOver={() => setActive(el)}
                 setActiveOut={() => setActive(0)}
+                id={id!}
               />
             );
           })}

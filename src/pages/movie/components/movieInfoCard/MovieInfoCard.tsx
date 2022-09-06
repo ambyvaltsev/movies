@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useGetSpecificStaffQuery } from "../../../../store/movies/staff.api";
 import s from "./MovieInfoCard.module.scss";
-import { Card } from "../../../../components";
+import { Card, Poster } from "../../../../components";
 
 interface IInfo {
   id: string;
@@ -27,18 +27,15 @@ export const MovieInfoCard: FC<IMovieInfoCardProps> = ({ info }) => {
           .join(", ")
       : "";
 
-  const cardData = [
-    { title: "Profession: ", text: data?.profession || "" },
-    { title: "Bets movies: ", text: movies },
-  ];
-
   return (
     <>
       {data && (
         <div className={s.container} style={{ top: `${info.y + 10}px`, left: `${info.x + 10}px` }}>
-          <Card alt={data?.nameEn || data?.nameRu} poster={data.posterUrl}>
+          <Card>
+            <Poster url={data.posterUrl} alt={data?.nameEn || data?.nameRu} />
             <Card.Description title={data?.nameEn || data?.nameRu}>
-              <Card.ShortInfo data={cardData} />
+              <Card.ShortInfo title="Profession: " text={data?.profession || ""} />
+              <Card.ShortInfo title="Best movies: : " text={movies} />
             </Card.Description>
           </Card>
         </div>

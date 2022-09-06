@@ -1,24 +1,29 @@
 import { FC } from "react";
 import s from "./Star.module.scss";
+import { useState } from "react";
 
 interface IStarProps {
   radioNum: number;
   selectValue: (e: any) => void;
   value: number;
-  rating: number;
+  rating?: number;
   active: number;
   setActiveOver: () => void;
   setActiveOut: () => void;
+  id: string | number;
+  style?: { [k: string]: string };
 }
 
 export const Star: FC<IStarProps> = ({
   radioNum,
   selectValue,
   value,
-  rating,
+  rating = 0,
   setActiveOver,
   setActiveOut,
   active,
+  id,
+  style,
 }) => {
   const fill =
     radioNum <= Math.floor(rating)
@@ -33,16 +38,16 @@ export const Star: FC<IStarProps> = ({
     <>
       {fill && (
         <label
+          style={style}
           className={s.label}
-          htmlFor={`kpicon${radioNum}`}
+          htmlFor={`kpicon${id}`}
           onMouseOver={setActiveOver}
           onMouseOut={setActiveOut}
         >
           <input
             type="radio"
             className={s.radio}
-            data-value={radioNum}
-            id={`kpicon${radioNum}`}
+            id={`kpicon${id}`}
             value={value}
             onChange={selectValue}
             checked={value === radioNum}
@@ -53,10 +58,10 @@ export const Star: FC<IStarProps> = ({
               width="100%"
               height="100%"
               viewBox="0 0 32 31"
-              fill={`url(#${radioNum}grad)`}
+              fill={`url(#${radioNum}${id}gradient)`}
             >
               <defs>
-                <linearGradient id={`${radioNum}grad`}>
+                <linearGradient id={`${radioNum}${id}gradient`}>
                   <stop
                     offset={radioNum <= active ? "100%" : fill}
                     stopColor={active ? colorActive : "#f66600"}

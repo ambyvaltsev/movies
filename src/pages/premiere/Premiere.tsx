@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "../../assets";
 import { Preloader } from "../../components";
 import { useGetPremiereQuery } from "../../store/movies/movies.api";
 import { FC, useState, useEffect } from "react";
-import { Card } from "../../components";
+import { Card, Poster } from "../../components";
 import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
 import { useInView } from "react-intersection-observer";
@@ -55,13 +55,14 @@ export const Premiere: FC = () => {
             selectedData={selectedDate.month}
           />
         </div>
-        {data?.releases && (
+        {data?.items && (
           <div className={s.list}>
-            {data.releases.map((release: IRelease, index) => {
+            {data.items.map((release: IRelease, index) => {
               if (index < limit) {
                 return (
                   <Link to={`/movie/${release.id}`} key={release.id}>
-                    <Card poster={release.poster} alt={release.nameEn || release.nameRu}>
+                    <Card >
+                      <Poster url={release.poster} alt={release.nameEn || release.nameRu} />
                       <Card.Description
                         title={release.nameEn || release.nameRu}
                         subtitle={release.nameEn && release.nameRu}

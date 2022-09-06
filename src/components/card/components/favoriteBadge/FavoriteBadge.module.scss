@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+  .badge {
+    width: 16px;
+    height: 16px;
+    fill: var(--grey-color);
+    &.active {
+      /* fill: rgba(0, 0, 0, 1); */
+       fill: var(--red-color); 
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { useGetMovieByKeyQuery } from "../../../../store/movies/movies.api";
 import { useGetPersonByKeyQuery } from "../../../../store/movies/staff.api";
 import s from "./SearchTooltip.module.scss";
 import { Link } from "react-router-dom";
-import { Card } from "../../..";
+import { Card, Poster } from "../../..";
 
 interface ISearchTooltipProps {
   keyword: string;
@@ -29,7 +29,8 @@ export const SearchTooltip: FC<ISearchTooltipProps> = ({ keyword }) => {
           movies.films.map((movie, index) => {
             return (
               <Link to={`/movie/${movie?.filmId}`} key={index}>
-                <Card poster={movie.posterUrl} alt={movie.nameEn || movie.nameRu}>
+                <Card>
+                  <Poster url={movie.posterUrl} alt={movie.nameEn || movie.nameRu} />
                   <Card.Description title={movie.nameEn || movie.nameRu}>
                     <Card.ShortMovieInfo rating={movie.rating} genres={movie.genres} year={movie.year} />
                   </Card.Description>
@@ -43,7 +44,8 @@ export const SearchTooltip: FC<ISearchTooltipProps> = ({ keyword }) => {
         {persons?.items.map((person, index) => {
           return (
             <Link to={`/staff/${person.kinopoiskId}`} key={index}>
-              <Card poster={person.posterUrl} alt={person.nameEn || person.nameRu}>
+              <Card>
+                <Poster url={person.posterUrl} alt={person.nameEn || person.nameRu} />
                 <Card.Description title={person.nameEn && person.nameRu} />
               </Card>
             </Link>

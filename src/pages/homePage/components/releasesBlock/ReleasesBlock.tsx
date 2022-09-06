@@ -1,6 +1,6 @@
 import s from "./ReleasesBlock.module.scss";
 import { useGetPremiereQuery, useGetDigitalReleasesQuery } from "../../../../store/movies/movies.api";
-import { Preloader, Card } from "../../../../components";
+import { Preloader, Card, Poster } from "../../../../components";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../../../assets";
 
@@ -12,7 +12,7 @@ export const ReleasesBlock = () => {
     },
     {
       selectFromResult: ({ data }) => ({
-        premiere: data?.releases?.filter((release) => new Date(release.date) > new Date()),
+        premiere: data?.items?.filter((release) => new Date(release.date) > new Date()),
       }),
     }
   );
@@ -47,7 +47,8 @@ export const ReleasesBlock = () => {
                 if (index < 5) {
                   return (
                     <Link to={`/movie/${release.id}`} key={release.id}>
-                      <Card poster={release.poster} alt={release.nameEn || release.nameRu} key={release.id}>
+                      <Card key={release.id}>
+                        <Poster url={release.poster} alt={release.nameEn || release.nameRu} />
                         <Card.Description
                           title={release.nameEn || release.nameRu}
                           subtitle={release.nameEn && release.nameRu}
@@ -67,11 +68,12 @@ export const ReleasesBlock = () => {
           </Link>
           <div className={s.release__list}>
             {digitalData &&
-              digitalData.releases.map((release, index) => {
+              digitalData.items.map((release, index) => {
                 if (index < 5) {
                   return (
                     <Link to={`/movie/${release.id}`} key={release.id}>
-                      <Card poster={release.poster} alt={release.nameEn || release.nameRu}>
+                      <Card>
+                        <Poster url={release.poster} alt={release.nameEn || release.nameRu} />
                         <Card.Description
                           title={release.nameEn || release.nameRu}
                           subtitle={release.nameEn && release.nameRu}

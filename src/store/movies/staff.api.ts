@@ -1,7 +1,13 @@
-
 import { MOVIE_API_KEY } from "../../helpers";
 import { moviesAPI } from "./movies.api";
-import { IStaffResponse, IStaff, ISpecificStuff, IPersonceByKeyResponse,ISingleUnit, } from "../../models";
+import {
+  IStaffResponse,
+  IStaff,
+  ISpecificStuff,
+  ISingleUnit,
+  IMoviesResponse,
+  IPersonsShortInfo,
+} from "../../models";
 
 function formatStaff(staff: IStaffResponse[], key: string): ISingleUnit[] {
   return staff
@@ -45,7 +51,7 @@ const staffAPI = moviesAPI.injectEndpoints({
         },
       }),
     }),
-    getPersonByKey: builder.query<IPersonceByKeyResponse, { key: string; page: number }>({
+    getPersonByKey: builder.query<IMoviesResponse<IPersonsShortInfo>, { key: string; page: number }>({
       query: ({ key, page }) => ({
         url: `/v1/persons?name=${key}&page=${page}`,
         headers: {

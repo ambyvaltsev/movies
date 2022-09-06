@@ -32,7 +32,7 @@ export const routes = [
       { path: "movie/:id", element: <Movie />, index: false },
       { path: "staff/:id", element: <Staff />, index: false },
       {
-        path: "movies",
+        path: ":id",
         element: <Movies />,
         index: false,
         child: [
