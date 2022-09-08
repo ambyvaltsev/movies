@@ -18,8 +18,8 @@ export const Slider: FC<ISliderProps> = ({ length, children }) => {
     console.log(width, length, offset, number)
     console.log(offset)
     console.log(-width * (length - number))
-    console.log(offset === -width * (length - number))
-    if (offset === -width * (length - number)) {
+    console.log(offset  -width * (length - number))
+    if (offset <= -width * (length - number)) {
       return;
     }
     setOffset((prev) => prev - width);
