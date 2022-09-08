@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 export const Header: FC = () => {
   return (
     <div className={s.container}>
-      <Link to="/">
-        <span className={s.siteName}>Movies</span>
-      </Link>
-      <Burger />
-      <Search />
-      <AccountHeader />
+      <div className={s.content}>
+        <Link to="/">
+          <span className={s.siteName}>Movies</span>
+        </Link>
+        <Burger />
+        <Search />
+        <AccountHeader />
+      </div>
     </div>
   );
 };

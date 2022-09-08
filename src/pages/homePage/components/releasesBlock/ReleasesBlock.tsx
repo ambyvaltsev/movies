@@ -1,6 +1,6 @@
 import s from "./ReleasesBlock.module.scss";
 import { useGetPremiereQuery, useGetDigitalReleasesQuery } from "../../../../store/movies/movies.api";
-import { Preloader, Card, Poster } from "../../../../components";
+import { Preloader, Card, Poster, Rating } from "../../../../components";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../../../assets";
 
@@ -33,7 +33,7 @@ export const ReleasesBlock = () => {
   }
 
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       <h3 className={s.title}>Release calendar</h3>
       <div className={s.releases}>
         <div className={s.releases__release}>
@@ -78,7 +78,12 @@ export const ReleasesBlock = () => {
                           title={release.nameEn || release.nameRu}
                           subtitle={release.nameEn && release.nameRu}
                         />
-                        <Card.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
+                        <Rating.Total
+                          rating={release?.rating!}
+                          votes={release?.ratingVoteCount!}
+                          styleRating={{ fontSize: "14px" }}
+                          styleVotes={{fontSize: '12px'}}
+                        />
                         <Card.ReleaseDate date={release.date} />
                       </Card>
                     </Link>
@@ -88,6 +93,6 @@ export const ReleasesBlock = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

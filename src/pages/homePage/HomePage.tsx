@@ -1,7 +1,7 @@
 import { Menu } from "../../components";
 import { useMatchMedia } from "../../hooks";
 import s from "./HomePage.module.scss";
-import { ReleasesBlock } from "./components";
+import { ReleasesBlock, TopAwaitMovies } from "./components";
 
 export const HomePage = () => {
   const { isMobile } = useMatchMedia();
@@ -14,6 +14,7 @@ export const HomePage = () => {
         </nav>
       )}
       <main className={s.main}>
+        <TopAwaitMovies title="Top await movies" />
         <ReleasesBlock />
       </main>
     </div>

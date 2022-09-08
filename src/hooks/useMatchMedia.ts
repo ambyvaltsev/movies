@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect, useEffect } from "react";
 
 interface IMedia {
   [index: string]: boolean;
@@ -15,22 +15,25 @@ const queries = [
 export const useMatchMedia = (): IMedia => {
   if (typeof window === "undefined") return {};
 
-  const mediaQueryLists = queries.map((query) => {
-    return matchMedia(query);
-  });
-  const getValues = () => mediaQueryLists.map((mql) => mql.matches);
+
+  
+
+  const mediaQueryLists = queries.map((query) => matchMedia(query));
+
+  const getValues = () => mediaQueryLists.map((list) => list.matches);
 
   const [values, setValues] = useState(getValues);
 
   useLayoutEffect(() => {
     const handler = () => setValues(getValues);
 
-    mediaQueryLists.forEach((mql) => mql.addEventListener("change", handler));
+    mediaQueryLists.forEach((list) => list.addEventListener("change", handler));
 
-    return () => {
-      mediaQueryLists.map((mql) => mql.removeEventListener("change", handler));
-    };
-  });
+    return () =>
+      mediaQueryLists.forEach((list) =>
+        list.removeEventListener("change", handler)
+      );
+  }, []);
 
   return ["isSmallMobile", "isMobile", "isTablet", "isDesktops"].reduce(
     (acc, screen, index) => ({

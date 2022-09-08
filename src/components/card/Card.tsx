@@ -1,12 +1,11 @@
 import { FC, ReactNode } from "react";
-import { Description, Rating, ReleaseDate, ShortInfo, ShortMovieInfo, ScoreBadge, FavoriteBadge } from "./components";
+import { Description, ReleaseDate, ShortInfo, ShortMovieInfo, ScoreBadge, FavoriteBadge } from "./components";
 import s from "./Card.module.scss";
 
 
 interface ICardExtensions {
   Description: typeof Description;
   ReleaseDate: typeof ReleaseDate;
-  Rating: typeof Rating;
   ShortMovieInfo: typeof ShortMovieInfo;
   ShortInfo: typeof ShortInfo;
   ScoreBadge: typeof ScoreBadge;
@@ -28,7 +27,6 @@ export const Card: FC<ICardProps> & ICardExtensions = ({ children, style }) => {
 
 Card.Description = Description;
 Card.ReleaseDate = ReleaseDate;
-Card.Rating = Rating;
 Card.ShortMovieInfo = ShortMovieInfo;
 Card.ShortInfo = ShortInfo;
 Card.ScoreBadge = ScoreBadge;

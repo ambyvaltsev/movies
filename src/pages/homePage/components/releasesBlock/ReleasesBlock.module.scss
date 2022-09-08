@@ -4,7 +4,7 @@
   .title {
     font-size: 24px;
     border-bottom: 1px solid black;
-    padding-bottom: 15px;
+    padding: 15px 0;
   }
   .releases {
     display: grid;
@@ -15,7 +15,7 @@
       flex-direction: column;
     }
     .releases__release {
-      margin-top: 30px;
+      margin-top: 20px;
       .release__link {
         display: flex;
         align-items: center;

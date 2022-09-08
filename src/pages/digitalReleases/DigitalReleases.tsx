@@ -1,15 +1,13 @@
 import s from "./DigitalReleases.module.scss";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../assets";
-import { Card, Preloader, Poster } from "../../components";
+import { Card, Preloader, Poster, Rating } from "../../components";
 import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
 import { FC, useEffect, useState } from "react";
 import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
 import { IRelease } from "../../models";
 import { useInView } from "react-intersection-observer";
-
-
 
 export const DigitalReleases: FC = () => {
   const { ref, inView, entry } = useInView();
@@ -20,7 +18,7 @@ export const DigitalReleases: FC = () => {
     month: new Date().toLocaleString("en-US", { month: "long" }),
     page: 1,
   });
-  
+
   const { isError, isLoading, data } = useGetDigitalReleasesQuery(params);
 
   useEffect(() => {
@@ -78,7 +76,12 @@ export const DigitalReleases: FC = () => {
                         title={release.nameEn || release.nameRu}
                         subtitle={release.nameEn && release.nameRu}
                       />
-                      <Card.Rating rating={release?.rating!} votes={release?.ratingVoteCount!} />
+                      <Rating.Total
+                        rating={release?.rating!}
+                        votes={release?.ratingVoteCount!}
+                        styleRating={{ fontSize: "14px" }}
+                        styleVotes={{ fontSize: "12px" }}
+                      />
                       <Card.ReleaseDate date={release.date} />
                     </Card>
                   </Link>

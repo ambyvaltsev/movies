@@ -1,8 +1,10 @@
 @import "../../app/styles/vars.scss";
 
 .container {
-  max-width: 1200px;
   padding: 0px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
   @media (max-width: $landscape-phones-max) {
     padding: 0px 10px;
   }

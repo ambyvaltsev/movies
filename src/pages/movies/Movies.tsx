@@ -1,11 +1,10 @@
 import { Outlet, useParams } from "react-router-dom";
 import s from "./Movies.module.scss";
-
 import { Link } from "react-router-dom";
 
 export const Movies = () => {
   const { id } = useParams();
-  console.log(id)
+
   return (
     <div className={s.container}>
       {id === "movies" && <aside className={s.filter}>Filter</aside>}
