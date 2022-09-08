@@ -1,9 +1,9 @@
 import { useMatchMedia } from "../../../hooks/";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 export const useGetNumberItems = () => {
   const { isMobile, isSmallMobile, isDesktops, isTablet } = useMatchMedia();
-  const [number, setNumber] = useState(1);
+  const [number, setNumber] = useState(5);
   useEffect(() => {
     if (isDesktops) {
       setNumber(5);
