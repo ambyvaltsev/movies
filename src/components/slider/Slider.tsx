@@ -16,6 +16,8 @@ export const Slider: FC<ISliderProps> = ({ length, children }) => {
 
   const moveRight = () => {
     console.log(width, length, offset, number)
+    console.log(offset)
+    console.log(-width * (length - number))
     console.log(offset === -width * (length - number))
     if (offset === -width * (length - number)) {
       return;
