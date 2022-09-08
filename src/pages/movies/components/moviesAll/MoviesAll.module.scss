@@ -5,11 +5,34 @@
     font-weight: 700;
     color: #222;
   }
-  .movies {
-    .movies__list {
+  .content {
+    display: flex;
+    min-width: 100%;
+    .filter {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 160px;
+      .filter__item {
+        .item__title {
+          cursor: pointer;
+          display: flex;
+          gap: 5px;
+          margin-bottom: 10px;
+          font-size: 18px;
+          user-select: none;
+        }
+      }
+    }
+    .movies {
+      width: calc(100% - 160px);
+      .movies__list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   }
 }
+
+

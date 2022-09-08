@@ -187,8 +187,8 @@ export interface IPersonsShortInfo {
   webUrl: string;
 }
 export interface IAllMoviesQuery {
-  countries?: string;
-  genres?: string;
+  countries?: string | number;
+  genres?: string | number;
   order?: string;
   type?: string;
   yearFrom?: number;

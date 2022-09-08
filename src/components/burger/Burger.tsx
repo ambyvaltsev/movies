@@ -12,6 +12,7 @@ export const Burger: FC = () => {
       className={isOpen ? `${s.container} ${s.mobile}` : s.container}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
+      onClick={() => setIsOpen(!isOpen)}
     >
       <div className={s.menu__top}>
         <RiMenuLine className={s.menu__icon} />

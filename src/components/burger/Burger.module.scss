@@ -1,10 +1,10 @@
 @import "../../app/styles/vars.scss";
 
 .container {
-  z-index: 5;
+  z-index: 100;
   display: none;
+  height: 70px;
   align-items: center;
-  height: 100%;
   position: relative;
   padding: 0 5px;
   &.mobile {
