@@ -12,6 +12,11 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 10px;
+    @media (max-width: $portrait-phones-max) {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
     .info {
       display: flex;
       flex-direction: column;

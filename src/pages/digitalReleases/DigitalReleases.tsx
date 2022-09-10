@@ -6,12 +6,11 @@ import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
 import { FC, useEffect, useState } from "react";
 import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
-import { IRelease } from "../../models";
-import { useInView } from "react-intersection-observer";
+import { IRelease, IMoviesResponse } from "../../models";
+import { useScrollMovies } from "../../hooks";
 
 export const DigitalReleases: FC = () => {
-  const { ref, inView, entry } = useInView();
-  const [movies, setMovies] = useState<IRelease[]>([]);
+
 
   const [params, setParams] = useState({
     year: +new Date().toLocaleString("en-US", { year: "numeric" }),
@@ -21,19 +20,14 @@ export const DigitalReleases: FC = () => {
 
   const { isError, isLoading, data } = useGetDigitalReleasesQuery(params);
 
-  useEffect(() => {
-    if (data && entry?.isIntersecting && params.page < data?.pages!) {
-      setParams((params) => ({ ...params, page: params.page + 1 }));
-    }
-  }, [inView]);
+  console.log(data);
 
-  useEffect(() => {
-    if (data && params.page !== 1 && params.page < data?.total) {
-      data?.items && setMovies((prev) => [...prev, ...data?.items!]);
-    } else {
-      data?.items && setMovies([...data?.items]);
-    }
-  }, [data]);
+  const { ref, movies } = useScrollMovies<IMoviesResponse<IRelease>, typeof params, IRelease>(
+    data!,
+    params.page,
+    data?.pages!,
+    setParams
+  );
 
   if (isError) {
     return <div>Error</div>;

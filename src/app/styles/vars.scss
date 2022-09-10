@@ -10,3 +10,8 @@
 $portrait-phones-max: 575.98px;
 $landscape-phones-max: 767.98px;
 $tablets-max: 991.98px;
+
+@mixin list-item-hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+}

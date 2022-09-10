@@ -1,3 +1,4 @@
+@import '../../../app/styles/vars';
 .container {
   width: 100px;
   position: relative;
@@ -38,8 +39,7 @@
       cursor: pointer;
       padding: 5px;
       &:hover {
-        background-color: rgba(0, 0, 0, 0.7);
-        color: white;
+        @include list-item-hover
       }
     }
   }

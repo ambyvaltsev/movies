@@ -139,3 +139,9 @@ export const countries = [
   { id: 106, value: "Украина" },
   { id: 128, value: "Беларусь" },
 ];
+
+export const order = [
+  { value: "Rating", id: "RATING" },
+  { value: "Number of votes", id: "NUM_VOTE" },
+  { value: "Year", id: "YEAR" },
+];

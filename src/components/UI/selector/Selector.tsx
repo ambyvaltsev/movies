@@ -3,30 +3,25 @@ import s from "./Selector.module.scss";
 import { IoIosArrowUp, IoIosArrowDown } from "../../../assets";
 
 interface ISelectorProps {
-  data: {value: string | number, id?: number | string}[]
+  data: { value: string | number; id?: number | string }[];
   setSelectedData: (e: any) => void;
   selectedData: string | number;
-  style?: {[k: string]: string}
+  style?: { [k: string]: string };
 }
 
-export const Selector: FC<ISelectorProps> = ({
-  data,
-  selectedData,
-  setSelectedData,
-  style
-}) => {
+export const Selector: FC<ISelectorProps> = ({ data, selectedData, setSelectedData, style }) => {
   const optionsRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  const selectDate = (e: any) => {
+  const selectData = (e: any) => {
     setSelectedData(e);
     setIsOpen(false);
   };
 
   useEffect(() => {
     const instance = optionsRef.current;
-    instance?.addEventListener("click", selectDate);
-    return () => instance?.removeEventListener("click", selectDate);
+    instance?.addEventListener("click", selectData);
+    return () => instance?.removeEventListener("click", selectData);
   }, [isOpen]);
 
   return (

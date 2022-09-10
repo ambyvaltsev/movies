@@ -41,7 +41,7 @@ export const Kinopoisk = () => {
             );
           })}
         </div>
-        <Total rating={`${kp.rating}`} votes={kp.votes || 0} />
+        <Total rating={kp.rating} votes={kp.votes || ''} />
       </form>
     </div>
   );

@@ -20,13 +20,13 @@ export const Critics = () => {
       <div className={s.rating}>
         <div className={s.scale}>
           <div className={s.scale__positive} style={{ width: `${critics.rating * 10}%` }}>
-            {positiveCount}
+            {positiveCount || ''}
           </div>
           <div className={s.scale__negative} style={{ width: `${100 - critics.rating * 10}%` }}>
-            {negativeCount}
+            {negativeCount || ''}
           </div>
         </div>
-        <Total rating={`${positivePercent}%`} votes={critics.count || 0} />
+        <Total rating={positivePercent ? `${positivePercent}%` : ''} votes={critics.count || ''} />
       </div>
     </div>
   );

@@ -13,3 +13,4 @@ export { Star } from "./star/Star";
 export { Info } from "./info/Info";
 export { Poster } from "./poster/Poster";
 export { Slider } from "./slider/Slider";
+export { Sorting } from './sorting/Sorting';

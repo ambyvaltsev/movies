@@ -62,7 +62,7 @@ export const Movie = () => {
       {movie && staff && (
         <>
           <div className={s.content}>
-            <Poster url={movie?.posterUrl} alt={movie?.nameOriginal || movie?.nameRu} style={{maxHeight: '400px'}} />
+            <Poster url={movie?.posterUrl} alt={movie?.nameOriginal || movie?.nameRu}/>
             <Info.Description
               title={movie?.nameEn || movie?.nameOriginal || movie.nameRu}
               subtitle={(movie?.nameEn || movie?.nameOriginal) && movie.nameRu}

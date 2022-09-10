@@ -189,7 +189,7 @@ export interface IPersonsShortInfo {
 export interface IAllMoviesQuery {
   countries?: string | number;
   genres?: string | number;
-  order?: string;
+  order?: string | number;
   type?: string;
   yearFrom?: number;
   yearTo?: number;

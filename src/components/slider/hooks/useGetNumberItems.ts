@@ -1,5 +1,5 @@
 import { useMatchMedia } from "../../../hooks/";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const useGetNumberItems = () => {
   const { isMobile, isSmallMobile, isDesktops, isTablet } = useMatchMedia();
@@ -19,5 +19,8 @@ export const useGetNumberItems = () => {
     }
   }, [isDesktops, isSmallMobile, isTablet, isMobile]);
 
+  useEffect(() => {
+
+  }, [number])
   return number
 };

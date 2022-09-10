@@ -1,0 +1,40 @@
+@import "../../app/styles/vars";
+.container {
+  display: flex;
+  justify-content: end;
+  padding: 20px 0;
+  .content {
+    position: relative;
+    .selected {
+      cursor: pointer;
+      display: flex;
+      gap: 5px;
+      font-size: 18px;
+    }
+    .options {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 5px);
+      width: 150px;
+      background-color: white;
+      z-index: 100;
+      padding: 5px;
+      box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.1);
+      .options__item {
+        cursor: pointer;
+        position: relative;
+        padding: 5px 5px 5px 25px;
+        font-size: 15px;
+        .item__icon {
+          position: absolute;
+          left: 5px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        &:hover {
+          @include list-item-hover;
+        }
+      }
+    }
+  }
+}
