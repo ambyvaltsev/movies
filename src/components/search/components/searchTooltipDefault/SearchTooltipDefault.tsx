@@ -12,7 +12,7 @@ export const SearchTooltipDefault = () => {
       <h6 className={s.title}>Top popular movies</h6>
       <div className={s.list}>
         {data &&
-          data.films?.map((movie: IMovieShortInfo, index) => {
+          data.items?.map((movie: IMovieShortInfo, index) => {
             return (
               <Link to={`/movie/${movie?.filmId}`} key={index}>
                 <Card>

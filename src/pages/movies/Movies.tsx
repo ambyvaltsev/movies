@@ -13,9 +13,6 @@ export const Movies = () => {
           <Link to={"best250"}>
             <li className={s.navigation__item}>Top best 250</li>
           </Link>
-          <Link to={"popular100"}>
-            <li className={s.navigation__item}>Top 100 popular</li>
-          </Link>
         </ul>
       </nav>
       <main>

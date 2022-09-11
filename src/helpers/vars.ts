@@ -1,5 +1,5 @@
 import best250 from "../assets/img/best250.png";
-import popular100 from "../assets/img/popular100.png";
+import all from "../assets/img/allmovies.png";
 import comedy from "../assets/img/comedy.png";
 import fantasy from "../assets/img/fantasy.png";
 import action from "../assets/img/action.png";
@@ -37,62 +37,57 @@ interface IAllCategories {
 }
 export interface ICategoryItem {
   title: string;
-  key?: string;
   posterUrl: any;
   total?: number;
   id?: string;
-  description?: string;
 }
 
 export const allCategories: IAllCategories = {
   movies: [
     {
       title: "Top best 250 movies",
-      key: "TOP_250_BEST_FILMS",
       posterUrl: best250,
       total: 250,
       id: "best250",
     },
     {
-      title: "Top 100 popular movies",
-      key: "TOP_100_POPULAR_FILMS",
-      posterUrl: popular100,
-      total: 100,
-      id: "popular100",
+      title: "All movies",
+      posterUrl: all,
+      id: ''
     },
   ],
   genres: [
     {
       title: "Comedy",
-      key: "TOP_250_BEST_FILMS",
       posterUrl: comedy,
+      id: '?genre=Комедия'
     },
     {
       title: "Fantasy",
-      key: "TOP_250_BEST_FILMS",
       posterUrl: fantasy,
+      id: '?genre=Фантастика'
     },
     {
       title: "Action",
-      key: "TOP_250_BEST_FILMS",
       posterUrl: action,
+      id: '?genre=Боевик'
     },
   ],
   countries: [
     {
       title: "Russia",
-      key: "TOP_250_BEST_FILMS",
       posterUrl: russia,
+      id: '?country=Россия'
     },
     {
       title: "USA",
-      key: "TOP_250_BEST_FILMS",
       posterUrl: usa,
+      id: '?country=США'
     },
     {
       title: "France",
-      key: "TOP_250_BEST_FILMS",
       posterUrl: france,
+      id: '?country=Франция'
     },
   ],
 };

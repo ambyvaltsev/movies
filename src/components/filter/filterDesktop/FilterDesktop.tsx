@@ -1,16 +1,16 @@
-import s from "./Filter.module.scss";
-import { IoIosArrowDown, IoIosArrowUp } from "../../../../assets";
+import s from "./FilterDesktop.module.scss";
+import { IoIosArrowDown, IoIosArrowUp } from "../../../assets";
 import { useState, FC } from "react";
-import { ISelected } from "../moviesAll/MoviesAll";
-import { Selector } from "../../../../components/UI";
-import { genres, countries } from "../../../../helpers";
+import { ISelected } from "../../../pages/movies/components/moviesAll/MoviesAll";
+import { Selector } from "../../UI";
+import { genres, countries } from "../../../helpers";
 
-interface Props {
+interface IFilterDesktopProps {
   setSelected: (obj: any) => void;
   selected: ISelected;
 }
 
-export const Filter: FC<Props> = ({ setSelected, selected }) => {
+export const FilterDesktop: FC<IFilterDesktopProps> = ({ setSelected, selected }) => {
   const [hideSelector, setHideSelector] = useState({ countries: false, genres: false });
 
   const hideCountriesSelector = () => {
@@ -23,7 +23,11 @@ export const Filter: FC<Props> = ({ setSelected, selected }) => {
     <aside className={s.container}>
       <div className={s.filter__item}>
         <div className={s.item__title} onClick={hideCountriesSelector}>
-          {hideSelector.countries ? <IoIosArrowDown /> : <IoIosArrowUp />}
+          {hideSelector.countries ? (
+            <IoIosArrowDown className={s.item__icon} />
+          ) : (
+            <IoIosArrowUp className={s.item__icon} />
+          )}
           <span>Countries</span>
         </div>
         {!hideSelector.countries && (
@@ -42,7 +46,11 @@ export const Filter: FC<Props> = ({ setSelected, selected }) => {
       </div>
       <div className={s.filter__item}>
         <div className={s.item__title} onClick={hideGenresSelector}>
-          {hideSelector.genres ? <IoIosArrowDown /> : <IoIosArrowUp />}
+          {hideSelector.genres ? (
+            <IoIosArrowDown className={s.item__icon} />
+          ) : (
+            <IoIosArrowUp className={s.item__icon} />
+          )}
           <span>Genres</span>
         </div>
         {!hideSelector.genres && (

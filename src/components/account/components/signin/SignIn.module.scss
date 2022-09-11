@@ -1,4 +1,4 @@
-@import "../../app/styles/vars.scss";
+@import "../../../../app/styles/vars.scss";
 .container {
   background-color: unset;
   position: absolute;
@@ -9,13 +9,13 @@
   @media (max-width: $landscape-phones-max) {
     right: 10px;
   }
-  .account {
+  /* .account {
     width: 25px;
     height: 25px;
     background-image: url("../../assets/img/account.svg");
     background-size: cover;
     border-radius: 50%;
-  }
+  } */
   .signin {
     background-color: unset;
     color: rgba(255, 255, 255, 0.7);

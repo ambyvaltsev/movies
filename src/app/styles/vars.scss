@@ -2,7 +2,7 @@
   --color-icon-header: rgba(255, 255, 255, 0.6);
   --grey-color: #797979;
   --red-color: #f60;
-  --shadow-box: 3px 3px 15px 10px rgba(0, 0, 0, 0.3);
+  --shadow-box: 0px 2px 6px 1px rgba(0, 0, 0, 0.1); 
   --basic-container-padding: 10px 50px;
   --phone-container-padding: 10px 10px;
 }
@@ -14,4 +14,15 @@ $tablets-max: 991.98px;
 @mixin list-item-hover {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
+}
+@mixin scroll-style {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 2px -2px 4px rgba(0, 0, 0, 0.9);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 }

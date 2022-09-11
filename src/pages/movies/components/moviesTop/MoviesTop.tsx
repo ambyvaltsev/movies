@@ -2,42 +2,61 @@ import s from "./MoviesTop.module.scss";
 import { Card, Poster } from "../../../../components";
 import { useGetTopMoviesQuery } from "../../../../store/movies/movies.api";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import { useScrollMovies } from "../../../../hooks";
+import { IMovieShortInfo, ITopMoviesResponse } from "../../../../models";
 export const MoviesTop = () => {
-  const { id } = useParams();
   const [params, setParams] = useState({
-    type: "",
+    type: "TOP_250_BEST_FILMS",
     page: 1,
   });
-  const { isError, isLoading, data: top } = useGetTopMoviesQuery(params);
+  const { isError, isLoading, data } = useGetTopMoviesQuery(params);
 
-  useEffect(() => {
-    if (id === "best250") {
-      setParams({ type: "TOP_250_BEST_FILMS", page: 1 });
-    } else if (id === "popular100") {
-      setParams({ type: "TOP_100_POPULAR_FILMS", page: 1 });
-    }
-  }, [id]);
-
+  const { ref, movies } = useScrollMovies<any, { type: string; page: number }, IMovieShortInfo>(
+    data!,
+    params.page,
+    data?.pages!,
+    setParams
+  );
   return (
     <div className={s.container}>
-      <h1 className={s.title}>{} </h1>
       <section className={s.movies}>
+        <h1 className={s.title}>Top 250 best movies</h1>
         <ul className={s.movies__list}>
-          {top &&
-            top.films.map((film, index) => {
+          {movies &&
+            movies.map((film, index) => {
               return (
-                <Card key={index}>
-                  <Poster url={film.posterUrl} alt={film.nameEn || film.nameRu} />
-                  <Card.Description
-                    title={film.nameEn || film.nameRu}
-                    subtitle={film.nameEn && film.nameRu}
-                  ></Card.Description>
+                <Card style={{ alignItems: "start" }} key={index}>
+                  <Link to={`/movie/${film.filmId}`}>
+                    <Poster
+                      url={film.posterUrl}
+                      alt={film.nameEn || film.nameRu}
+                      style={{ height: "105px" }}
+                    />
+                  </Link>
+                  <Link to={`/movie/${film.filmId}`}>
+                    <Card.Description
+                      title={film.nameEn || film.nameRu}
+                      subtitle={film.nameEn && film.nameRu}
+                    >
+                      <Card.ShortInfo
+                        title="Genres: "
+                        text={film.genres.map((item) => item.genre).join(", ")}
+                      />
+                      <Card.ShortInfo
+                        title="Countries: "
+                        text={film.countries.map((item) => item.country).join(", ")}
+                      />
+                      <Card.ShortInfo title="Rating: " text={film.rating} />
+                    </Card.Description>
+                  </Link>
+                  <Card.FavoriteBadge />
+                  <Card.ScoreBadge id={film.filmId} />
                 </Card>
               );
             })}
         </ul>
+        <div ref={ref} className={s.observableBlock}></div>
       </section>
     </div>
   );

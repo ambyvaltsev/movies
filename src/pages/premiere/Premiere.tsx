@@ -21,7 +21,7 @@ export const Premiere: FC = () => {
   const { ref, inView, entry } = useInView();
 
   useEffect(() => {
-    if (data && limit < data?.total) {
+    if (data && limit < data?.total!) {
       setLimit(limit + 5);
     }
   }, [inView]);

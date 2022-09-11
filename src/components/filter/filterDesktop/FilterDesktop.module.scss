@@ -1,8 +1,11 @@
+@import "../../../app/styles/vars";
 .container {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 160px;
+  @media (max-width: $portrait-phones-max) {
+    display: none;
+  }
   .filter__item {
     .item__title {
       cursor: pointer;

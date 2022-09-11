@@ -1,6 +1,6 @@
 import { FC } from "react";
 import s from "./Header.module.scss";
-import { Search, Burger, AccountHeader } from "../../components";
+import { Search, Burger, Account } from "../../components";
 import { Link } from "react-router-dom";
 
 export const Header: FC = () => {
@@ -12,7 +12,9 @@ export const Header: FC = () => {
         </Link>
         <Burger />
         <Search />
-        <AccountHeader />
+        <Account>
+          <Account.SignIn />
+        </Account>
       </div>
     </div>
   );

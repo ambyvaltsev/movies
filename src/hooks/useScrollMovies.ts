@@ -1,7 +1,7 @@
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 
-export function useScrollMovies<T extends { items: any }, K extends { page: number }, U>(
+export function useScrollMovies<T extends { items?: any}, K extends { page: number }, U>(
   data: T,
   page: number,
   pages: number,
@@ -13,6 +13,7 @@ export function useScrollMovies<T extends { items: any }, K extends { page: numb
 
   useEffect(() => {
     if (data && entry?.isIntersecting && page < pages) {
+      console.log('77777')
       setParams((params) => ({ ...params, page: params.page + 1 }));
     }
   }, [inView]);

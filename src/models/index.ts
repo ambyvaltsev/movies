@@ -4,9 +4,8 @@ export interface IDigitalReleasesResponse {
   releases: IDigitalRelease[];
 }
 export interface IMoviesResponse<T> {
-  totalPages?: number;
   pages?: number
-  total: number
+  total?: number
   items: T[]
 }
 export interface IPremiere {
@@ -209,4 +208,9 @@ export interface IAllMovies {
   ratingKinopoisk: number;
   type: string;
   year: number;
+}
+export interface IAllMoviesResponse<T> {
+  totalPages: number;
+  total: number
+  items: T[]
 }

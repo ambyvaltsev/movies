@@ -1,0 +1,18 @@
+.container {
+  .movies {
+    .title {
+      font-size: 40px;
+      font-weight: 700;
+      color: #222;
+      padding: 20px 0;
+    }
+    .movies__list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .observableBlock {
+      height: 20px;
+    }
+  }
+}

@@ -10,8 +10,6 @@ import { IRelease, IMoviesResponse } from "../../models";
 import { useScrollMovies } from "../../hooks";
 
 export const DigitalReleases: FC = () => {
-
-
   const [params, setParams] = useState({
     year: +new Date().toLocaleString("en-US", { year: "numeric" }),
     month: new Date().toLocaleString("en-US", { month: "long" }),
@@ -19,8 +17,6 @@ export const DigitalReleases: FC = () => {
   });
 
   const { isError, isLoading, data } = useGetDigitalReleasesQuery(params);
-
-  console.log(data);
 
   const { ref, movies } = useScrollMovies<IMoviesResponse<IRelease>, typeof params, IRelease>(
     data!,
@@ -60,27 +56,25 @@ export const DigitalReleases: FC = () => {
         </div>
         {data?.items && (
           <div className={s.list}>
-            {movies.map((release, index) => {
-              if (index < data.total) {
-                return (
-                  <Link to={`/movie/${release.id}`} key={release.id}>
-                    <Card>
-                      <Poster url={release.poster} alt={release.nameEn || release.nameRu} />
-                      <Card.Description
-                        title={release.nameEn || release.nameRu}
-                        subtitle={release.nameEn && release.nameRu}
-                      />
-                      <Rating.Total
-                        rating={release?.rating!}
-                        votes={release?.ratingVoteCount!}
-                        styleRating={{ fontSize: "14px" }}
-                        styleVotes={{ fontSize: "12px" }}
-                      />
-                      <Card.ReleaseDate date={release.date} />
-                    </Card>
-                  </Link>
-                );
-              }
+            {movies.map((release) => {
+              return (
+                <Link to={`/movie/${release.id}`} key={release.id}>
+                  <Card>
+                    <Poster url={release.poster} alt={release.nameEn || release.nameRu} />
+                    <Card.Description
+                      title={release.nameEn || release.nameRu}
+                      subtitle={release.nameEn && release.nameRu}
+                    />
+                    <Rating.Total
+                      rating={release?.rating!}
+                      votes={release?.ratingVoteCount!}
+                      styleRating={{ fontSize: "14px" }}
+                      styleVotes={{ fontSize: "12px" }}
+                    />
+                    <Card.ReleaseDate date={release.date} />
+                  </Card>
+                </Link>
+              );
             })}
           </div>
         )}

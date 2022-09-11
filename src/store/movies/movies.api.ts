@@ -13,6 +13,8 @@ import {
   IVideo,
   IRelease,
   IAllMovies,
+  IMovieShortInfo,
+  IAllMoviesResponse,
 } from "../../models";
 
 export const moviesAPI = createApi({
@@ -105,7 +107,7 @@ export const moviesAPI = createApi({
         };
       },
     }),
-    getTopMovies: build.query<ITopMoviesResponse, { type: string; page: number }>({
+    getTopMovies: build.query<IMoviesResponse<IMovieShortInfo>, { type: string; page: number }>({
       query: ({ type, page }) => ({
         url: `/v2.2/films/top?type=${type}&page=${page}`,
         headers: {
@@ -113,6 +115,13 @@ export const moviesAPI = createApi({
           "Content-Type": "application/json",
         },
       }),
+      transformResponse: (response: ITopMoviesResponse) => {
+        return {
+          items: response.films,
+          pages: response.pagesCount,
+          page: 1,
+        };
+      },
     }),
     getMovieByKey: build.query<IMoviesByKeyResponse, { key: string; page: number }>({
       query: ({ key, page }) => ({
@@ -140,6 +149,14 @@ export const moviesAPI = createApi({
           page,
         },
       }),
+      transformResponse: (response: IAllMoviesResponse<IAllMovies>) => {
+        return {
+          items: response.items,
+          total: response.total,
+          pages: response.totalPages,
+          page: 1,
+        };
+      },
     }),
     getMoviesFilters: build.query<any, void>({
       query: () => ({

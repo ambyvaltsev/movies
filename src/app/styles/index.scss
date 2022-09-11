@@ -1,4 +1,6 @@
-@import './nullstyle.scss';
-@import './vars.scss';
+@import "./nullstyle.scss";
+@import "./vars.scss";
 
-
+body {
+  @include scroll-style
+}
