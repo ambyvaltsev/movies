@@ -2,7 +2,7 @@ import s from "./SearchTooltipDefault.module.scss";
 import { useGetTopMoviesQuery } from "../../../../store/movies/movies.api";
 import { IMovieShortInfo } from "../../../../models";
 import { Link } from "react-router-dom";
-import { Card, Poster } from "../../../../components";
+import { Card, Poster } from "../../..";
 
 export const SearchTooltipDefault = () => {
   const { isError, isLoading, data } = useGetTopMoviesQuery({ type: "TOP_100_POPULAR_FILMS", page: 1 });

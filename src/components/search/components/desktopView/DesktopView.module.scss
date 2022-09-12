@@ -1,0 +1,37 @@
+@import "../../../../app/styles/vars.scss";
+.container {
+  display: flex;
+  position: relative;
+  flex: 0 1 auto;
+  min-width: 160px;
+
+
+  .icons {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--color-icon-header);
+    &.focus {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  .tooltip {
+    z-index: 100;
+    position: absolute;
+    top: 26px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    box-shadow: var(--shadow-box);
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    @include scroll-style;
+  }
+}

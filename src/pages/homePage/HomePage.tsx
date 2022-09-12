@@ -10,7 +10,7 @@ export const HomePage = () => {
     <div className={s.container}>
       {isMobile || (
         <nav className={s.nav}>
-          <Menu />
+          <Menu.Desktop />
         </nav>
       )}
       <main className={s.main}>

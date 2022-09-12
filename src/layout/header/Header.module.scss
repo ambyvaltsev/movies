@@ -1,28 +1,35 @@
 @import "../../app/styles/vars.scss";
 .container {
-  display: flex;
-  align-items: center;
   background-color: #1f1f1f;
   height: 70px;
+  width: 100%;
+  padding: 0 20px;
+  @media (max-width: $landscape-phones-max) {
+    padding: 0 10px;
+  }
   .content {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(0, 140px) 1fr auto auto;
     gap: 10px;
-    padding: 0 20px;
+    align-items: center;
     position: relative;
     max-width: 1200px;
-    width: 100%;
     margin: 0 auto;
-    @media (max-width: $landscape-phones-max) {
-      padding-left: 0px;
-      gap: 5px;
+    height: 100%;
+    .menu__wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search__wrapper_desktop {
+      max-width: 300px;
     }
     .siteName {
       font-size: 25px;
       color: white;
       text-transform: uppercase;
       @media (max-width: $landscape-phones-max) {
-        display: none;
+        font-size: 20px;
       }
     }
   }

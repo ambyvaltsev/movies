@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, forwardRef, Ref, RefObject } from "react";
 import s from "./Input.module.scss";
 
 interface IStyle {
@@ -17,25 +17,22 @@ interface IInputProps {
   setInput: (e: any) => void;
 }
 
-export const Input: FC<IInputProps> = ({
-  isHeader,
-  isHeaderMobile,
-  input,
-  setInput,
-  ...props
-}) => {
-  const header = isHeader && `${s.header}`;
-  const headerMobile = isHeaderMobile && `${s.headerMobile}`
-  return (
-    <label htmlFor="input" className={`${s.label} ${s.headerMobile}`}>
-      <input
-        onChange={setInput}
-        value={input}
-        type="text"
-        id="input"
-        className={`${s.input} ${header} ${headerMobile}`}
-        {...props}
-      />
-    </label>
-  );
-};
+export const Input = forwardRef<HTMLInputElement, IInputProps>(
+  ({ isHeader, isHeaderMobile, input, setInput, ...props }, ref) => {
+    const header = isHeader && `${s.header}`;
+    const headerMobile = isHeaderMobile && `${s.headerMobile}`;
+    return (
+      <label htmlFor="input" className={`${s.label} ${s.headerMobile}`}>
+        <input
+          ref={ref}
+          onChange={setInput}
+          value={input}
+          type="text"
+          id="input"
+          className={`${s.input} ${header} ${headerMobile}`}
+          {...props}
+        />
+      </label>
+    );
+  }
+);

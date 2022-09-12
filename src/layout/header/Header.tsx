@@ -1,20 +1,24 @@
 import { FC } from "react";
 import s from "./Header.module.scss";
-import { Search, Burger, Account } from "../../components";
+import { Account, Menu, Search } from "../../components";
 import { Link } from "react-router-dom";
+import { useMatchMedia } from "../../hooks";
 
 export const Header: FC = () => {
+  const { isSmallMobile, isMobile } = useMatchMedia();
+
   return (
     <div className={s.container}>
       <div className={s.content}>
-        <Link to="/">
-          <span className={s.siteName}>Movies</span>
-        </Link>
-        <Burger />
-        <Search />
-        <Account>
-          <Account.SignIn />
-        </Account>
+        <div className={s.menu__wrapper}>
+          {isMobile && <Menu.Mobile />}
+          <Link to="/">
+            <span className={s.siteName}>Movies</span>
+          </Link>
+        </div>
+        <div className={s.search__wrapper_desktop}>{!isSmallMobile && <Search.DesktopView />}</div>
+        {isSmallMobile && <Search.MobileView />}
+        <Account.SignIn />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import s from "./FilterMobile.module.scss";
 import { IoMdClose } from "../../../assets";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { ISelected } from "../../../pages/movies/components/moviesAll/MoviesAll";
 import { Selector } from "../../UI";
 import { genres, countries } from "../../../helpers";
@@ -8,15 +8,21 @@ import { genres, countries } from "../../../helpers";
 interface IFilterMobileProps {
   setSelected: (obj: any) => void;
   selected: ISelected;
-  isOpen?: boolean
-  setIsOpen: () => void
+  isOpen?: boolean;
+  setIsOpen: () => void;
 }
 
 export const FilterMobile: FC<IFilterMobileProps> = ({ setSelected, selected, isOpen, setIsOpen }) => {
-
-  const activeStyle = isOpen ? `${s.active}` : ''
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
   return (
-    <aside className={`${s.container} ${activeStyle}`}>
+    <aside className={`${s.container} ${isOpen && s.active}`}>
       <div className={s.filter}>
         <div className={s.filter__item}>
           <h6 className={s.filter__title}>Countries</h6>

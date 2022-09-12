@@ -1,43 +1,19 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
+import { Desktop, Mobile } from "./components";
 import s from "./Menu.module.scss";
-import { NavLink } from "react-router-dom";
-import { AiFillHome, MdMovie } from "../../assets";
+
+interface IMenuExtension {
+  Desktop: typeof Desktop;
+  Mobile: typeof Mobile;
+}
 
 interface IMenuProps {
-  mobile?: string;
+  children: ReactNode;
 }
-export const Menu: FC<IMenuProps> = ({ mobile = "" }) => {
-  const styleActive = `${s.item__content} ${s[mobile]} ${s.active}`;
-  const styleInactive = `${s.item__content} ${s[mobile]}`;
 
-  return (
-    <div className={`${s.container} ${s[mobile]}`}>
-      <ul className={s.list}>
-        <NavLink to="/">
-          {({ isActive }) => (
-            <li className={s.item}>
-              <AiFillHome className={isActive ? styleActive : styleInactive} />
-              <span className={isActive ? styleActive : styleInactive}>Home</span>
-            </li>
-          )}
-        </NavLink>
-        <NavLink to="lists">
-          {({ isActive }) => (
-            <li className={s.item}>
-              <MdMovie className={isActive ? styleActive : styleInactive} />
-              <span className={isActive ? styleActive : styleInactive}>Movies</span>
-            </li>
-          )}
-        </NavLink>
-        <NavLink to="tvseries">
-          {({ isActive }) => (
-            <li className={s.item}>
-              <MdMovie className={isActive ? styleActive : styleInactive} />
-              <span className={isActive ? styleActive : styleInactive}>TV series</span>
-            </li>
-          )}
-        </NavLink>
-      </ul>
-    </div>
-  );
+export const Menu: FC<IMenuProps> & IMenuExtension = ({ children }) => {
+  return <div className={s.container}>{children}</div>;
 };
+
+Menu.Desktop = Desktop;
+Menu.Mobile = Mobile;

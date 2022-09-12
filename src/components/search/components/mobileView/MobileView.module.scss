@@ -1,0 +1,52 @@
+@import "../../../../app/styles/vars.scss";
+.container {
+  .input__wrapper {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0%;
+    width: 100%;
+  }
+  .search__btnOpen {
+    cursor: pointer;
+
+    font-size: 20px;
+    color: var(--color-icon-header);
+    &.open {
+      cursor: none;
+      position: absolute;
+      top: 30px;
+      transform: translateY(-50%);
+      left: 5px;
+    }
+    &.focus {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  .search__btnCansel {
+    cursor: pointer;
+    z-index: 100;
+    color: var(--color-icon-header);
+    font-size: 24px;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    transform: translateY(-50%);
+    &.focus {
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  .tooltip {
+    z-index: 100;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    box-shadow: var(--shadow-box);
+    overflow-y: auto;
+    max-height: calc(100vh - 65px);
+    @include scroll-style;
+  }
+}

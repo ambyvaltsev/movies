@@ -1,0 +1,29 @@
+@import "../../../../app/styles/vars";
+.container {
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    & > .active {
+      color: red;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .item__content {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 16px;
+        &.mobile {
+          color: var(--color-icon-header);
+        }
+        &.mobile.active {
+          color: white;
+        }
+        &.active {
+          color: black;
+        }
+      }
+    }
+  }
+}
