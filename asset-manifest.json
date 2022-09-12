@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/movies/static/css/main.fb33ce12.css",
-    "main.js": "/movies/static/js/main.08c41af8.js",
+    "main.css": "/movies/static/css/main.972296df.css",
+    "main.js": "/movies/static/js/main.b4594aa0.js",
     "static/media/comedy.png": "/movies/static/media/comedy.bbb8a8bd69fa7bed6213.png",
     "static/media/action.png": "/movies/static/media/action.7d8c1595dd48b83550ed.png",
     "static/media/fantasy.png": "/movies/static/media/fantasy.5bbc60cd37d5c7d1d746.png",
@@ -11,11 +11,11 @@
     "static/media/france.png": "/movies/static/media/france.f30d0e693a7e439f107d.png",
     "static/media/allmovies.png": "/movies/static/media/allmovies.b1ef38d97e09f85e65c1.png",
     "index.html": "/movies/index.html",
-    "main.fb33ce12.css.map": "/movies/static/css/main.fb33ce12.css.map",
-    "main.08c41af8.js.map": "/movies/static/js/main.08c41af8.js.map"
+    "main.972296df.css.map": "/movies/static/css/main.972296df.css.map",
+    "main.b4594aa0.js.map": "/movies/static/js/main.b4594aa0.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb33ce12.css",
-    "static/js/main.08c41af8.js"
+    "static/css/main.972296df.css",
+    "static/js/main.b4594aa0.js"
   ]
 }
