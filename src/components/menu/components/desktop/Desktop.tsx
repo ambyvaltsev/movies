@@ -16,7 +16,7 @@ export const Desktop: FC<IMenuProps> = () => {
             </li>
           )}
         </NavLink>
-        <NavLink to="lists">
+        <NavLink to="/lists">
           {({ isActive }) => (
             <li className={s.item}>
               <MdMovie className={`${s.item__content} ${isActive && s.active}`} />

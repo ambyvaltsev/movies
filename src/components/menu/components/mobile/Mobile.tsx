@@ -15,7 +15,7 @@ export const Mobile: FC = () => {
 
       <div className={s.menu__content} style={{ left: `-${isOpen ? 0 : 100}%` }}>
         <ul className={s.menu__list}>
-          <NavLink to="/">
+          <NavLink to="/" onClick={() => setIsOpen(false)}>
             {({ isActive }) => (
               <li className={s.item}>
                 <AiFillHome className={`${s.item__content} ${isActive && s.active}`} />
@@ -23,7 +23,7 @@ export const Mobile: FC = () => {
               </li>
             )}
           </NavLink>
-          <NavLink to="lists">
+          <NavLink to="lists" onClick={() => setIsOpen(false)}>
             {({ isActive }) => (
               <li className={s.item}>
                 <MdMovie className={`${s.item__content} ${isActive && s.active}`} />
@@ -31,7 +31,7 @@ export const Mobile: FC = () => {
               </li>
             )}
           </NavLink>
-          <NavLink to="tvseries">
+          <NavLink to="tvseries" onClick={() => setIsOpen(false)}>
             {({ isActive }) => (
               <li className={s.item}>
                 <MdMovie className={`${s.item__content} ${isActive && s.active}`} />

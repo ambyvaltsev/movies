@@ -7,5 +7,5 @@ export { Staff } from './staff/Staff';
 export { Movies } from './movies/Movies';
 export { MoviesAll } from './movies/components/moviesAll/MoviesAll';
 export { MoviesTop } from './movies/components/moviesTop/MoviesTop';
-
+export { Auth } from './auth/Auth';
 

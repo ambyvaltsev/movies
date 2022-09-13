@@ -18,7 +18,9 @@ export const Header: FC = () => {
         </div>
         <div className={s.search__wrapper_desktop}>{!isSmallMobile && <Search.DesktopView />}</div>
         {isSmallMobile && <Search.MobileView />}
-        <Account.SignIn />
+        <Link to='auth/signin'>
+          <div className={s.signin}>Sign In</div>
+        </Link>
       </div>
     </div>
   );

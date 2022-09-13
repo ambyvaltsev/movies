@@ -1,4 +1,6 @@
+import { Account } from "../components/account/Account";
 import { Categories } from "../components/categories/Categories";
+
 import { Main } from "../layout";
 import {
   HomePage,
@@ -10,6 +12,7 @@ import {
   Movies,
   MoviesAll,
   MoviesTop,
+  Auth,
 } from "../pages";
 
 export const routes = [
@@ -32,12 +35,19 @@ export const routes = [
       { path: "movie/:id", element: <Movie />, index: false },
       { path: "staff/:id", element: <Staff />, index: false },
       {
-        path: ":id",
+        path: "lists",
         element: <Movies />,
         index: false,
+      },
+      { path: "all", element: <MoviesAll />, index: false },
+      { path: "best250", element: <MoviesTop />, index: false },
+      {
+        path: "auth/signin",
+        element: <Auth />,
+        index: false,
         child: [
-          { element: <MoviesAll />, index: true },
-          { path: ":id", element: <MoviesTop />, index: false },
+          { element: <Account.SignIn />, index: true },
+          { path: "auth/signup", element: <div>wewefwefwefwefwef</div>, index: false },
         ],
       },
     ],

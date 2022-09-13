@@ -1,0 +1,14 @@
+@import '../../app/styles/vars';
+.container {
+  position: relative;
+  left: -20px;
+  width: 100vw;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: $landscape-phones-max) {
+    left: -10px;
+  }
+}

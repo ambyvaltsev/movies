@@ -53,7 +53,7 @@ export const allCategories: IAllCategories = {
     {
       title: "All movies",
       posterUrl: all,
-      id: ''
+      id: 'all'
     },
   ],
   genres: [

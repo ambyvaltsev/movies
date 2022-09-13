@@ -32,5 +32,12 @@
         font-size: 20px;
       }
     }
+    .signin {
+      cursor: pointer;
+      white-space: nowrap;
+      background-color: unset;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 20px;
+    }
   }
 }

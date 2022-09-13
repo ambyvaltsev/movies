@@ -12,7 +12,7 @@ export const Categories = () => {
     <section className={s.container}>
       {allCategories[category].map((item: ICategoryItem, index) => {
         return (
-          <Link to={`/movies/${item.id}`} key={index}>
+          <Link to={`/${item.id}`} key={index}>
             <Card>
               <Poster url={item.posterUrl} alt={item.title} />
               <Card.Description title={item.title} subtitle={`${item.total ? item.total : ""}`} />
