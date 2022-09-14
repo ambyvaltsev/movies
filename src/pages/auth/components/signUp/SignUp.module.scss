@@ -1,0 +1,21 @@
+@import "../../../../app/styles/vars.scss";
+.container {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  padding: 60px 15px 20px 15px;
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .link {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+    color: #060077;
+    padding: 10px 0;
+    margin-top: 10px;
+  }
+}

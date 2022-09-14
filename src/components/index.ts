@@ -13,5 +13,5 @@ export { Slider } from "./slider/Slider";
 export { Sorting } from './sorting/Sorting';
 export { FilterDesktop } from './filter/filterDesktop/FilterDesktop';
 export { FilterMobile } from './filter/filterMobile/FilterMobile';
-export { Account } from './account/Account';
+export { AccountMenu } from './accountMenu/AccountMenu';
 export { Menu } from './menu/Menu';

@@ -1,0 +1,42 @@
+.container {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 100;
+  width: 200px;
+  background-color: #333;
+  padding: 10px 20px 20px 20px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .header__login {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 700;
+    }
+    .header__avatar {
+      display: block;
+      width: 32px;
+      height: 32px;
+      background-image: url("../../../../assets/img/account.svg");
+      background-size: cover;
+      border-radius: 50%;
+    }
+  }
+  .nav {
+    margin-bottom: 20px;
+    .nav__item {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 15px;
+      font-weight: 400;
+      padding: 5px 0;
+    }
+  }
+  .btnLogout {
+    background-color: unset;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+  }
+}

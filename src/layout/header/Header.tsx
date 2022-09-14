@@ -1,10 +1,12 @@
 import { FC } from "react";
 import s from "./Header.module.scss";
-import { Account, Menu, Search } from "../../components";
+import { AccountMenu, Menu, Search } from "../../components";
 import { Link } from "react-router-dom";
-import { useMatchMedia } from "../../hooks";
+import { useAppSelector, useMatchMedia } from "../../hooks";
+import { useSelector } from "react-redux";
 
 export const Header: FC = () => {
+  const isAuth = useAppSelector((state) => state.auth.entities.isAuth);
   const { isSmallMobile, isMobile } = useMatchMedia();
 
   return (
@@ -18,9 +20,13 @@ export const Header: FC = () => {
         </div>
         <div className={s.search__wrapper_desktop}>{!isSmallMobile && <Search.DesktopView />}</div>
         {isSmallMobile && <Search.MobileView />}
-        <Link to='auth/signin'>
-          <div className={s.signin}>Sign In</div>
-        </Link>
+        {isAuth ? (
+          <AccountMenu />
+        ) : (
+          <Link to="auth">
+            <div className={s.signin}>Sign In</div>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -2,6 +2,12 @@ import s from "./AuthForm.module.scss";
 import { BsEye, BsEyeSlash } from "../../../../assets";
 import { useState, FC } from "react";
 import { useForm } from "react-hook-form";
+import { useAppSelector } from "../../../../hooks";
+
+export interface IUser {
+  login: string;
+  password: string;
+}
 
 interface IFormInputs {
   login: string;
@@ -10,20 +16,20 @@ interface IFormInputs {
 
 interface IAuthFormProps {
   btnName: string;
+  handleLog?: (data: IUser) => void;
 }
-export const AuthForm: FC<IAuthFormProps> = ({ btnName }) => {
+
+export const AuthForm: FC<IAuthFormProps> = ({ btnName, handleLog }) => {
+  const error = useAppSelector((state) => state.auth.userError);
   const [isHide, setIsHide] = useState(true);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInputs>({ mode: "onSubmit" });
-  const onSubmit = (e: any) => {
-    console.dir(JSON.stringify(e));
-  };
 
   return (
-    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.form} onSubmit={handleSubmit(handleLog!)}>
       <label className={s.label} htmlFor="#login">
         <input
           className={s.input}
@@ -41,7 +47,7 @@ export const AuthForm: FC<IAuthFormProps> = ({ btnName }) => {
             },
           })}
         />
-        <span className={s.error}>{errors?.login && errors?.login?.message}</span>
+        <span className={s.error}>{errors?.login?.message || error}</span>
       </label>
       <label className={s.label} htmlFor="#password">
         <input
@@ -56,7 +62,7 @@ export const AuthForm: FC<IAuthFormProps> = ({ btnName }) => {
               message: "Min 4 characters required",
             },
             pattern: {
-              value: /((?=.*[0-9])([A-Za-z]))/,
+              value: /[0-9a-zA-Z]/,
               message: "Only latin letters and at least one number",
             },
           })}

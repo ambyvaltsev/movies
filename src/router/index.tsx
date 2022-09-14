@@ -1,4 +1,4 @@
-import { Account } from "../components/account/Account";
+import { SignIn, SignUp } from '../pages/auth/components';
 import { Categories } from "../components/categories/Categories";
 
 import { Main } from "../layout";
@@ -42,12 +42,12 @@ export const routes = [
       { path: "all", element: <MoviesAll />, index: false },
       { path: "best250", element: <MoviesTop />, index: false },
       {
-        path: "auth/signin",
+        path: "auth",
         element: <Auth />,
         index: false,
         child: [
-          { element: <Account.SignIn />, index: true },
-          { path: "auth/signup", element: <div>wewefwefwefwefwef</div>, index: false },
+          { element: <SignIn />, index: true },
+          { path: "/auth/signup", element: <SignUp/>, index: false },
         ],
       },
     ],
