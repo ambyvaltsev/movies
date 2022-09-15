@@ -1,8 +1,8 @@
 import s from "./SignIn.module.scss";
 import { FC } from "react";
-import { AuthForm } from "..";
+import { AuthForm } from "../../../../components";
 import { Link, useNavigate } from "react-router-dom";
-import { IUser } from "../authForm/AuthForm";
+import { IUser } from "../../../../components/authForm/AuthForm";
 import { loginUser } from "../../../../store/auth/auth.slice";
 import { useAppDispatch } from "../../../../hooks";
 

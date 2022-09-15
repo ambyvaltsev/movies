@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  .rating {
+    display: flex;
+    align-items: center;
+    .rating__title {
+      font-size: 18px;
+      font-weight: 400;
+      color: #1f1f1f;
+      margin-right: 5px;
+    }
+    .rating__value {
+      background-color: #093;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+    }
+    .rating__btnDelete {
+      background-color: unset;
+      font-size: 14px;
+      color: rgba(31, 31, 31, 0.4);
+    }
+  }
+  .date {
+    margin-top: 5px;
+    font-size: 14px;
+    color: rgba(31, 31, 31, 0.4);
+  }
+}

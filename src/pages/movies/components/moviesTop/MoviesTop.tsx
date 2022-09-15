@@ -26,7 +26,7 @@ export const MoviesTop = () => {
           {movies &&
             movies.map((film, index) => {
               return (
-                <Card style={{ alignItems: "start" }} key={index}>
+                <Card style={{ alignItems: "start", gap: '5px' }} key={index}>
                   <Link to={`/movie/${film.filmId}`}>
                     <Poster
                       url={film.posterUrl}

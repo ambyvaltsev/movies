@@ -15,3 +15,4 @@ export { FilterDesktop } from './filter/filterDesktop/FilterDesktop';
 export { FilterMobile } from './filter/filterMobile/FilterMobile';
 export { AccountMenu } from './accountMenu/AccountMenu';
 export { Menu } from './menu/Menu';
+export { AuthForm } from './authForm/AuthForm';

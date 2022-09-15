@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authSlice  } from "./auth";
+import { authSlice  } from "./auth/auth.slice";
 import { moviesAPI, moviesSlice } from "./movies";
 
 export const store = configureStore({

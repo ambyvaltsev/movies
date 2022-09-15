@@ -1,14 +1,14 @@
 import s from "./Kinopoisk.module.scss";
-import { Total } from "../../components";
-import { Star } from "../../../../components";
+import { Star, Rating } from "../../../../components";
 import { useState } from "react";
 import { useGetMovieQuery } from "../../../../store/movies/movies.api";
 import { useParams } from "react-router-dom";
+import { useActions } from "../../../../hooks";
 
 export const Kinopoisk = () => {
+  const { rateMovie } = useActions();
   const [active, setActive] = useState(0);
   const [value, setValue] = useState(0);
-
   const { id } = useParams();
   const { kp } = useGetMovieQuery(id!, {
     selectFromResult: ({ data }) => ({
@@ -16,7 +16,12 @@ export const Kinopoisk = () => {
     }),
   });
 
-  const handleSelectValue = (e: any) => {
+  const handleSelectedValue = (e: any) => {
+    rateMovie({
+      movieId: id,
+      rating: e.target.dataset.value,
+      date: new Date().toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+    });
     setValue(e.target.dataset.value);
   };
 
@@ -31,7 +36,7 @@ export const Kinopoisk = () => {
                 key={i}
                 radioNum={el}
                 value={value}
-                selectValue={handleSelectValue}
+                selectValue={handleSelectedValue}
                 rating={kp.rating}
                 active={active}
                 setActiveOver={() => setActive(el)}
@@ -41,8 +46,9 @@ export const Kinopoisk = () => {
             );
           })}
         </div>
-        <Total rating={kp.rating} votes={kp.votes || ''} />
+        <Rating.Total rating={kp.rating} votes={kp.votes || ""} />
       </form>
+      <Rating.MyRating />
     </div>
   );
 };

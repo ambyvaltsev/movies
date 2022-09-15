@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 0 10px;
+  .avatar {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    padding: 5px;
+    width: 120px;
+  }
+  .user {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+    .user__login {
+      color: #333333;
+      font-size: 23px;
+      font-weight: bold;
+      font-style: italic;
+    }
+    .user__reg {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      color: #aaaaaa;
+      background: #f4f4f4;
+      padding: 10px;
+      .reg__title {
+        font-size: 13px;
+      }
+      .reg__date {
+        font-size: 11px;
+      }
+    }
+  }
+}

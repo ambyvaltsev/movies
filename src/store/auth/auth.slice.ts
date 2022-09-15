@@ -1,16 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IUser } from "../../pages/auth/components/authForm/AuthForm";
+import { loadFromStorage,  saveToStorage } from "../../helpers/localStorage";
+import { IUser } from "../../components/authForm/AuthForm";
 import { RootState } from "../index";
 
 interface IInitialState {
   login: string;
   isAuth: boolean;
   id: number | null;
+  date: string;
 }
 interface ILoginUserResponse {
   login: string;
   id: number;
+  date: string
 }
 export const loginUser = createAsyncThunk<ILoginUserResponse, IUser>(
   "@@auth/loginUser",
@@ -28,13 +31,13 @@ export const loginUser = createAsyncThunk<ILoginUserResponse, IUser>(
       return rejectWithValue("Incorrect login or password");
     }
 
-    const login = await axios({
+    const { data } = await axios({
       url: `https://62aa4db13b3143855445970a.mockapi.io/users/${checkUser.data[0].id}`,
       method: "PUT",
       headers: { "Content-Type": " application/json" },
       data: { isAuth: true },
     });
-    return login.data;
+    return { login: data.login, id: data.id, isAuth: true, date: data.reg };
   }
 );
 export const logoutUser = createAsyncThunk<void, void, { state: RootState }>(
@@ -48,7 +51,7 @@ export const logoutUser = createAsyncThunk<void, void, { state: RootState }>(
     });
   }
 );
-export const createUser = createAsyncThunk<any, IUser>(
+export const createUser = createAsyncThunk<ILoginUserResponse, IUser>(
   "@@auth/createUser",
   async (user, { rejectWithValue }) => {
     const checkUser = await axios({
@@ -59,27 +62,32 @@ export const createUser = createAsyncThunk<any, IUser>(
     if (checkUser.data.some((u: IUser) => u.login === user.login)) {
       return rejectWithValue("This name is already in use");
     }
+    const regDate = new Date().toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric" });
     const newUser = {
       login: user.login,
       password: user.password,
       isAuth: true,
+      reg: regDate,
     };
 
-    const response = await axios({
+    const { data } = await axios({
       url: "https://62aa4db13b3143855445970a.mockapi.io/users",
       method: "POST",
       headers: { "Content-Type": " application/json" },
       data: newUser,
     });
 
-    return response.data;
+    return { login: data.login, id: data.id, isAuth: true, date: data.reg };
   }
 );
 
+const user = loadFromStorage("user");
+
 const initialState: IInitialState = {
-  login: "",
-  isAuth: false,
-  id: null,
+  login: user ? user.login : "",
+  isAuth: user ? true : false,
+  id: user ? user.id : null,
+  date: "",
 };
 
 export const authSlice = createSlice({
@@ -97,14 +105,19 @@ export const authSlice = createSlice({
         state.entities.login = action.payload.login;
         state.entities.id = action.payload.id;
         state.entities.isAuth = true;
+        state.entities.date = action.payload.date;
+        saveToStorage("user", action.payload);
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
         state.entities = initialState;
+        
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.entities.login = action.payload.login;
         state.entities.isAuth = true;
         state.entities.id = action.payload.id;
+        state.entities.date = action.payload.date;
+        saveToStorage("user", action.payload);
       })
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),

@@ -78,12 +78,12 @@ export const ReleasesBlock = () => {
                           title={release.nameEn || release.nameRu}
                           subtitle={release.nameEn && release.nameRu}
                         />
-                        <Rating.Total
+                         <Rating.Total
                           rating={release?.rating!}
                           votes={release?.ratingVoteCount!}
                           styleRating={{ fontSize: "14px" }}
                           styleVotes={{fontSize: '12px'}}
-                        />
+                        /> 
                         <Card.ReleaseDate date={release.date} />
                       </Card>
                     </Link>

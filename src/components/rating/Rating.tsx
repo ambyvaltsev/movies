@@ -1,11 +1,12 @@
 import { FC, ReactNode } from "react";
-import { Critics, Kinopoisk, Total } from "./components";
+import { Critics, Kinopoisk, MyRating, Total } from "./components";
 import s from "./Rating.module.scss";
 
 interface IRatingExtension {
   Kinopoisk: typeof Kinopoisk;
   Critics: typeof Critics;
   Total: typeof Total
+  MyRating: typeof MyRating
 }
 
 interface IRatingProps {
@@ -24,3 +25,4 @@ export const Rating: FC<IRatingProps> & IRatingExtension = ({ children }) => {
 Rating.Kinopoisk = Kinopoisk;
 Rating.Critics = Critics;
 Rating.Total = Total
+Rating.MyRating = MyRating

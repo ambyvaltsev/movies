@@ -3,7 +3,6 @@
   display: grid;
   grid-template-columns: minmax(0, 70px) 1fr auto auto;
   align-items: center;
-  gap: 8px;
   @media (max-width: $portrait-phones-max) {
     grid-template-columns: minmax(0, 60px) 1fr auto auto;
   }

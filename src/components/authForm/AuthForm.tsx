@@ -1,8 +1,8 @@
 import s from "./AuthForm.module.scss";
-import { BsEye, BsEyeSlash } from "../../../../assets";
+import { BsEye, BsEyeSlash } from "../../assets";
 import { useState, FC } from "react";
 import { useForm } from "react-hook-form";
-import { useAppSelector } from "../../../../hooks";
+import { useAppSelector } from "../../hooks";
 
 export interface IUser {
   login: string;

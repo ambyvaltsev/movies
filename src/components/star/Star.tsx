@@ -38,6 +38,7 @@ export const Star: FC<IStarProps> = ({
     <>
       {fill && (
         <label
+          data-testid='star'
           style={style}
           className={s.label}
           htmlFor={`kpicon${id}`}
