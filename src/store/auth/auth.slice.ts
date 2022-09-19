@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { loadFromStorage,  saveToStorage } from "../../helpers/localStorage";
+import { loadFromStorage, saveToStorage } from "../../helpers/localStorage";
 import { IUser } from "../../components/authForm/AuthForm";
 import { RootState } from "../index";
 
@@ -13,8 +13,9 @@ interface IInitialState {
 interface ILoginUserResponse {
   login: string;
   id: number;
-  date: string
+  date: string;
 }
+
 export const loginUser = createAsyncThunk<ILoginUserResponse, IUser>(
   "@@auth/loginUser",
   async (user, { rejectWithValue }) => {
@@ -37,7 +38,9 @@ export const loginUser = createAsyncThunk<ILoginUserResponse, IUser>(
       headers: { "Content-Type": " application/json" },
       data: { isAuth: true },
     });
-    return { login: data.login, id: data.id, isAuth: true, date: data.reg };
+    const response = { login: data.login, id: data.id, isAuth: true, date: data.reg };
+    saveToStorage("auth", response);
+    return response;
   }
 );
 export const logoutUser = createAsyncThunk<void, void, { state: RootState }>(
@@ -63,11 +66,13 @@ export const createUser = createAsyncThunk<ILoginUserResponse, IUser>(
       return rejectWithValue("This name is already in use");
     }
     const regDate = new Date().toLocaleString("en-US", { year: "numeric", month: "long", day: "numeric" });
-    const newUser = {
+    const newUser: any = {
       login: user.login,
       password: user.password,
       isAuth: true,
       reg: regDate,
+      ratedMovies: [],
+      pickedMovies: [],
     };
 
     const { data } = await axios({
@@ -77,17 +82,17 @@ export const createUser = createAsyncThunk<ILoginUserResponse, IUser>(
       data: newUser,
     });
 
-    return { login: data.login, id: data.id, isAuth: true, date: data.reg };
+    const response = { login: data.login, id: data.id, isAuth: true, date: data.reg };
+    saveToStorage("auth", response);
+    return response;
   }
 );
 
-const user = loadFromStorage("user");
-
 const initialState: IInitialState = {
-  login: user ? user.login : "",
-  isAuth: user ? true : false,
-  id: user ? user.id : null,
-  date: "",
+  login: loadFromStorage("auth") ? loadFromStorage("auth").login : "",
+  isAuth: loadFromStorage("auth") ? true : false,
+  id: loadFromStorage("auth") ? loadFromStorage("auth").id : null,
+  date: loadFromStorage("auth") ? loadFromStorage("auth").date : "",
 };
 
 export const authSlice = createSlice({
@@ -106,18 +111,18 @@ export const authSlice = createSlice({
         state.entities.id = action.payload.id;
         state.entities.isAuth = true;
         state.entities.date = action.payload.date;
-        saveToStorage("user", action.payload);
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
-        state.entities = initialState;
-        
+        state.entities.login = "";
+        state.entities.id = null;
+        state.entities.isAuth = false;
+        state.entities.date = "";
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.entities.login = action.payload.login;
         state.entities.isAuth = true;
         state.entities.id = action.payload.id;
         state.entities.date = action.payload.date;
-        saveToStorage("user", action.payload);
       })
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),

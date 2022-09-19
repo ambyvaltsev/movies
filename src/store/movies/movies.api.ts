@@ -1,5 +1,7 @@
 import { MOVIE_API_KEY } from "../../helpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   IReleasesQuery,
   IDigitalReleasesResponse,
@@ -15,13 +17,40 @@ import {
   IAllMovies,
   IMovieShortInfo,
   IAllMoviesResponse,
-} from "../../models";
+} from "./types";
+import { RootState } from "..";
+import { IRatedMovie } from "../user/types";
+
+type IRMovie = IMovie & IRatedMovie
+
+export const fetchRatedMovies = createAsyncThunk<IRMovie[], number, { state: RootState }>(
+  "@@movies/fetchRatedMovies",
+  async (length = 5, { getState }) => {
+    const ratedMovies = getState().user.ratedMovies;
+
+    const fetches = ratedMovies.map((movie, index) => {
+      if (index < length) {
+        return axios({
+          url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movie.movieId}`,
+          headers: {
+            "X-API-KEY": `${MOVIE_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        });
+      }
+    });
+
+    const response = await Promise.all(fetches);
+
+    return response.map((res, index) => ({...res?.data, ...ratedMovies[index]}));
+  }
+);
 
 export const moviesAPI = createApi({
   reducerPath: "moviesAPI",
   baseQuery: fetchBaseQuery({ baseUrl: "https://kinopoiskapiunofficial.tech/api" }),
   endpoints: (build) => ({
-    getMovie: build.query<IMovie, string>({
+    getMovie: build.query<IMovie, string | number>({
       query: (id) => ({
         url: `/v2.2/films/${id}`,
         headers: {
@@ -171,6 +200,7 @@ export const moviesAPI = createApi({
 });
 
 export const {
+  useLazyGetMovieQuery,
   useGetAllMoviesQuery,
   useGetMovieByKeyQuery,
   useGetTopMoviesQuery,

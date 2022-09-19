@@ -1,7 +1,6 @@
 import s from "./RelatedList.module.scss";
-
 import { Link } from "react-router-dom";
-import { ISingleUnit } from "../../../../models";
+import { ISingleUnit } from "../../../../store/movies/types";
 import { FC } from "react";
 
 interface IRelatedListProps {

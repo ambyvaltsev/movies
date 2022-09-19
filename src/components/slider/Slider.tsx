@@ -16,9 +16,12 @@ export const Slider: FC<ISliderProps> = ({ length, children }) => {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
+    if ( length - number < 0) {
+      --count.current;
+    }
     if (Math.abs(count.current) > length - number) {
       ++count.current;
-    }
+    } 
     setOffset(width * count.current);
   }, [width]);
 
@@ -42,7 +45,7 @@ export const Slider: FC<ISliderProps> = ({ length, children }) => {
       <div className={s.slider__content} style={{ transform: `translateX(${offset}px)` }}>
         {Children.map(children, (child) => {
           return (
-            <div className={s.slider__item} style={{ minWidth: `${width}px` }}>
+            <div className={s.slider__item} style={{ width: `${width}px`, minWidth: `${width}px` }}>
               {child}
             </div>
           );

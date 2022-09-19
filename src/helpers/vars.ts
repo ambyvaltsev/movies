@@ -60,34 +60,34 @@ export const allCategories: IAllCategories = {
     {
       title: "Comedy",
       posterUrl: comedy,
-      id: '?genre=Комедия'
+      id: 'all?genre=Комедия'
     },
     {
       title: "Fantasy",
       posterUrl: fantasy,
-      id: '?genre=Фантастика'
+      id: 'all?genre=Фантастика'
     },
     {
       title: "Action",
       posterUrl: action,
-      id: '?genre=Боевик'
+      id: 'all?genre=Боевик'
     },
   ],
   countries: [
     {
       title: "Russia",
       posterUrl: russia,
-      id: '?country=Россия'
+      id: 'all?country=Россия'
     },
     {
       title: "USA",
       posterUrl: usa,
-      id: '?country=США'
+      id: 'all?country=США'
     },
     {
       title: "France",
       posterUrl: france,
-      id: '?country=Франция'
+      id: 'all?country=Франция'
     },
   ],
 };

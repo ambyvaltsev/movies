@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "../../assets";
 import { Card, Preloader, Poster, Rating } from "../../components";
 import { useGetDigitalReleasesQuery } from "../../store/movies/movies.api";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
-import { IRelease, IMoviesResponse } from "../../models";
+import { IRelease, IMoviesResponse } from "../../store/movies/types";
 import { useScrollMovies } from "../../hooks";
 
 export const DigitalReleases: FC = () => {

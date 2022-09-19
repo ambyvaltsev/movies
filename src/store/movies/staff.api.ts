@@ -7,7 +7,7 @@ import {
   ISingleUnit,
   IMoviesResponse,
   IPersonsShortInfo,
-} from "../../models";
+} from "../../store/movies/types";
 
 function formatStaff(staff: IStaffResponse[], key: string): ISingleUnit[] {
   return staff

@@ -3,7 +3,7 @@ import { useGetMovieByKeyQuery } from "../../../../store/movies/movies.api";
 import { useGetPersonByKeyQuery } from "../../../../store/movies/staff.api";
 import s from "./SearchTooltip.module.scss";
 import { Link } from "react-router-dom";
-import { Card, Poster } from "../../..";
+import { Card, Poster } from "../../../../components";
 
 interface ISearchTooltipProps {
   keyword: string;

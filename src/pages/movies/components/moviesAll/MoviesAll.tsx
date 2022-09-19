@@ -2,7 +2,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import s from "./MoviesAll.module.scss";
 import { useGetAllMoviesQuery } from "../../../../store/movies/movies.api";
 import { useState, useEffect } from "react";
-import { IAllMovies, IAllMoviesQuery, IMoviesResponse } from "../../../../models";
+import { IAllMovies, IAllMoviesQuery, IMoviesResponse } from "../../../../store/movies/types";
 import { Card, Poster, Sorting, FilterDesktop, FilterMobile } from "../../../../components";
 import { useScrollMovies } from "../../../../hooks/useScrollMovies";
 import { getUrl, getParams, order } from "../../../../helpers";

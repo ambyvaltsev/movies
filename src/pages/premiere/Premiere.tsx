@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import s from "./Premiere.module.scss";
 import { IoIosArrowForward } from "../../assets";
-import { Preloader } from "../../components";
 import { useGetPremiereQuery } from "../../store/movies/movies.api";
 import { FC, useState, useEffect } from "react";
-import { Card, Poster } from "../../components";
+import { Card, Poster, Preloader } from "../../components";
 import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
 import { useInView } from "react-intersection-observer";
-import { IRelease } from "../../models";
+import { IRelease } from "../../store/movies/types";
 
 export const Premiere: FC = () => {
   const [limit, setLimit] = useState(10);

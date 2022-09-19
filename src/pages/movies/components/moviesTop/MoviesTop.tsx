@@ -1,10 +1,10 @@
 import s from "./MoviesTop.module.scss";
 import { Card, Poster } from "../../../../components";
 import { useGetTopMoviesQuery } from "../../../../store/movies/movies.api";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 import { useScrollMovies } from "../../../../hooks";
-import { IMovieShortInfo, ITopMoviesResponse } from "../../../../models";
+import { IMovieShortInfo } from "../../../../store/movies/types";
 export const MoviesTop = () => {
   const [params, setParams] = useState({
     type: "TOP_250_BEST_FILMS",

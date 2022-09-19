@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import s from "./About.module.scss";
 import { AboutItem } from "../../components";
-import { ISingleUnit } from "../../../../models";
+import { ISingleUnit } from "../../../../store/movies/types";
 
 interface IAboutProps {
   title: string;

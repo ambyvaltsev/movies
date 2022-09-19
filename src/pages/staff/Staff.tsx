@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetSpecificStaffQuery } from "../../store/movies/staff.api";
 import s from "./Staff.module.scss";
 import { Preloader, Info, Poster } from "../../components";
-import { ISingleUnit } from "../../models";
+import { ISingleUnit } from "../../store/movies/types";
 import { StaffInfoCard } from "./components";
 
 import { useState } from "react";

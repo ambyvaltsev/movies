@@ -1,8 +1,10 @@
 import { Routes } from "react-router-dom";
-import { routes } from "../../router";
+import { privateRoutes, publicRoutes } from "../../router";
 import { mapRoutes } from "../../helpers";
 import { FC } from "react";
+import { useAppSelector } from "../../hooks";
 
 export const AppRoutes: FC = () => {
-  return <Routes>{mapRoutes(routes)}</Routes>;
+  const isAuth = useAppSelector((state) => state.auth.entities.isAuth);
+  return <Routes>{isAuth ? mapRoutes(privateRoutes) : mapRoutes(publicRoutes)}</Routes>;
 };

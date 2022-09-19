@@ -1,6 +1,6 @@
 import s from "./SearchTooltipDefault.module.scss";
 import { useGetTopMoviesQuery } from "../../../../store/movies/movies.api";
-import { IMovieShortInfo } from "../../../../models";
+import { IMovieShortInfo } from "../../../../store/movies/types";
 import { Link } from "react-router-dom";
 import { Card, Poster } from "../../..";
 

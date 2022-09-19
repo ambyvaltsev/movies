@@ -1,0 +1,39 @@
+.container {
+  padding: 15px;
+  .stat {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    max-width: 170px;
+    margin-bottom: 30px;
+    .stat__title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .stat__table {
+      .table__body {
+        .table__row {
+          .table__data {
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+  .history {
+    .history__title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .history__box {
+      .box__header {
+        display: grid;
+        grid-template-columns: 30px 1fr 50px 40px;
+        padding: 10px 5px;
+        background-color: #005;
+        .box__headerItem {
+          color: white
+        }
+      }
+    }
+  }
+}

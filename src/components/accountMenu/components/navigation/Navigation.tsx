@@ -11,7 +11,7 @@ export const Navigation: FC<INavigationProps> = () => {
   const { logoutUser } = useActions();
   const user = useAppSelector((state) => state.auth.entities.login);
   const logout = () => {
-    removeFromStorage("user");
+    removeFromStorage("auth");
     logoutUser();
     navigate("/");
   };
