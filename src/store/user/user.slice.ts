@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { loadFromStorage } from "../../helpers";
-import { IPickedMovie, IRatedMovie } from "./types";
+import { IFavoriteMovie, IRatedMovie } from "./types";
 import { userAPI } from "./user.api";
 
 interface IInitialState {
   ratedMovies: IRatedMovie[];
-  pickedMovies: IPickedMovie[];
+  favoriteMovies: IFavoriteMovie[];
 }
 
 const initialState: IInitialState = {
   ratedMovies: loadFromStorage("ratedMovies") || [],
-  pickedMovies: [],
+  favoriteMovies: loadFromStorage("favoriteMovies") || [],
 };
 
 export const userSlice = createSlice({
@@ -35,6 +35,24 @@ export const userSlice = createSlice({
         userAPI.endpoints.deleteRatedMovie.matchFulfilled,
         (state, action: PayloadAction<IRatedMovie[]>) => {
           state.ratedMovies = action.payload;
+        }
+      )
+      .addMatcher(
+        userAPI.endpoints.addToFavotites.matchFulfilled,
+        (state, action: PayloadAction<IFavoriteMovie[]>) => {
+          state.favoriteMovies = action.payload;
+        }
+      )
+      .addMatcher(
+        userAPI.endpoints.deleteFavotite.matchFulfilled,
+        (state, action: PayloadAction<IFavoriteMovie[]>) => {
+          state.favoriteMovies = action.payload;
+        }
+      )
+      .addMatcher(
+        userAPI.endpoints.getFavoriteMovies.matchFulfilled,
+        (state, action: PayloadAction<IFavoriteMovie[]>) => {
+          state.favoriteMovies = action.payload;
         }
       );
   },

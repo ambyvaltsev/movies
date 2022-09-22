@@ -50,7 +50,7 @@ export const MoviesTop = () => {
                       <Card.ShortInfo title="Rating: " text={film.rating} />
                     </Card.Description>
                   </Link>
-                  <Card.FavoriteBadge />
+                  <Card.FavoriteBadge id={film.filmId} />
                   <Card.ScoreBadge id={film.filmId} />
                 </Card>
               );

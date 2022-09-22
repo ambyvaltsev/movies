@@ -3,7 +3,7 @@ export interface IRatedMovie {
   date: string;
   rating: string | number;
 }
-export interface IPickedMovie {
+export interface IFavoriteMovie {
   movieId: string | number;
   date: string;
 }
@@ -13,7 +13,7 @@ export interface IUserResponse {
   isAuth: boolean;
   login: string;
   password: string;
-  pickedMovies: IPickedMovie[];
+  favoriteMovies: IFavoriteMovie[];
   ratedMovies: IRatedMovie[];
   reg: string;
 }

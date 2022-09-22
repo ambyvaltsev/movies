@@ -1,3 +1,4 @@
+import { moviesSlice } from './movies/movies.slice';
 import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./auth/auth.slice";
 import { moviesAPI } from "./movies";
@@ -9,6 +10,7 @@ export const store = configureStore({
     [userAPI.reducerPath]: userAPI.reducer,
     user: userSlice.reducer,
     auth: authSlice.reducer,
+    movies: moviesSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(moviesAPI.middleware, userAPI.middleware),

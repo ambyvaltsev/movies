@@ -17,31 +17,31 @@ import {
   IAllMovies,
   IMovieShortInfo,
   IAllMoviesResponse,
+  IMyRatedMovie,
 } from "./types";
 import { RootState } from "..";
-import { IRatedMovie } from "../user/types";
 
-type IRMovie = IMovie & IRatedMovie
 
-export const fetchRatedMovies = createAsyncThunk<IRMovie[], number, { state: RootState }>(
+
+
+export const fetchRatedMovies = createAsyncThunk<IMyRatedMovie[], {start: number, end: number}, { state: RootState }>(
   "@@movies/fetchRatedMovies",
-  async (length = 5, { getState }) => {
+  async (length, { getState }) => {
     const ratedMovies = getState().user.ratedMovies;
-
-    const fetches = ratedMovies.map((movie, index) => {
-      if (index < length) {
-        return axios({
-          url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/${movie.movieId}`,
+    console.log(length)
+  
+    const fetches = ratedMovies.filter((m, i) => i >= length.start && i <= length.end).map(m => {
+      return  axios({
+          url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/${m.movieId}`,
           headers: {
             "X-API-KEY": `${MOVIE_API_KEY}`,
             "Content-Type": "application/json",
           },
-        });
-      }
-    });
+        })
+    })
 
+    console.log(fetches)
     const response = await Promise.all(fetches);
-
     return response.map((res, index) => ({...res?.data, ...ratedMovies[index]}));
   }
 );

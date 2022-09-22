@@ -1,17 +1,21 @@
 import { useAppSelector } from "./redux";
 import { useEffect } from "react";
-import { useLazyGetRatedMoviesQuery } from "../store/user/user.api";
+import { useLazyGetFavoriteMoviesQuery, useLazyGetRatedMoviesQuery } from "../store/user/user.api";
 import { saveToStorage } from "../helpers";
 
 export const useLoadUserMovies = () => {
   const { isAuth, id } = useAppSelector((state) => state.auth.entities);
-  const [loadMovies ] = useLazyGetRatedMoviesQuery();
+  const [loadRated] = useLazyGetRatedMoviesQuery();
+  const [loadFavorite] = useLazyGetFavoriteMoviesQuery()
 
   useEffect(() => {
     if (isAuth) {
-      loadMovies(id!)
+      loadRated(id!)
         .unwrap()
         .then((res) => saveToStorage("ratedMovies", res));
+      loadFavorite(id!)
+        .unwrap()
+        .then((res) => saveToStorage("favoriteMovies", res));
     }
   }, [isAuth]);
 };

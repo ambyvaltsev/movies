@@ -24,14 +24,6 @@ export const Desktop: FC<IMenuProps> = () => {
             </li>
           )}
         </NavLink>
-        <NavLink to="/tvseries">
-          {({ isActive }) => (
-            <li className={s.item}>
-              <MdMovie className={`${s.item__content} ${isActive && s.active}`} />
-              <span className={`${s.item__content} ${isActive && s.active}`}>TV series</span>
-            </li>
-          )}
-        </NavLink>
       </ul>
     </div>
   );

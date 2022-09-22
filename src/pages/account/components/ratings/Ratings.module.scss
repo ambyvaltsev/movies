@@ -1,5 +1,5 @@
 .container {
-  padding: 15px;
+  padding: 15px 10px;
   .stat {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 10px;
@@ -20,18 +20,36 @@
     }
   }
   .history {
+    box-shadow: var(--shadow-box);
     .history__title {
       font-size: 18px;
       margin-bottom: 10px;
     }
     .history__box {
+      min-height: 100%;
       .box__header {
         display: grid;
-        grid-template-columns: 30px 1fr 50px 40px;
-        padding: 10px 5px;
+        grid-template-columns: 20px 1fr 50px 50px;
+        justify-items: center;
+        padding: 10px 0;
         background-color: #005;
+        margin-bottom: 10px;
         .box__headerItem {
           color: white
+        }
+      }
+      .box__list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 100%;
+
+        .list__item {
+          font-size: 11px;
+          text-align: center;
+        }
+        .observable {
+            height: 10px;
         }
       }
     }

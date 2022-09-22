@@ -12,7 +12,6 @@ export const Mobile: FC = () => {
       <button className={s.menu__btnOpen} onClick={() => setIsOpen(true)}>
         <RiMenuLine />
       </button>
-
       <div className={s.menu__content} style={{ left: `-${isOpen ? 0 : 100}%` }}>
         <ul className={s.menu__list}>
           <NavLink to="/" onClick={() => setIsOpen(false)}>
@@ -28,14 +27,6 @@ export const Mobile: FC = () => {
               <li className={s.item}>
                 <MdMovie className={`${s.item__content} ${isActive && s.active}`} />
                 <span className={`${s.item__content} ${isActive && s.active}`}>Movies</span>
-              </li>
-            )}
-          </NavLink>
-          <NavLink to="tvseries" onClick={() => setIsOpen(false)}>
-            {({ isActive }) => (
-              <li className={s.item}>
-                <MdMovie className={`${s.item__content} ${isActive && s.active}`} />
-                <span className={`${s.item__content} ${isActive && s.active}`}>TV series</span>
               </li>
             )}
           </NavLink>

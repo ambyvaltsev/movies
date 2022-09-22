@@ -1,15 +1,17 @@
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-
+import { useInView } from "react-intersection-observer";
 import s from "./Ratings.module.scss";
 import { useEffect, useState } from "react";
-import { IMovie } from "../../../../store/movies/types";
-
+import { IMyRatedMovie } from "../../../../store/movies/types";
 import { fetchRatedMovies } from "../../../../store/movies/movies.api";
 import { Card, Poster } from "../../../../components";
+import { Link } from "react-router-dom";
 
 export const Ratings = () => {
+  const [length, setLength] = useState({ start: 0, end: 4 });
+  const { ref, inView, entry } = useInView();
   const dispatch = useAppDispatch();
-  const [movies, setMovies] = useState<IMovie[]>([]);
+  const [movies, setMovies] = useState<IMyRatedMovie[]>([]);
 
   const { ratedMovies } = useAppSelector((state) => state.user);
   const averageRating =
@@ -18,12 +20,24 @@ export const Ratings = () => {
           return acc + +cur.rating;
         }, 0) / ratedMovies.length
       : 0;
-  useEffect(() => {
-    dispatch(fetchRatedMovies(5))
-      .unwrap()
-      .then((res) => setMovies(res));
-  }, []);
 
+  useEffect(() => {
+    dispatch(fetchRatedMovies(length))
+      .unwrap()
+      .then((res) => {
+        if (movies.length === 0) {
+          setMovies(res);
+        } else {
+          setMovies((prev) => [...prev, ...res]);
+        }
+      });
+  }, [length]);
+
+  useEffect(() => {
+    if (length.end < movies.length) {
+      setLength((prev) => ({ start: prev.end + 1, end: prev.end + 3 }));
+    }
+  }, [inView]);
   return (
     <div className={s.container}>
       <section className={s.stat}>
@@ -36,15 +50,7 @@ export const Ratings = () => {
             </tr>
             <tr className={s.table__row}>
               <td className={s.table__data}>Average rating</td>
-              <td className={s.table__data}>{averageRating}</td>
-            </tr>
-            <tr className={s.table__row}>
-              <td className={s.table__data}>First entry</td>
-              <td className={s.table__data}>Value</td>
-            </tr>
-            <tr className={s.table__row}>
-              <td className={s.table__data}>Last entry</td>
-              <td className={s.table__data}>Value</td>
+              <td className={s.table__data}>{averageRating.toFixed(2)}</td>
             </tr>
           </tbody>
         </table>
@@ -61,17 +67,25 @@ export const Ratings = () => {
           <div className={s.box__list}>
             {movies &&
               movies.map((movie, index) => (
-                <Card style={{ gridTemplateColumns: "30px 60px 1fr 50px 40px" }}>
-                  <div>{index + 1}</div>
-                  <Poster url={movie.posterUrl} alt={movie.nameEn || movie.nameRu} />
-                  <Card.Description
-                    title={movie.nameEn || movie.nameRu}
-                    subtitle={movie.nameEn && movie.nameRu}
-                  />
-                  <div>
-                    
-                  </div>
-                </Card>
+                <Link to={`/movie/${movie.kinopoiskId}`} key={index}>
+                  <Card style={{ gridTemplateColumns: "20px 50px 1fr 50px 50px auto" }}>
+                    <div className={s.list__item}>{index + 1}</div>
+                    <Poster url={movie.posterUrl} alt={movie.nameEn || movie.nameRu} />
+                    <Card.Description
+                      title={movie.nameEn || movie.nameOriginal || movie.nameRu}
+                      subtitle={(movie.nameEn || movie.nameOriginal) && movie.nameRu}
+                    />
+                    <div className={s.list__item}>
+                      {new Date(movie.date).toLocaleString("en-US", {
+                        day: "numeric",
+                        month: "numeric",
+                        year: "numeric",
+                      })}
+                    </div>
+                    <div className={s.list__item}>{movie.rating}</div>
+                    {index === movies.length - 1 ? <div ref={ref}></div> : null}
+                  </Card>
+                </Link>
               ))}
           </div>
         </div>

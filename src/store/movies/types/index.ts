@@ -1,3 +1,4 @@
+import { IRatedMovie } from "../../user/types";
 
 export interface IDigitalReleasesResponse {
   total: number;
@@ -214,3 +215,6 @@ export interface IAllMoviesResponse<T> {
   total: number
   items: T[]
 }
+
+
+export type IMyRatedMovie = IMovie & IRatedMovie

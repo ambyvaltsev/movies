@@ -75,7 +75,6 @@ export const Movie = () => {
               >
                 <Info.RelatedContent title="Starring">
                   <Info.RelatedList items={staff?.actors} link="staff" />
-                  <div className={s.all}>{`${staff?.actors?.length} actors`}</div>
                 </Info.RelatedContent>
               </Info.About>
             </Info.Description>

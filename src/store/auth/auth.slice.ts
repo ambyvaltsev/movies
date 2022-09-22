@@ -72,7 +72,7 @@ export const createUser = createAsyncThunk<ILoginUserResponse, IUser>(
       isAuth: true,
       reg: regDate,
       ratedMovies: [],
-      pickedMovies: [],
+      favoriteMovies: [],
     };
 
     const { data } = await axios({
