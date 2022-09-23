@@ -19,6 +19,9 @@ export const Account = () => {
             <NavLink to="ratings">
               {({ isActive }) => <li className={`${s.navigation__item} ${isActive && s.active}`}>Ratings</li>}
             </NavLink>
+            <NavLink to="favorite">
+              {({ isActive }) => <li className={`${s.navigation__item} ${isActive && s.active}`}>Favorite</li>}
+            </NavLink>
           </ul>
         </nav>
         <Outlet />

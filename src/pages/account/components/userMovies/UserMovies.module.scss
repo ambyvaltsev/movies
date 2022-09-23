@@ -1,40 +1,22 @@
 .container {
-  padding: 15px 10px;
-  .stat {
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    max-width: 170px;
-    margin-bottom: 30px;
-    .stat__title {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    .stat__table {
-      .table__body {
-        .table__row {
-          .table__data {
-            padding: 5px;
-          }
-        }
-      }
-    }
-  }
-  .history {
     box-shadow: var(--shadow-box);
-    .history__title {
+    .title {
       font-size: 18px;
       margin-bottom: 10px;
     }
-    .history__box {
+    .box {
       min-height: 100%;
       .box__header {
         display: grid;
-        grid-template-columns: 20px 1fr 50px 50px;
+        grid-template-columns: 25px 1fr 40px 60px;
         justify-items: center;
+        align-items: center;
         padding: 10px 0;
         background-color: #005;
         margin-bottom: 10px;
         .box__headerItem {
+          text-align: center;
+          font-size: 13px;
           color: white
         }
       }
@@ -54,4 +36,3 @@
       }
     }
   }
-}

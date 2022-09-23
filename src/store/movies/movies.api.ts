@@ -21,15 +21,10 @@ import {
 } from "./types";
 import { RootState } from "..";
 
-
-
-
 export const fetchRatedMovies = createAsyncThunk<IMyRatedMovie[], {start: number, end: number}, { state: RootState }>(
   "@@movies/fetchRatedMovies",
   async (length, { getState }) => {
     const ratedMovies = getState().user.ratedMovies;
-    console.log(length)
-  
     const fetches = ratedMovies.filter((m, i) => i >= length.start && i <= length.end).map(m => {
       return  axios({
           url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/${m.movieId}`,
@@ -39,10 +34,25 @@ export const fetchRatedMovies = createAsyncThunk<IMyRatedMovie[], {start: number
           },
         })
     })
-
-    console.log(fetches)
     const response = await Promise.all(fetches);
     return response.map((res, index) => ({...res?.data, ...ratedMovies[index]}));
+  }
+);
+export const fetchFavoriteMovies = createAsyncThunk<IMyRatedMovie[], {start: number, end: number}, { state: RootState }>(
+  "@@movies/fetchRatedMovies",
+  async (length, { getState }) => {
+    const favoriteMovies = getState().user.favoriteMovies;
+    const fetches = favoriteMovies.filter((m, i) => i >= length.start && i <= length.end).map(m => {
+      return  axios({
+          url: `https://kinopoiskapiunofficial.tech/api/v2.2/films/${m.movieId}`,
+          headers: {
+            "X-API-KEY": `${MOVIE_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        })
+    })
+    const response = await Promise.all(fetches);
+    return response.map((res, index) => ({...res?.data, ...favoriteMovies[index]}));
   }
 );
 

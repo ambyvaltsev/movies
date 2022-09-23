@@ -14,7 +14,7 @@ import {
   Auth,
   Account,
 } from "../pages";
-import { Profile, Ratings } from "../pages/account/components";
+import { FavoriteMovies, Profile, RatedMovies } from "../pages/account/components";
 
 export const publicRoutes = [
   {
@@ -96,7 +96,8 @@ export const privateRoutes = [
         element: <Account />,
         child: [
           { path: "account", element: <Profile />, index: true },
-          { path: "ratings", element: <Ratings />, index: false },
+          { path: "ratings", element: <RatedMovies />, index: false },
+          { path: "favorite", element: <FavoriteMovies />, index: false },
         ],
       },
       { path: "*", element: <div>Page Not Found</div>, index: false },
