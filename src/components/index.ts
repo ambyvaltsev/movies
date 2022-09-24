@@ -1,3 +1,4 @@
+
 export { AppRoutes } from "./appRoutes/AppRoutes";
 export { Search } from "./search/Search";
 export { MovieInfoCard } from "../pages/movie/components/movieInfoCard/MovieInfoCard";
@@ -16,3 +17,4 @@ export { FilterMobile } from './filter/filterMobile/FilterMobile';
 export { AccountMenu } from './accountMenu/AccountMenu';
 export { Menu } from './menu/Menu';
 export { AuthForm } from './authForm/AuthForm';
+export { Error } from './error/Error';

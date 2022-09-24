@@ -1,7 +1,7 @@
 import s from "./MoviesTop.module.scss";
-import { Card, Poster } from "../../../../components";
+import { Card, Error, Poster, Preloader } from "../../../../components";
 import { useGetTopMoviesQuery } from "../../../../store/movies/movies.api";
-import { useState} from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useScrollMovies } from "../../../../hooks";
 import { IMovieShortInfo } from "../../../../store/movies/types";
@@ -18,6 +18,13 @@ export const MoviesTop = () => {
     data?.pages!,
     setParams
   );
+
+  if (isError) {
+    return <Error />;
+  }
+  if (isLoading) {
+    return <Preloader />;
+  }
   return (
     <div className={s.container}>
       <section className={s.movies}>
@@ -26,7 +33,7 @@ export const MoviesTop = () => {
           {movies &&
             movies.map((film, index) => {
               return (
-                <Card style={{ alignItems: "start", gap: '5px' }} key={index}>
+                <Card style={{ alignItems: "start", gap: "5px" }} key={index}>
                   <Link to={`/movie/${film.filmId}`}>
                     <Poster
                       url={film.posterUrl}

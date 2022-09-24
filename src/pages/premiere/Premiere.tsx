@@ -3,7 +3,7 @@ import s from "./Premiere.module.scss";
 import { IoIosArrowForward } from "../../assets";
 import { useGetPremiereQuery } from "../../store/movies/movies.api";
 import { FC, useState, useEffect } from "react";
-import { Card, Poster, Preloader } from "../../components";
+import { Card, Error, Poster, Preloader } from "../../components";
 import { Selector } from "../../components/UI";
 import { years, months } from "../../helpers/vars";
 import { useInView } from "react-intersection-observer";
@@ -26,7 +26,7 @@ export const Premiere: FC = () => {
   }, [inView]);
 
   if (isError) {
-    return <div>Error</div>;
+    return <Error/>;
   }
   if (isLoading) {
     return <Preloader />;

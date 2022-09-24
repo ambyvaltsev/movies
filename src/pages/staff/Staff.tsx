@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetSpecificStaffQuery } from "../../store/movies/staff.api";
 import s from "./Staff.module.scss";
-import { Preloader, Info, Poster } from "../../components";
+import { Preloader, Info, Poster, Error } from "../../components";
 import { ISingleUnit } from "../../store/movies/types";
 import { StaffInfoCard } from "./components";
 
@@ -38,6 +38,9 @@ export const Staff = () => {
   const closeCard = () => {
     setInfo({ ...info, id: "" });
   };
+  if (isError) {
+    return <Error />;
+  }
   if (isLoading) {
     return <Preloader />;
   }

@@ -3,7 +3,7 @@ import s from "./MoviesAll.module.scss";
 import { useGetAllMoviesQuery } from "../../../../store/movies/movies.api";
 import { useState, useEffect } from "react";
 import { IAllMovies, IAllMoviesQuery, IMoviesResponse } from "../../../../store/movies/types";
-import { Card, Poster, Sorting, FilterDesktop, FilterMobile } from "../../../../components";
+import { Card, Poster, Sorting, FilterDesktop, FilterMobile, Error, Preloader } from "../../../../components";
 import { useScrollMovies } from "../../../../hooks/useScrollMovies";
 import { getUrl, getParams, order } from "../../../../helpers";
 import { IoIosOptions } from "../../../../assets";
@@ -49,6 +49,14 @@ export const MoviesAll = () => {
   const handleMobileFilter = () => {
     setOpenMenu(!openMenu);
   };
+
+  if (isError) {
+    return <Error/>
+  }
+  if (isLoading) {
+    return <Preloader/>
+  }
+
   return (
     <div className={s.container}>
       <div className={s.content}>

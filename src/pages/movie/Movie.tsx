@@ -3,7 +3,7 @@ import { useGetMovieQuery } from "../../store/movies/movies.api";
 import { useGetStaffQuery } from "../../store/movies/staff.api";
 import { MovieDetails } from "./components";
 import s from "./Movie.module.scss";
-import { MovieInfoCard, Preloader, Info, Poster } from "../../components";
+import { MovieInfoCard, Preloader, Info, Poster, Error } from "../../components";
 import { useState } from "react";
 
 export const Movie = () => {
@@ -52,7 +52,7 @@ export const Movie = () => {
   const aboutTitle = movie?.type.split("_")[1]?.toLowerCase() || movie?.type.toLowerCase();
 
   if (isErrorMovie || isErrorStaff) {
-    return <div>Error</div>;
+    return <Error/>;
   }
   if (isLoadingMovie || isLoadingStaff) {
     return <Preloader />;

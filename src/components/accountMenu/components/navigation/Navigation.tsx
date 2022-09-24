@@ -24,8 +24,12 @@ export const Navigation: FC<INavigationProps> = () => {
         <AccountMenu.Badge />
       </div>
       <ul className={s.nav}>
-        <li className={s.nav__item}>Ratings</li>
-        <li className={s.nav__item}>Movies</li>
+        <Link to='/account/ratings'>
+          <li className={s.nav__item}>Ratings</li>
+        </Link>
+        <Link to='/account/favorite'>
+          <li className={s.nav__item}>Movies</li>
+        </Link>
       </ul>
       <button className={s.btnLogout} onClick={logout}>
         Log Out
