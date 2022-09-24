@@ -3,6 +3,12 @@
   display: grid;
   grid-template-columns: 30% 70%;
   gap: 10px;
+  padding-bottom: 20px;
+  @media (max-width: $portrait-phones-max) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   .all {
     cursor: pointer;
     margin-top: 10px;

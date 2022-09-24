@@ -42,6 +42,7 @@ export const RatingBadge: FC<IRatingBadgeProps> = ({ id }) => {
   };
 
   const handleOpen = () => {
+    if (!isAuth) return;
     if (ratedMovies.some((item) => item.movieId === id)) {
       return;
     }

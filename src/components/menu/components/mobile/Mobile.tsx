@@ -10,7 +10,7 @@ export const Mobile: FC = () => {
   return (
     <div className={s.container}>
       <button className={s.menu__btnOpen} onClick={() => setIsOpen(true)}>
-        <RiMenuLine />
+        <RiMenuLine className={s.menu__btnOpenIcon} />
       </button>
       <div className={s.menu__content} style={{ left: `-${isOpen ? 0 : 100}%` }}>
         <ul className={s.menu__list}>

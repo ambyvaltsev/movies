@@ -7,9 +7,13 @@
     align-items: center;
     justify-content: center;
     background-color: unset;
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
     color: var(--color-icon-header);
+    .menu__btnOpenIcon {
+      width: 32px;
+      height: 32px;
+    }
   }
   .menu__content {
     position: fixed;

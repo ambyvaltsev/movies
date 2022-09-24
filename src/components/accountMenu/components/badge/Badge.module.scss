@@ -1,11 +1,12 @@
 @import "../../../../app/styles/vars";
 .container {
   z-index: 20000;
-  width: 32px;
-  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   background-image: url("../../../../assets/img/account.svg");
   background-size: cover;
   border-radius: 50%;
+  
   @media (max-width: $landscape-phones-max) {
     width: 24px;
     height: 24px;

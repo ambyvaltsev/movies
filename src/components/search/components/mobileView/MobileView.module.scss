@@ -9,8 +9,8 @@
   }
   .search__btnOpen {
     cursor: pointer;
-
-    font-size: 20px;
+    width: 28px;
+    height: 28px;
     color: var(--color-icon-header);
     &.open {
       cursor: none;

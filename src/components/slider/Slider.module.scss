@@ -9,6 +9,7 @@
     }
   }
   .btn__right {
+    user-select: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -28,6 +29,7 @@
     }
   }
   .btn__left {
+    user-select: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
