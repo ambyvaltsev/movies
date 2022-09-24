@@ -3,7 +3,6 @@ import s from "./Header.module.scss";
 import { AccountMenu, Menu, Search } from "../../components";
 import { Link } from "react-router-dom";
 import { useAppSelector, useMatchMedia } from "../../hooks";
-import { useSelector } from "react-redux";
 
 export const Header: FC = () => {
   const isAuth = useAppSelector((state) => state.auth.entities.isAuth);

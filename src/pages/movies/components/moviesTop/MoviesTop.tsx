@@ -51,7 +51,7 @@ export const MoviesTop = () => {
                     </Card.Description>
                   </Link>
                   <Card.FavoriteBadge id={film.filmId} />
-                  <Card.ScoreBadge id={film.filmId} />
+                  <Card.RatingBadge id={film.filmId} />
                 </Card>
               );
             })}

@@ -96,7 +96,7 @@ export const MoviesAll = () => {
                         </Card.Description>
                       </Link>
                       <div className={s.card__badges}>
-                        <Card.ScoreBadge id={item.kinopoiskId!} />
+                        <Card.RatingBadge id={item.kinopoiskId!} />
                         <Card.FavoriteBadge id={item.kinopoiskId} />
                       </div>
                     </Card>

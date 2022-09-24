@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Description, ReleaseDate, ShortInfo, ShortMovieInfo, ScoreBadge, FavoriteBadge } from "./components";
+import { Description, ReleaseDate, ShortInfo, ShortMovieInfo, RatingBadge, FavoriteBadge } from "./components";
 import s from "./Card.module.scss";
 
 
@@ -8,7 +8,7 @@ interface ICardExtensions {
   ReleaseDate: typeof ReleaseDate;
   ShortMovieInfo: typeof ShortMovieInfo;
   ShortInfo: typeof ShortInfo;
-  ScoreBadge: typeof ScoreBadge;
+  RatingBadge: typeof RatingBadge;
   FavoriteBadge: typeof FavoriteBadge
 }
 
@@ -29,5 +29,5 @@ Card.Description = Description;
 Card.ReleaseDate = ReleaseDate;
 Card.ShortMovieInfo = ShortMovieInfo;
 Card.ShortInfo = ShortInfo;
-Card.ScoreBadge = ScoreBadge;
+Card.RatingBadge = RatingBadge;
 Card.FavoriteBadge = FavoriteBadge

@@ -1,15 +1,15 @@
-import s from "./ScoreBadge.module.scss";
-import { Star } from "../../../../components";
+import s from "./RatingBadge.module.scss";
+import { Star } from "../../..";
 import { useState, FC } from "react";
 import { useAppSelector } from "../../../../hooks";
 import { saveToStorage } from "../../../../helpers";
 import { useAddRatedMovieMutation } from "../../../../store/user/user.api";
 
-interface IScoreBadgeProps {
+interface IRatingBadgeProps {
   id: string | number;
 }
 
-export const ScoreBadge: FC<IScoreBadgeProps> = ({ id }) => {
+export const RatingBadge: FC<IRatingBadgeProps> = ({ id }) => {
   const [addRatedMovie] = useAddRatedMovieMutation();
   const ratedMovies = useAppSelector((state) => state.user.ratedMovies);
   const { isAuth, id: userId } = useAppSelector((state) => state.auth.entities!);

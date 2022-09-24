@@ -19,14 +19,16 @@ export const MobileView: FC<IMobileViewProps> = ({ style }) => {
   const iconFocusStyle = isFocus && `${s.focus}`;
   const closeInput = () => {
     setTimeout(() => {
-      setIsFocus(false);
+      setIsFocus(false)
+      setIsOpen(false);
       setInput("");
     }, 200);
   };
+  
   useEffect(() => {
     isOpen && inputRef.current?.focus();
   }, [isOpen]);
-  
+
   return (
     <div className={s.container} style={style}>
       {isOpen && (
