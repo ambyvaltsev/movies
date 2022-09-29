@@ -5,7 +5,6 @@
   flex: 0 1 auto;
   min-width: 160px;
 
-
   .icons {
     position: absolute;
     right: 5px;
@@ -16,8 +15,12 @@
     gap: 5px;
     cursor: pointer;
     font-size: 18px;
-    color: var(--color-icon-header);
-    &.focus {
+
+    & * {
+      color: var(--color-icon-header);
+    }
+
+    &.focus * {
       color: rgba(0, 0, 0, 0.6);
     }
   }

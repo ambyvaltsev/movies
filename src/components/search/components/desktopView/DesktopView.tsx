@@ -4,6 +4,7 @@ import { AiOutlineSearch, BsSliders } from "../../../../assets";
 import { FC, useState } from "react";
 import { useDebounce } from "../../../../hooks/useDebounce";
 import { SearchTooltip, SearchTooltipDefault } from "..";
+import { Link } from "react-router-dom";
 
 export const DesktopView: FC = () => {
   const [isFocus, setIsFocus] = useState(false);
@@ -31,7 +32,9 @@ export const DesktopView: FC = () => {
       />
 
       <div className={`${s.icons} ${iconFocusStyle}`}>
-        <BsSliders />
+        <Link to="/all">
+          <BsSliders />
+        </Link>
         <AiOutlineSearch />
       </div>
 
